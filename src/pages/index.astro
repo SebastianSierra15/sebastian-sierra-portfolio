@@ -80,7 +80,9 @@ const jsonLd = {
   <body>
     <header class="site-header">
       <a class="brand" href="#inicio" aria-label="Sebastian Sierra - ir al inicio">
-        <span class="brand-mark">SS</span>
+        <span class="brand-mark">
+          <img src={profile.logo} alt="" />
+        </span>
         <span>
           <strong>Sebastian Sierra</strong>
           <small>Full Stack Developer</small>
@@ -157,10 +159,6 @@ const jsonLd = {
           <p class="eyebrow">Proyectos destacados</p>
           <h2>Casos que muestran producto, tecnica y criterio visual.</h2>
         </div>
-        <p>
-          Cada proyecto esta presentado como mini case study: problema, solucion, rol, stack y evidencia. Las capturas
-          definitivas quedan listas para reemplazar los mockups provisionales.
-        </p>
       </section>
 
       <section class="filters section-shell reveal" aria-label="Filtrar proyectos">
@@ -236,10 +234,6 @@ const jsonLd = {
         <div class="section-intro">
           <p class="eyebrow">Mapa de capacidades</p>
           <h2>Stack tecnico organizado por lo que un equipo necesita resolver.</h2>
-          <p>
-            No es una lista infinita de herramientas: es la forma en que conecto experiencia de usuario, backend,
-            datos y entrega para construir productos mantenibles.
-          </p>
         </div>
         <div class="stack-grid">
           {stackGroups.map((group) => (
@@ -292,8 +286,59 @@ const jsonLd = {
           <h2>De una idea borrosa a una entrega clara.</h2>
         </div>
         <ol>
-          {process.map((step) => (
-            <li>{step}</li>
+          {process.map((step, index) => (
+            <li style={`--step-index: ${index}`}>
+              <span class="process-topline">
+                <span class="process-icon" data-icon={step.icon} aria-hidden="true">
+                  {
+                    step.icon === "target" && (
+                      <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="8"></circle>
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"></path>
+                      </svg>
+                    )
+                  }
+                  {
+                    step.icon === "spark" && (
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 3l1.7 5.2L19 10l-5.3 1.8L12 17l-1.7-5.2L5 10l5.3-1.8L12 3z"></path>
+                        <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"></path>
+                      </svg>
+                    )
+                  }
+                  {
+                    step.icon === "layers" && (
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 3l9 5-9 5-9-5 9-5z"></path>
+                        <path d="M3 12l9 5 9-5"></path>
+                        <path d="M3 16l9 5 9-5"></path>
+                      </svg>
+                    )
+                  }
+                  {
+                    step.icon === "check" && (
+                      <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"></path>
+                        <path d="M21 12a9 9 0 1 1-5.3-8.2"></path>
+                      </svg>
+                    )
+                  }
+                  {
+                    step.icon === "ship" && (
+                      <svg viewBox="0 0 24 24">
+                        <path d="M5 12h14l-2 7H7l-2-7z"></path>
+                        <path d="M9 12V5h6v7"></path>
+                        <path d="M9 8h6"></path>
+                      </svg>
+                    )
+                  }
+                </span>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </span>
+              <strong>{step.title}</strong>
+              <p>{step.detail}</p>
+            </li>
           ))}
         </ol>
       </section>
@@ -367,6 +412,19 @@ const jsonLd = {
 
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!prefersReducedMotion) {
+        const smoothLinks = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+        smoothLinks.forEach((link) => {
+          link.addEventListener("click", (event) => {
+            const targetId = link.getAttribute("href");
+            if (!targetId || targetId === "#") return;
+            const target = document.querySelector(targetId);
+            if (!target) return;
+            event.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            history.pushState(null, "", targetId);
+          });
+        });
+
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {

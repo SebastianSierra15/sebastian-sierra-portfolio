@@ -29,6 +29,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/sebasti%C3%A1n-sierra-417358263/",
   cv: "/CV-SebastianSierra.pdf",
   photo: "/assets/sebastian-sierra.jpg",
+  logo: "/assets/elias.jpg",
   intro:
     "Construyo interfaces modernas y productos completos con React, Next.js, TypeScript, Java, Node y bases de datos. Me interesa que el software se vea bien, responda rapido y resuelva problemas reales.",
 };
@@ -278,9 +279,29 @@ export const services = [
 ];
 
 export const process = [
-  "Entender el objetivo",
-  "Diseñar la experiencia",
-  "Construir por iteraciones",
-  "Validar responsive y accesibilidad",
-  "Documentar y preparar entrega",
+  {
+    title: "Entender el objetivo",
+    detail: "Contexto, usuarios, restricciones y resultado esperado.",
+    icon: "target",
+  },
+  {
+    title: "Diseñar la experiencia",
+    detail: "Flujo, jerarquia visual, estados y copy accionable.",
+    icon: "spark",
+  },
+  {
+    title: "Construir por iteraciones",
+    detail: "Componentes, datos, integraciones y mejoras progresivas.",
+    icon: "layers",
+  },
+  {
+    title: "Validar responsive",
+    detail: "Desktop, mobile, accesibilidad, SEO y comportamiento real.",
+    icon: "check",
+  },
+  {
+    title: "Preparar entrega",
+    detail: "Documentacion, repositorio limpio y siguientes pasos.",
+    icon: "ship",
+  },
 ];
