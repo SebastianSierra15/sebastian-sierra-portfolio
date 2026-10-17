@@ -188,12 +188,12 @@ function PhoneFrame({ src, accentColor, alt }: { src: string, accentColor: strin
                     }} />
                     
                     <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
-                      <Image src={src} alt={alt} fill sizes="320px" style={{ objectFit: "cover", filter: "blur(40px)", opacity: 0.5 }} />
+                      <Image src={src} alt={alt} title={alt} fill sizes="320px" style={{ objectFit: "cover", filter: "blur(40px)", opacity: 0.5 }} />
                     </div>
                     
                     <div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <div style={{ width: "120px", height: "120px", position: "relative", borderRadius: "28px", overflow: "hidden", boxShadow: "0 10px 40px rgba(0,0,0,0.4)" }}>
-                            <Image src={src} alt={alt} fill sizes="120px" style={{ objectFit: "cover" }} />
+                            <Image src={src} alt={alt} title={alt} fill sizes="120px" style={{ objectFit: "cover" }} />
                         </div>
                     </div>
                 </div>
@@ -464,7 +464,7 @@ function WebsiteCard({ project }: { project: Project }) {
                     )}
                     
                     {!useIframe && (
-                        <Image src={project.imageUrl} alt={project.name} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover", objectPosition: "top left" }} />
+                        <Image src={project.imageUrl} alt={project.name} title={`${project.name} - Sebastián Sierra`} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover", objectPosition: "top left" }} />
                     )}
                 </div>
             </div>

@@ -185,6 +185,7 @@ export default function ProfileShowcase({ email }: ProfileShowcaseProps) {
               <Image
                 src="/Sebastián Sierra - Senior Software Developer .png"
                 alt="Sebastián Sierra - Full-Stack Developer"
+                title="Sebastián Sierra - Full-Stack Developer"
                 fill
                 className="object-cover object-top"
                 priority

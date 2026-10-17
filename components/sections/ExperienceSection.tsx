@@ -23,7 +23,7 @@ function ExperienceLogo({ entry }: { entry: ExperienceEntry }) {
       {entry.logoSrc && !failed ? (
         // These favicons include ICO assets that Next Image cannot optimize consistently.
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={entry.logoSrc} alt="" onError={() => setFailed(true)} />
+        <img src={entry.logoSrc} alt={`Logo de ${entry.company}`} title={`Logo de ${entry.company}`} onError={() => setFailed(true)} />
       ) : (
         <strong aria-hidden="true">{initial}</strong>
       )}

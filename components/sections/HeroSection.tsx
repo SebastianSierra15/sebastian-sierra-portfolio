@@ -639,7 +639,7 @@ export default function HeroSection() {
           <HeroSystemMap lane={activeLane} reducedMotion={reducedMotion} />
 
           <div className="hero-identity-card">
-            <Image src="/assets/sebastian-sierra.jpg" alt="Sebastián Sierra" width={52} height={52} priority />
+            <Image src="/assets/sebastian-sierra.jpg" alt="Sebastián Sierra" title="Sebastián Sierra" width={52} height={52} priority />
             <div>
               <strong>Sebastián Sierra</strong>
               <span>Full-Stack Developer</span>

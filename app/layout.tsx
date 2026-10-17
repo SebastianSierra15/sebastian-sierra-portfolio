@@ -5,7 +5,41 @@ import Navbar from "@/components/Navbar";
 import ChatWidget from "@/components/chat/ChatWidget";
 import CustomCursor from "@/components/hero/CustomCursor";
 import PageLoader from "@/components/PageLoader";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
+
+const siteUrl = getSiteUrl();
+const siteTitle = "Sebastián Sierra | Desarrollador Full-Stack";
+const siteDescription =
+  "Portafolio de Sebastián Sierra, desarrollador full-stack en Colombia. Diseño y construyo productos web, apps móviles, automatizaciones y sistemas digitales.";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sebastián Sierra",
+  url: siteUrl,
+  image: `${siteUrl}/assets/sebastian-sierra.jpg`,
+  jobTitle: "Desarrollador Full-Stack",
+  description: siteDescription,
+  email: "sebsirra13@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "CO",
+  },
+  sameAs: [
+    "https://github.com/SebastianSierra15",
+    "https://www.linkedin.com/in/sebastián-sierra-417358263/",
+  ],
+  knowsAbout: [
+    "Frontend",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Automatización",
+    "Diseño de producto",
+  ],
+};
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,9 +65,50 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sebastián Sierra | Full-Stack Developer",
-  description:
-    "Portafolio de Sebastián Sierra, Full-Stack Developer con foco en Frontend. Construyo productos web, interfaces modernas y sistemas digitales con React, Next.js y TypeScript.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | Sebastián Sierra",
+  },
+  description: siteDescription,
+  applicationName: "Portafolio de Sebastián Sierra",
+  authors: [{ name: "Sebastián Sierra", url: siteUrl }],
+  creator: "Sebastián Sierra",
+  publisher: "Sebastián Sierra",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    url: siteUrl,
+    siteName: "Sebastián Sierra",
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: "/assets/sebastian-sierra.jpg",
+        alt: "Sebastián Sierra, desarrollador full-stack",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/assets/sebastian-sierra.jpg"],
+  },
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",
@@ -65,6 +140,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jakarta.variable} ${syne.variable} ${jetbrains.variable} antialiased font-sans`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <PageLoader />
         <Navbar />
         <LenisProvider>{children}</LenisProvider>
