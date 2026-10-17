@@ -589,7 +589,7 @@ export default function WorkSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
 
-    const appsList = ["fudia", "simulador", "souls-in-xtinction"]
+    const appsList = ["fudia", "simulador"]
         .map((id) => allProjects.find((project) => project.id === id))
         .filter(Boolean) as Project[];
     const websitesList = allProjects.filter((project) => project.id !== "sistema-estanco");
