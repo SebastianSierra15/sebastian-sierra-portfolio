@@ -56,12 +56,12 @@ export default function PaneNow() {
         <span style={{ position: "relative", display: "inline-flex", width: 8, height: 8 }}>
           <span style={{
             position: "absolute", inset: 0, borderRadius: "50%",
-            background: "#52b788", opacity: 0.55,
+            background: "#fb923c", opacity: 0.55,
             animation: reduceMotion ? "none" : "presenceRipple 1.8s ease-out infinite",
           }} />
           <span style={{
             position: "relative", width: 8, height: 8, borderRadius: "50%",
-            background: "#52b788",
+            background: "#fb923c",
           }} />
         </span>
         <span style={{ color: "#a7f3d0" }}>Available</span>
@@ -85,7 +85,7 @@ export default function PaneNow() {
           {Array.from({ length: 10 }).map((_, i) => (
             <span key={i} style={{
               width: 5, height: 10, borderRadius: 1,
-              background: i < 8 ? "#52b788" : "rgba(255,255,255,0.10)",
+              background: i < 8 ? "#fb923c" : "rgba(255,255,255,0.10)",
             }} />
           ))}
         </span>
@@ -117,9 +117,9 @@ export default function PaneNow() {
 
       {/* Prompt header */}
       <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 14 }}>
-        <span style={{ color: "#52b788" }}>sebastian@portfolio</span>
+        <span style={{ color: "#fb923c" }}>sebastian@portfolio</span>
         <span style={{ color: "rgba(255,255,255,0.40)" }}>:</span>
-        <span style={{ color: "#38bdf8" }}>~</span>
+        <span style={{ color: "#fbbf24" }}>~</span>
         <span style={{ color: "rgba(255,255,255,0.40)" }}>$</span>
         <span style={{ color: "rgba(255,255,255,0.85)", marginLeft: 4 }}>now()</span>
       </div>
@@ -145,7 +145,7 @@ export default function PaneNow() {
           <span style={{ color: "rgba(255,255,255,0.30)" }}>$</span>
           <span aria-hidden style={{
             display: "inline-block", width: 7, height: 13,
-            background: "#52b788", opacity: 0.85,
+            background: "#fb923c", opacity: 0.85,
             animation: reduceMotion ? "none" : "heroCursorBlink 1.05s step-end infinite",
           }} />
         </div>

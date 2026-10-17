@@ -42,7 +42,7 @@ export default function AliveMock() {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{
             width: 22, height: 22, borderRadius: 6,
-            background: "linear-gradient(135deg, #52b788 0%, #38bdf8 100%)",
+            background: "linear-gradient(135deg, #fb923c 0%, #fbbf24 100%)",
             display: "flex", alignItems: "center", justifyContent: "center",
             color: "#0a0f1c", fontSize: 12, fontWeight: 800,
           }}>N</div>
@@ -51,9 +51,9 @@ export default function AliveMock() {
             display: "flex", gap: 14, marginLeft: 18, fontSize: 11,
             color: "rgba(230,237,243,0.55)", fontWeight: 500,
           }}>
-            <span style={{ color: "#fff" }}>Overview</span>
-            <span>Revenue</span>
-            <span>Users</span>
+          <span style={{ color: "#fff" }}>Resumen</span>
+            <span>Ingresos</span>
+            <span>Usuarios</span>
           </div>
         </div>
         <div style={{
@@ -62,11 +62,11 @@ export default function AliveMock() {
           background: "rgba(82,183,136,0.12)",
         }}>
           <div style={{
-            width: 6, height: 6, borderRadius: "50%", background: "#52b788",
+            width: 6, height: 6, borderRadius: "50%", background: "#fb923c",
             boxShadow: "0 0 0 0 rgba(82,183,136,0.6)",
             animation: "alivePulse 1.6s ease-in-out infinite",
           }} />
-          <div style={{ fontSize: 10, color: "#52b788", fontWeight: 600 }}>Live</div>
+          <div style={{ fontSize: 10, color: "#fb923c", fontWeight: 600 }}>En vivo</div>
         </div>
       </div>
 
@@ -101,13 +101,13 @@ export default function AliveMock() {
       }}>
         <div style={{
           width: 24, height: 24, borderRadius: "50%",
-          background: "linear-gradient(135deg, #52b788, #38bdf8)",
+          background: "linear-gradient(135deg, #fb923c, #fbbf24)",
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 12,
         }}>✦</div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 11, fontWeight: 600, color: "#fff" }}>AI Assistant</div>
-          <div style={{ fontSize: 10, color: "rgba(230,237,243,0.55)" }}>Drafting weekly report…</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: "#fff" }}>Asistente de IA</div>
+          <div style={{ fontSize: 10, color: "rgba(230,237,243,0.55)" }}>Preparando informe semanal…</div>
         </div>
         <TypingDots />
       </div>
@@ -125,7 +125,7 @@ function KPI({ label, value, delta }: { label: string; value: string; delta: str
     }}>
       <div style={{ fontSize: 9, color: "rgba(230,237,243,0.5)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>{label}</div>
       <div style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginTop: 4, fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.02em" }}>{value}</div>
-      <div style={{ fontSize: 9, color: "#52b788", marginTop: 2, fontWeight: 600 }}>{delta}</div>
+      <div style={{ fontSize: 9, color: "#fb923c", marginTop: 2, fontWeight: 600 }}>{delta}</div>
     </div>
   );
 }
@@ -166,12 +166,12 @@ function LiveChart() {
     <svg ref={ref} viewBox="0 0 100 30" preserveAspectRatio="none" style={{ width: "100%", height: 78 }}>
       <defs>
         <linearGradient id="aliveAreaG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#52b788" stopOpacity="0.45" />
-          <stop offset="100%" stopColor="#52b788" stopOpacity="0" />
+          <stop offset="0%" stopColor="#fb923c" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="#fb923c" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path className="area" fill="url(#aliveAreaG)" />
-      <path className="line" fill="none" stroke="#52b788" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path className="line" fill="none" stroke="#fb923c" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -181,7 +181,7 @@ function TypingDots() {
     <div style={{ display: "flex", gap: 3 }}>
       {[0, 1, 2].map((i) => (
         <div key={i} style={{
-          width: 4, height: 4, borderRadius: "50%", background: "#52b788",
+          width: 4, height: 4, borderRadius: "50%", background: "#fb923c",
           animation: `aliveType 1.2s ease-in-out ${i * 0.18}s infinite`,
         }} />
       ))}

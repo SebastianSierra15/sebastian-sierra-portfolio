@@ -98,7 +98,7 @@ function ForgeInner() {
               style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}
             >
               <div style={{ width: 28, height: 1, background: "rgba(82,183,136,0.6)" }} />
-              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#52b788", fontFamily: "var(--font-mono), monospace" }}>
+              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#fb923c", fontFamily: "var(--font-mono), monospace" }}>
                 The Forge · A live arsenal
               </span>
             </motion.div>
@@ -120,7 +120,7 @@ function ForgeInner() {
             >
               The Tools I<br />
               <span style={{
-                background: "linear-gradient(135deg, #52b788 0%, #A855F7 55%, #61DAFB 100%)",
+                background: "linear-gradient(135deg, #fb923c 0%, #A855F7 55%, #61DAFB 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -138,14 +138,14 @@ function ForgeInner() {
             style={{ display: "flex", flexDirection: "column", gap: 18 }}
           >
             <p style={{ margin: 0, fontSize: 15, lineHeight: 1.85, color: "rgba(148,163,184,0.72)", maxWidth: 460 }}>
-              Not a logo wall — a <em style={{ color: "#f1f5f9", fontStyle: "normal", fontWeight: 600 }}>working</em> arsenal.
-              Hover the showpieces below to see retrieval-augmented pipelines, streaming LLMs, type-safe everything,
-              and Flutter UI breathing in real time. <span style={{ color: "#52b788" }}>Press ⌘K</span> to search 33 tools.
+              No es una pared de logos: es un arsenal que uso de verdad.
+              Pasa el cursor sobre las herramientas para explorar flujos con recuperación, modelos en streaming,
+              tipado seguro y UI móvil en acción. <span style={{ color: "#f97316" }}>Presiona ⌘K</span> para buscar las herramientas.
             </p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {[
-                { n: "6+",                 label: "years",        c: "#52b788" },
-                { n: `${SKILLS.length}`,    label: "technologies", c: "#A855F7" },
+                { n: "6+",                 label: "años",          c: "#f97316" },
+                { n: `${SKILLS.length}`,    label: "tecnologías",   c: "#ea580c" },
                 { n: "9+",                 label: "proyectos",    c: "#61DAFB" },
               ].map(({ n, label, c }) => (
                 <div key={label} style={{

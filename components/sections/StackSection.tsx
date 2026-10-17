@@ -27,8 +27,8 @@ const STACK_LANES: StackLane[] = [
     metric: "Procesos claros",
     proof: "APIs, datos y herramientas internas",
     note: "Para convertir tareas repetibles en productos y flujos más confiables.",
-    accent: "#1f7a5c",
-    secondary: "#74c69d",
+    accent: "#ea580c",
+    secondary: "#fdba74",
     tools: ["Node.js", "Python", "Appwrite"],
   },
   {
@@ -38,8 +38,8 @@ const STACK_LANES: StackLane[] = [
     metric: "Frontend + full stack",
     proof: "Apps, dashboards y sitios",
     note: "Para productos donde la claridad visual, el rendimiento y el mantenimiento importan.",
-    accent: "#2563eb",
-    secondary: "#7dd3fc",
+    accent: "#f97316",
+    secondary: "#fbbf24",
     tools: ["Next.js", "React", "TypeScript", "Node.js"],
   },
   {
@@ -49,8 +49,8 @@ const STACK_LANES: StackLane[] = [
     metric: "UI + sistemas",
     proof: "Componentes, responsive y SEO",
     note: "Para ideas que necesitan una experiencia pulida y una base visual reutilizable.",
-    accent: "#0f8f84",
-    secondary: "#22d3ee",
+    accent: "#c2410c",
+    secondary: "#fed7aa",
     tools: ["React", "TypeScript", "HTML / CSS"],
   },
 ];
@@ -184,7 +184,7 @@ function StackLens({
       <div className="lens-caption" aria-live="polite">
         <span>{selectedSkill.name}</span>
         <strong>{selectedSkill.role}</strong>
-        <small>{selectedSkill.years} hands-on</small>
+        <small>{selectedSkill.years} de experiencia práctica</small>
       </div>
     </div>
   );
@@ -232,8 +232,8 @@ export default function StackSection() {
       <div className="stack-inner">
         <div className="stack-intro-grid">
           <div className="stack-copy">
-            <span className="section-kicker">Selected stack</span>
-            <h2>A few tools. A lot of leverage.</h2>
+            <span className="section-kicker">Stack seleccionado</span>
+            <h2>Un stack claro. Mucho impacto.</h2>
             <p>
               Mantengo el stack visible enfocado: interfaces, producto web, datos y herramientas
               que resisten usuarios reales.
@@ -255,7 +255,7 @@ export default function StackSection() {
                 </span>
               </a>
 
-              <div className="stack-proof" aria-label="Core capabilities">
+              <div className="stack-proof" aria-label="Capacidades principales">
                 <span>Frontend</span>
                 <span>Full stack</span>
                 <span>Automatización</span>
@@ -269,7 +269,7 @@ export default function StackSection() {
         </div>
 
         <div className="lane-console">
-          <div className="lane-tabs" role="tablist" aria-label="Select skill lane">
+          <div className="lane-tabs" role="tablist" aria-label="Seleccionar dominio técnico">
             {STACK_LANES.map((lane) => (
               <button
                 key={lane.id}
@@ -333,8 +333,8 @@ export default function StackSection() {
             onClick={() => setToolkitOpen((value) => !value)}
           >
             <span>
-              <strong>{toolkitOpen ? "Hide full toolkit" : "Explore full toolkit"}</strong>
-              <small>{SKILLS.length} production tools, grouped by discipline</small>
+              <strong>{toolkitOpen ? "Ocultar todo el stack" : "Explorar todo el stack"}</strong>
+              <small>{SKILLS.length} herramientas de producción, agrupadas por disciplina</small>
             </span>
             <ArrowIcon />
           </button>
@@ -376,7 +376,7 @@ export default function StackSection() {
           background:
             linear-gradient(180deg, #ffffff 0%, #f7fbf8 48%, #ffffff 100%);
           padding: 112px 24px 118px;
-          color: #10231c;
+          color: #24150f;
           font-family: var(--font-inter), Inter, sans-serif;
         }
 
@@ -394,8 +394,8 @@ export default function StackSection() {
           inset: 0;
           pointer-events: none;
           background:
-            linear-gradient(90deg, rgba(31, 122, 92, 0.06) 1px, transparent 1px),
-            linear-gradient(rgba(37, 99, 235, 0.035) 1px, transparent 1px);
+            linear-gradient(90deg, rgba(249, 115, 22, 0.06) 1px, transparent 1px),
+            linear-gradient(rgba(249, 115, 22, 0.035) 1px, transparent 1px);
           background-size: 82px 82px;
           opacity: 0.5;
           mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
@@ -423,7 +423,7 @@ export default function StackSection() {
         .stack-copy h2 {
           margin: 18px 0 0;
           max-width: 720px;
-          color: #10231c;
+          color: #24150f;
           font-family: var(--font-display), Plus Jakarta Sans, sans-serif;
           font-size: clamp(42px, 5.4vw, 74px);
           line-height: 0.98;
@@ -453,12 +453,12 @@ export default function StackSection() {
           min-height: 64px;
           padding: 10px 18px 10px 10px;
           border-radius: 999px;
-          border: 1px solid rgba(16, 35, 28, 0.1);
+          border: 1px solid rgba(36, 21, 15, 0.1);
           background:
             linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(239, 248, 243, 0.78));
-          color: #10231c;
+          color: #24150f;
           text-decoration: none;
-          box-shadow: 0 20px 52px rgba(16, 35, 28, 0.09);
+          box-shadow: 0 20px 52px rgba(36, 21, 15, 0.09);
           backdrop-filter: blur(18px) saturate(160%);
           -webkit-backdrop-filter: blur(18px) saturate(160%);
           transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
@@ -467,8 +467,8 @@ export default function StackSection() {
         .cv-download:hover,
         .cv-download:focus-visible {
           transform: translateY(-2px);
-          border-color: rgba(31, 122, 92, 0.24);
-          box-shadow: 0 26px 64px rgba(16, 35, 28, 0.13);
+          border-color: rgba(249, 115, 22, 0.24);
+          box-shadow: 0 26px 64px rgba(36, 21, 15, 0.13);
           outline: none;
         }
 
@@ -478,7 +478,7 @@ export default function StackSection() {
           width: 44px;
           height: 44px;
           border-radius: 999px;
-          background: #1f7a5c;
+          background: #ea580c;
           color: #ffffff;
         }
 
@@ -496,7 +496,7 @@ export default function StackSection() {
         .cv-download strong,
         .toolkit-toggle strong {
           display: block;
-          color: #10231c;
+          color: #24150f;
           font-size: 14px;
           font-weight: 900;
           line-height: 1.1;
@@ -523,7 +523,7 @@ export default function StackSection() {
           align-items: center;
           min-height: 35px;
           border-radius: 999px;
-          background: rgba(31, 122, 92, 0.08);
+          background: rgba(249, 115, 22, 0.08);
           color: #275a49;
           padding: 8px 12px;
           font-size: 12px;
@@ -538,11 +538,11 @@ export default function StackSection() {
           position: relative;
           min-height: 456px;
           border-radius: 8px;
-          border: 1px solid rgba(16, 35, 28, 0.1);
+          border: 1px solid rgba(36, 21, 15, 0.1);
           background:
             linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(241, 249, 245, 0.68)),
             radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--lane-secondary) 26%, transparent), transparent 42%);
-          box-shadow: 0 32px 90px rgba(16, 35, 28, 0.12);
+          box-shadow: 0 32px 90px rgba(36, 21, 15, 0.12);
           overflow: hidden;
           backdrop-filter: blur(24px) saturate(170%);
           -webkit-backdrop-filter: blur(24px) saturate(170%);
@@ -589,7 +589,7 @@ export default function StackSection() {
         .lens-topline b {
           border-radius: 999px;
           background: color-mix(in srgb, var(--lane-accent) 10%, white);
-          color: color-mix(in srgb, var(--lane-accent) 78%, #10231c);
+          color: color-mix(in srgb, var(--lane-accent) 78%, #24150f);
           padding: 8px 10px;
           font-size: 12px;
           font-weight: 900;
@@ -643,7 +643,7 @@ export default function StackSection() {
           background:
             linear-gradient(145deg, rgba(255, 255, 255, 0.94), color-mix(in srgb, var(--lane-secondary) 18%, white));
           box-shadow:
-            0 26px 44px rgba(16, 35, 28, 0.12),
+            0 26px 44px rgba(36, 21, 15, 0.12),
             inset 0 0 0 1px rgba(255, 255, 255, 0.8);
           animation: coreFloat 6s ease-in-out infinite;
         }
@@ -665,7 +665,7 @@ export default function StackSection() {
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%) rotateZ(-45deg) rotateX(-58deg);
-          color: color-mix(in srgb, var(--selected-color) 75%, #10231c);
+          color: color-mix(in srgb, var(--selected-color) 75%, #24150f);
           font-family: var(--font-display), Plus Jakarta Sans, sans-serif;
           font-size: 26px;
           font-weight: 900;
@@ -680,7 +680,7 @@ export default function StackSection() {
           border-radius: 8px;
           background: rgba(255, 255, 255, 0.84);
           border: 1px solid color-mix(in srgb, var(--node-color) 20%, transparent);
-          box-shadow: 0 18px 42px rgba(16, 35, 28, 0.1);
+          box-shadow: 0 18px 42px rgba(36, 21, 15, 0.1);
           transform: translate3d(0, 0, 0);
           animation: nodeDrift 6.5s ease-in-out infinite;
         }
@@ -694,7 +694,7 @@ export default function StackSection() {
           background: #ffffff;
           border-color: color-mix(in srgb, var(--node-color) 46%, transparent);
           box-shadow:
-            0 22px 56px rgba(16, 35, 28, 0.14),
+            0 22px 56px rgba(36, 21, 15, 0.14),
             0 0 0 7px color-mix(in srgb, var(--node-color) 12%, transparent);
         }
 
@@ -729,10 +729,10 @@ export default function StackSection() {
           width: 142px;
           padding: 13px;
           border-radius: 8px;
-          border: 1px solid rgba(16, 35, 28, 0.08);
+          border: 1px solid rgba(36, 21, 15, 0.08);
           background: rgba(255, 255, 255, 0.62);
           transform: rotateX(62deg) rotateZ(-18deg);
-          box-shadow: 0 16px 36px rgba(16, 35, 28, 0.08);
+          box-shadow: 0 16px 36px rgba(36, 21, 15, 0.08);
         }
 
         .lens-plane span {
@@ -770,7 +770,7 @@ export default function StackSection() {
           gap: 10px;
           margin: 0 22px 22px;
           border-radius: 8px;
-          border: 1px solid rgba(16, 35, 28, 0.08);
+          border: 1px solid rgba(36, 21, 15, 0.08);
           background: rgba(255, 255, 255, 0.76);
           padding: 12px;
         }
@@ -778,7 +778,7 @@ export default function StackSection() {
         .lens-caption span {
           border-radius: 999px;
           background: color-mix(in srgb, var(--selected-color) 14%, white);
-          color: color-mix(in srgb, var(--selected-color) 78%, #10231c);
+          color: color-mix(in srgb, var(--selected-color) 78%, #24150f);
           padding: 7px 10px;
           font-size: 12px;
           font-weight: 900;
@@ -786,7 +786,7 @@ export default function StackSection() {
 
         .lens-caption strong {
           min-width: 0;
-          color: #10231c;
+          color: #24150f;
           font-size: 14px;
           font-weight: 900;
           overflow: hidden;
@@ -803,9 +803,9 @@ export default function StackSection() {
         .lane-console {
           margin-top: 28px;
           border-radius: 8px;
-          border: 1px solid rgba(16, 35, 28, 0.08);
+          border: 1px solid rgba(36, 21, 15, 0.08);
           background: rgba(255, 255, 255, 0.72);
-          box-shadow: 0 24px 70px rgba(16, 35, 28, 0.08);
+          box-shadow: 0 24px 70px rgba(36, 21, 15, 0.08);
           overflow: hidden;
           backdrop-filter: blur(20px) saturate(160%);
           -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -815,14 +815,14 @@ export default function StackSection() {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 1px;
-          background: rgba(16, 35, 28, 0.08);
+          background: rgba(36, 21, 15, 0.08);
         }
 
         .lane-tab {
           border: 0;
           min-height: 92px;
           background: rgba(255, 255, 255, 0.82);
-          color: #10231c;
+          color: #24150f;
           padding: 20px;
           text-align: left;
           cursor: pointer;
@@ -843,7 +843,7 @@ export default function StackSection() {
 
         .lane-tab span {
           display: block;
-          color: color-mix(in srgb, var(--lane-accent) 76%, #10231c);
+          color: color-mix(in srgb, var(--lane-accent) 76%, #24150f);
           font-size: 12px;
           font-weight: 900;
           text-transform: uppercase;
@@ -853,7 +853,7 @@ export default function StackSection() {
         .lane-tab strong {
           display: block;
           margin-top: 9px;
-          color: #10231c;
+          color: #24150f;
           font-family: var(--font-display), Plus Jakarta Sans, sans-serif;
           font-size: 24px;
           line-height: 1.05;
@@ -870,7 +870,7 @@ export default function StackSection() {
 
         .lane-panel-copy h3 {
           margin: 13px 0 0;
-          color: #10231c;
+          color: #24150f;
           font-family: var(--font-display), Plus Jakarta Sans, sans-serif;
           font-size: clamp(27px, 3vw, 42px);
           line-height: 1.03;
@@ -897,9 +897,9 @@ export default function StackSection() {
           align-items: center;
           min-height: 82px;
           border-radius: 8px;
-          border: 1px solid rgba(16, 35, 28, 0.08);
+          border: 1px solid rgba(36, 21, 15, 0.08);
           background: rgba(255, 255, 255, 0.72);
-          color: #10231c;
+          color: #24150f;
           padding: 12px;
           text-align: left;
           cursor: pointer;
@@ -912,7 +912,7 @@ export default function StackSection() {
           transform: translateY(-2px);
           border-color: color-mix(in srgb, var(--tool-color) 34%, transparent);
           background: #ffffff;
-          box-shadow: 0 18px 42px rgba(16, 35, 28, 0.08);
+          box-shadow: 0 18px 42px rgba(36, 21, 15, 0.08);
           outline: none;
         }
 
@@ -933,7 +933,7 @@ export default function StackSection() {
         .featured-tool strong {
           display: block;
           min-width: 0;
-          color: #10231c;
+          color: #24150f;
           font-size: 15px;
           font-weight: 900;
           overflow: hidden;
@@ -961,23 +961,23 @@ export default function StackSection() {
           gap: 18px;
           width: 100%;
           min-height: 74px;
-          border: 1px solid rgba(16, 35, 28, 0.08);
+          border: 1px solid rgba(36, 21, 15, 0.08);
           border-radius: 8px;
           background:
             linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(245, 251, 248, 0.74));
-          color: #1f7a5c;
+          color: #ea580c;
           padding: 16px 18px;
           text-align: left;
           cursor: pointer;
-          box-shadow: 0 18px 52px rgba(16, 35, 28, 0.06);
+          box-shadow: 0 18px 52px rgba(36, 21, 15, 0.06);
           transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .toolkit-toggle:hover,
         .toolkit-toggle:focus-visible {
           transform: translateY(-2px);
-          border-color: rgba(31, 122, 92, 0.22);
-          box-shadow: 0 24px 62px rgba(16, 35, 28, 0.1);
+          border-color: rgba(249, 115, 22, 0.22);
+          box-shadow: 0 24px 62px rgba(36, 21, 15, 0.1);
           outline: none;
         }
 
@@ -999,14 +999,14 @@ export default function StackSection() {
 
         .toolkit-group {
           border-radius: 8px;
-          border: 1px solid rgba(16, 35, 28, 0.08);
+          border: 1px solid rgba(36, 21, 15, 0.08);
           background: rgba(255, 255, 255, 0.72);
           padding: 16px;
         }
 
         .toolkit-group h3 {
           margin: 0 0 13px;
-          color: #10231c;
+          color: #24150f;
           font-family: var(--font-display), Plus Jakarta Sans, sans-serif;
           font-size: 17px;
           line-height: 1.1;

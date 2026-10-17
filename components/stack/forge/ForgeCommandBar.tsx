@@ -21,7 +21,7 @@ const COLOR_FOR: Record<FilterValue, string> = {
   "AI & GenAI":  "#A855F7",
   "Web":         "#61DAFB",
   "Mobile":      "#027DFD",
-  "Infra":       "#52b788",
+  "Infra":       "#fb923c",
   "DesignOps":   "#F97316",
 };
 
@@ -166,7 +166,7 @@ export default function ForgeCommandBar({ active, onChange, counts, onOpenPalett
 
         <button
           onClick={onOpenPalette}
-          aria-label="Open command palette"
+          aria-label="Abrir buscador de herramientas"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -175,7 +175,7 @@ export default function ForgeCommandBar({ active, onChange, counts, onOpenPalett
             borderRadius: 10,
             border: "1px solid rgba(82,183,136,0.25)",
             background: "rgba(82,183,136,0.08)",
-            color: "#52b788",
+            color: "#fb923c",
             cursor: "pointer",
             fontFamily: "var(--font-mono), monospace",
             fontSize: 10,
@@ -190,7 +190,7 @@ export default function ForgeCommandBar({ active, onChange, counts, onOpenPalett
             <circle cx="7" cy="7" r="5" />
             <path d="M11 11L14 14" strokeLinecap="round" />
           </svg>
-          <span className="forge-search-label">Search tools</span>
+          <span className="forge-search-label">Buscar herramientas</span>
           <span
             style={{
               padding: "1px 5px",

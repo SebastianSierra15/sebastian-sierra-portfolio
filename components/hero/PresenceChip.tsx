@@ -6,18 +6,18 @@ import { useEffect, useState } from "react";
 type Status = { color: string; label: string };
 
 function getStatus(hour: number): Status {
-  if (hour >= 9 && hour < 21) return { color: "#52b788", label: "Online" };
-  if (hour >= 21 && hour < 24) return { color: "#facc15", label: "Away" };
-  return { color: "#60a5fa", label: "Sleeping" };
+  if (hour >= 9 && hour < 21) return { color: "#f97316", label: "Disponible" };
+  if (hour >= 21 && hour < 24) return { color: "#f59e0b", label: "Ausente" };
+  return { color: "#9ca3af", label: "Descansando" };
 }
 
 export default function PresenceChip({ dark = true }: { dark?: boolean }) {
   const [time, setTime] = useState<string>("");
-  const [status, setStatus] = useState<Status>({ color: "#52b788", label: "Online" });
+  const [status, setStatus] = useState<Status>({ color: "#f97316", label: "Disponible" });
 
   useEffect(() => {
     const update = () => {
-      const fmt = new Intl.DateTimeFormat("en-GB", {
+      const fmt = new Intl.DateTimeFormat("es-CO", {
         timeZone: "America/Bogota",
         hour: "2-digit", minute: "2-digit", hour12: false,
       });

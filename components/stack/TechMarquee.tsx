@@ -24,7 +24,7 @@ function Pill({ label }: PillProps) {
         borderRadius: "100px",
         border: `1px solid ${hov ? "rgba(82,183,136,0.4)" : "rgba(255,255,255,0.08)"}`,
         background: hov ? "rgba(82,183,136,0.1)" : "rgba(255,255,255,0.04)",
-        color: hov ? "#52b788" : "rgba(148,163,184,0.6)",
+        color: hov ? "#fb923c" : "rgba(148,163,184,0.6)",
         fontSize: "11px",
         fontWeight: 600,
         fontFamily: "var(--font-mono), monospace",
@@ -37,7 +37,7 @@ function Pill({ label }: PillProps) {
     >
       <span style={{
         width: "5px", height: "5px", borderRadius: "50%",
-        background: hov ? "#52b788" : "rgba(148,163,184,0.3)",
+        background: hov ? "#fb923c" : "rgba(148,163,184,0.3)",
         transition: "background 0.2s ease",
         flexShrink: 0,
       }} />

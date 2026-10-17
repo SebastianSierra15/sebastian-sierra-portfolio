@@ -10,8 +10,8 @@ import AudioToggle from "@/components/hero/AudioToggle";
 import { sounds } from "@/lib/audio";
 
 const LINKS = [
-  { id: "stack", label: "Skills" },
-  { id: "work", label: "Work" },
+  { id: "stack", label: "Tecnologías" },
+  { id: "work", label: "Proyectos" },
 ];
 
 export default function Navbar() {
@@ -102,7 +102,7 @@ export default function Navbar() {
           position: "absolute", top: 0, left: 0, right: 0, height: 1.5,
           transformOrigin: "left center",
           transform: `scaleX(${progress})`,
-          background: "linear-gradient(90deg, #52b788, #38bdf8)",
+          background: "linear-gradient(90deg, #f97316, #fbbf24)",
           opacity: progress > 0.01 ? 1 : 0,
           transition: "transform 0.12s linear, opacity 0.3s ease",
           pointerEvents: "none",
@@ -207,13 +207,13 @@ export default function Navbar() {
           href="/quote"
           data-cursor="click"
           onClick={() => sounds.click()}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#40916c"; sounds.hover(); }}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "#2d6a4f")}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#ea580c"; sounds.hover(); }}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "#f97316")}
           style={{
             marginLeft: 6,
             padding: "9px 18px", borderRadius: 100,
             fontSize: 13, fontWeight: 600,
-            background: "#2d6a4f", color: "#ffffff",
+            background: "#f97316", color: "#ffffff",
             textDecoration: "none",
             fontFamily: "var(--font-inter), Inter, sans-serif",
             letterSpacing: "-0.01em",

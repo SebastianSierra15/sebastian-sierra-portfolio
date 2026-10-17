@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Syne, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import LenisProvider from "@/components/providers/LenisProvider";
 import Navbar from "@/components/Navbar";
@@ -48,6 +48,10 @@ export const metadata: Metadata = {
     "TypeScript",
     "Colombia",
   ],
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f97316",
 };
 
 export default function RootLayout({

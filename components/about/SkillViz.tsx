@@ -158,8 +158,8 @@ function RadarChart({ isInView }: { isInView: boolean }) {
         {/* Data polygon */}
         <motion.path
           d={pathD}
-          fill="rgba(82, 183, 136, 0.2)"
-          stroke="#52b788"
+          fill="rgba(251, 146, 60, 0.2)"
+          stroke="#fb923c"
           strokeWidth={2}
           initial={{ pathLength: 0, opacity: 0 }}
           animate={isInView ? { pathLength: 1, opacity: 1 } : {}}

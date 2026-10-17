@@ -69,21 +69,21 @@ const GlobeIcon = () => (
 const SectionBgSvg = () => (
     <div style={{ position: "absolute", top: "50px", left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: "800px", zIndex: 0, pointerEvents: "none", opacity: 0.05, display: "flex", justifyContent: "center" }}>
         <svg viewBox="0 0 800 300" width="800" height="300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M-100 150 C 100 50, 300 250, 500 150 S 700 300, 900 100" stroke="#2d6a4f" strokeWidth="2" />
-            <path d="M-50 200 C 150 100, 250 300, 450 200 S 650 350, 850 150" stroke="#2d6a4f" strokeWidth="1" />
-            <path d="M100 0 C 200 150, 400 50, 600 200 S 800 0, 900 200" stroke="#2d6a4f" strokeWidth="1" />
-            <circle cx="150" cy="115" r="4" fill="#2d6a4f" />
-            <circle cx="280" cy="195" r="6" fill="#2d6a4f" />
-            <circle cx="430" cy="215" r="4" fill="#2d6a4f" />
-            <circle cx="500" cy="150" r="5" fill="#2d6a4f" />
-            <circle cx="680" cy="215" r="7" fill="#2d6a4f" />
-            <circle cx="220" cy="118" r="3" fill="#2d6a4f" />
-            <circle cx="560" cy="180" r="3" fill="#2d6a4f" />
-            <line x1="150" y1="115" x2="280" y2="195" stroke="#2d6a4f" strokeWidth="0.5" strokeDasharray="4 4" />
-            <line x1="280" y1="195" x2="430" y2="215" stroke="#2d6a4f" strokeWidth="0.5" strokeDasharray="4 4" />
-            <line x1="430" y1="215" x2="500" y2="150" stroke="#2d6a4f" strokeWidth="0.5" strokeDasharray="4 4" />
-            <line x1="500" y1="150" x2="680" y2="215" stroke="#2d6a4f" strokeWidth="0.5" strokeDasharray="4 4" />
-            <line x1="220" y1="118" x2="560" y2="180" stroke="#2d6a4f" strokeWidth="0.5" strokeDasharray="2 6" />
+            <path d="M-100 150 C 100 50, 300 250, 500 150 S 700 300, 900 100" stroke="#f97316" strokeWidth="2" />
+            <path d="M-50 200 C 150 100, 250 300, 450 200 S 650 350, 850 150" stroke="#f97316" strokeWidth="1" />
+            <path d="M100 0 C 200 150, 400 50, 600 200 S 800 0, 900 200" stroke="#f97316" strokeWidth="1" />
+            <circle cx="150" cy="115" r="4" fill="#f97316" />
+            <circle cx="280" cy="195" r="6" fill="#f97316" />
+            <circle cx="430" cy="215" r="4" fill="#f97316" />
+            <circle cx="500" cy="150" r="5" fill="#f97316" />
+            <circle cx="680" cy="215" r="7" fill="#f97316" />
+            <circle cx="220" cy="118" r="3" fill="#f97316" />
+            <circle cx="560" cy="180" r="3" fill="#f97316" />
+            <line x1="150" y1="115" x2="280" y2="195" stroke="#f97316" strokeWidth="0.5" strokeDasharray="4 4" />
+            <line x1="280" y1="195" x2="430" y2="215" stroke="#f97316" strokeWidth="0.5" strokeDasharray="4 4" />
+            <line x1="430" y1="215" x2="500" y2="150" stroke="#f97316" strokeWidth="0.5" strokeDasharray="4 4" />
+            <line x1="500" y1="150" x2="680" y2="215" stroke="#f97316" strokeWidth="0.5" strokeDasharray="4 4" />
+            <line x1="220" y1="118" x2="560" y2="180" stroke="#f97316" strokeWidth="0.5" strokeDasharray="2 6" />
         </svg>
     </div>
 );
@@ -263,7 +263,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
                             ))}
                         </div>
 
-                        <Accordion title="About this project" content={project.caseStudy} />
+                        <Accordion title="Sobre este proyecto" content={project.caseStudy} />
 
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginTop: "40px" }} className="project-actions">
                             {project.liveUrl && project.liveUrl !== "#" && (
@@ -272,7 +272,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
                                     borderRadius: "12px", textDecoration: "none", fontWeight: 600, fontSize: "16px",
                                     transition: "all 0.2s ease", display: "inline-block", textAlign: "center"
                                 }} className="btn-primary">
-                                    Live App →
+                                    Ver proyecto →
                                 </Link>
                             )}
                             {project.githubUrl && project.githubUrl !== "#" && (
@@ -456,7 +456,7 @@ function WebsiteCard({ project }: { project: Project }) {
                         <button onClick={() => setExpanded(!expanded)} style={{
                             padding: "6px 14px", borderRadius: "100px",
                             background: expanded ? "rgba(45,106,79,0.1)" : "rgba(0,0,0,0.04)",
-                            fontSize: "12px", fontWeight: 600, color: expanded ? "#2d6a4f" : "#86868b",
+                            fontSize: "12px", fontWeight: 600, color: expanded ? "#f97316" : "#86868b",
                             border: "none", cursor: "pointer",
                             fontFamily: "var(--font-inter), Inter, sans-serif", transition: "all 0.3s ease"
                         }}>
@@ -467,7 +467,7 @@ function WebsiteCard({ project }: { project: Project }) {
 
                 <div style={{ flexGrow: 1 }} />
                 
-                <Accordion title="About this project" content={project.caseStudy} />
+                        <Accordion title="Sobre este proyecto" content={project.caseStudy} />
 
                 <div style={{ display: "flex", gap: "8px", marginTop: "20px" }}>
                     {hasLiveUrl && (
@@ -476,7 +476,7 @@ function WebsiteCard({ project }: { project: Project }) {
                             borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "14px",
                             textAlign: "center", transition: "all 0.2s ease"
                         }} className="btn-primary with-shine">
-                            Live Site →
+                            Ver sitio →
                         </Link>
                     )}
                     {project.githubUrl && project.githubUrl !== "#" && (
@@ -565,7 +565,7 @@ export default function WorkSection() {
                         fontSize: "12px", fontWeight: 600, textTransform: "uppercase",
                         letterSpacing: "0.2em", color: "#6e6e73", marginBottom: "24px"
                     }}>
-                        Selected Work
+                        Proyectos seleccionados
                     </div>
                     
                     <h2 

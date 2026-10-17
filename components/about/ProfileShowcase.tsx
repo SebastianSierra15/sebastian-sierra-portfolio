@@ -155,7 +155,7 @@ export default function ProfileShowcase({ email }: ProfileShowcaseProps) {
           className="absolute -inset-[2px] rounded-3xl z-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(82, 183, 136, 0.5), rgba(56, 189, 248, 0.5), rgba(139, 92, 246, 0.5), rgba(82, 183, 136, 0.5))",
+              "linear-gradient(135deg, rgba(251, 146, 60, 0.5), rgba(56, 189, 248, 0.5), rgba(139, 92, 246, 0.5), rgba(251, 146, 60, 0.5))",
             backgroundSize: "300% 300%",
             animation: "gradientShift 8s ease infinite",
           }}
@@ -172,7 +172,7 @@ export default function ProfileShowcase({ email }: ProfileShowcaseProps) {
             <div
               className="absolute inset-0 opacity-50"
               style={{
-                background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(82, 183, 136, 0.3), transparent 50%)`,
+                background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(251, 146, 60, 0.3), transparent 50%)`,
               }}
             />
 
@@ -268,7 +268,7 @@ export default function ProfileShowcase({ email }: ProfileShowcaseProps) {
           className="absolute -inset-4 -z-10 blur-3xl opacity-30"
           style={{
             background:
-              "radial-gradient(circle at 50% 50%, rgba(82, 183, 136, 0.4), transparent 50%)",
+              "radial-gradient(circle at 50% 50%, rgba(251, 146, 60, 0.4), transparent 50%)",
           }}
         />
       </motion.div>

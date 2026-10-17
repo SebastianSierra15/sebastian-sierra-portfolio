@@ -130,7 +130,7 @@ export default function QuotePage() {
         setIsSubmitting(false);
     };
 
-    const steps = ["Service", "Timeline", "Budget", "Details", "Done"];
+    const steps = ["Servicio", "Plazo", "Presupuesto", "Detalles", "Listo"];
 
     return (
         <div style={{
@@ -193,7 +193,7 @@ export default function QuotePage() {
                         left: "10px",
                         height: "2px",
                         width: `calc(${((currentStep - 1) / 4) * 100}% - 20px)`,
-                        background: "#2d6a4f",
+                        background: "#f97316",
                         transition: "width 0.4s ease",
                         zIndex: 0
                     }} />
@@ -209,8 +209,8 @@ export default function QuotePage() {
                             }}>
                                 <div style={{
                                     width: "12px", height: "12px", borderRadius: "50%",
-                                    background: isCompleted || isCurrent ? "#2d6a4f" : "#ffffff",
-                                    border: `2px solid ${isCompleted || isCurrent ? "#2d6a4f" : "rgba(0,0,0,0.1)"}`,
+                                    background: isCompleted || isCurrent ? "#f97316" : "#ffffff",
+                                    border: `2px solid ${isCompleted || isCurrent ? "#f97316" : "rgba(0,0,0,0.1)"}`,
                                     boxShadow: isCurrent ? "0 0 0 4px rgba(45,106,79,0.15)" : "none",
                                     transition: "all 0.3s ease"
                                 }} />
@@ -236,10 +236,10 @@ export default function QuotePage() {
                                 display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px"
                             }} className="step-1-grid">
                                 {[
-                                    { id: "Mobile App", icon: "📱", title: "Mobile App", subtitle: "iOS, Android, or both" },
-                                    { id: "Website", icon: "🌐", title: "Website", subtitle: "Landing page, e-commerce, platform" },
-                                    { id: "AI Workflow", icon: "🧠", title: "AI Workflow", subtitle: "Automation, chatbots, AI tools" },
-                                    { id: "Not sure", icon: "❔", title: "Not sure yet", subtitle: "Let's figure it out together" }
+                                    { id: "Aplicación móvil", icon: "📱", title: "Aplicación móvil", subtitle: "iOS, Android o ambas" },
+                                    { id: "Sitio web", icon: "🌐", title: "Sitio web", subtitle: "Landing, e-commerce o plataforma" },
+                                    { id: "Flujo con IA", icon: "🧠", title: "Flujo con IA", subtitle: "Automatización, chatbots o herramientas" },
+                                    { id: "Aún no sé", icon: "❔", title: "Aún no lo sé", subtitle: "Lo definimos juntos" }
                                 ].map((option) => {
                                     const isSelected = formData.service === option.id;
                                     return (
@@ -249,7 +249,7 @@ export default function QuotePage() {
                                             style={{
                                                 padding: "24px",
                                                 borderRadius: "16px",
-                                                border: `${isSelected ? '2px' : '1px'} solid ${isSelected ? '#2d6a4f' : 'rgba(0,0,0,0.08)'}`,
+                                                border: `${isSelected ? '2px' : '1px'} solid ${isSelected ? '#f97316' : 'rgba(0,0,0,0.08)'}`,
                                                 background: isSelected ? "rgba(45,106,79,0.04)" : "#ffffff",
                                                 cursor: "pointer",
                                                 transition: "all 0.2s ease",
@@ -271,7 +271,7 @@ export default function QuotePage() {
                                             }}
                                         >
                                             {isSelected && (
-                                                <div style={{ position: "absolute", top: "16px", right: "16px", color: "#2d6a4f" }}>
+                                                <div style={{ position: "absolute", top: "16px", right: "16px", color: "#f97316" }}>
                                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                                         <polyline points="20 6 9 17 4 12"></polyline>
                                                     </svg>
@@ -291,7 +291,7 @@ export default function QuotePage() {
                                     style={{
                                         padding: "14px 32px",
                                         borderRadius: "12px",
-                                        background: formData.service ? "#2d6a4f" : "rgba(0,0,0,0.1)",
+                                        background: formData.service ? "#f97316" : "rgba(0,0,0,0.1)",
                                         color: formData.service ? "#ffffff" : "rgba(0,0,0,0.4)",
                                         fontWeight: 600,
                                         fontSize: "15px",
@@ -310,7 +310,7 @@ export default function QuotePage() {
                     {currentStep === 2 && (
                         <div>
                             <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#1d1d1f", textAlign: "center", marginBottom: "32px" }}>
-                                What's your timeline?
+                                ¿Cuál es el plazo de tu proyecto?
                             </h2>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
@@ -327,8 +327,8 @@ export default function QuotePage() {
                                             style={{
                                                 padding: "16px 20px",
                                                 borderRadius: "12px",
-                                                border: `1px solid ${isSelected ? '#2d6a4f' : 'rgba(0,0,0,0.08)'}`,
-                                                background: isSelected ? "#2d6a4f" : "#ffffff",
+                                                border: `1px solid ${isSelected ? '#f97316' : 'rgba(0,0,0,0.08)'}`,
+                                                background: isSelected ? "#f97316" : "#ffffff",
                                                 color: isSelected ? "#ffffff" : "#1d1d1f",
                                                 fontSize: "15px",
                                                 cursor: "pointer",
@@ -370,7 +370,7 @@ export default function QuotePage() {
                                     disabled={!formData.timeline}
                                     style={{
                                         padding: "14px 32px", borderRadius: "12px", border: "none",
-                                        background: formData.timeline ? "#2d6a4f" : "rgba(0,0,0,0.1)", color: formData.timeline ? "#ffffff" : "rgba(0,0,0,0.4)",
+                                        background: formData.timeline ? "#f97316" : "rgba(0,0,0,0.1)", color: formData.timeline ? "#ffffff" : "rgba(0,0,0,0.4)",
                                         fontWeight: 600, fontSize: "15px", cursor: formData.timeline ? "pointer" : "not-allowed", transition: "all 0.2s ease"
                                     }}
                                 >
@@ -384,7 +384,7 @@ export default function QuotePage() {
                     {currentStep === 3 && (
                         <div>
                             <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#1d1d1f", textAlign: "center", marginBottom: "8px" }}>
-                                What's your budget range?
+                                ¿Cuál es el presupuesto aproximado?
                             </h2>
                             <p style={{ fontSize: "14px", color: "#86868b", textAlign: "center", marginBottom: "32px", marginTop: 0 }}>
                                 This helps me tailor the right solution for you.
@@ -403,8 +403,8 @@ export default function QuotePage() {
                                             onClick={() => updateData("budget", option)}
                                             style={{
                                                 padding: "16px 20px", borderRadius: "12px",
-                                                border: `1px solid ${isSelected ? '#2d6a4f' : 'rgba(0,0,0,0.08)'}`,
-                                                background: isSelected ? "#2d6a4f" : "#ffffff", color: isSelected ? "#ffffff" : "#1d1d1f",
+                                                border: `1px solid ${isSelected ? '#f97316' : 'rgba(0,0,0,0.08)'}`,
+                                                background: isSelected ? "#f97316" : "#ffffff", color: isSelected ? "#ffffff" : "#1d1d1f",
                                                 fontSize: "15px", cursor: "pointer", transition: "all 0.2s ease"
                                             }}
                                             onMouseEnter={(e) => {
@@ -443,7 +443,7 @@ export default function QuotePage() {
                                     disabled={!formData.budget}
                                     style={{
                                         padding: "14px 32px", borderRadius: "12px", border: "none",
-                                        background: formData.budget ? "#2d6a4f" : "rgba(0,0,0,0.1)", color: formData.budget ? "#ffffff" : "rgba(0,0,0,0.4)",
+                                        background: formData.budget ? "#f97316" : "rgba(0,0,0,0.1)", color: formData.budget ? "#ffffff" : "rgba(0,0,0,0.4)",
                                         fontWeight: 600, fontSize: "15px", cursor: formData.budget ? "pointer" : "not-allowed", transition: "all 0.2s ease"
                                     }}
                                 >
@@ -457,13 +457,13 @@ export default function QuotePage() {
                     {currentStep === 4 && (
                         <div>
                             <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#1d1d1f", textAlign: "center", marginBottom: "32px" }}>
-                                Almost there! Tell me about your project.
+                                ¡Ya casi! Cuéntame sobre tu proyecto.
                             </h2>
                             <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%" }}>
                                 
                                 {/* Name */}
                                 <div>
-                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Your name *</label>
+                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Tu nombre *</label>
                                     <input 
                                         type="text" 
                                         value={formData.name}
@@ -471,12 +471,12 @@ export default function QuotePage() {
                                         className="form-input"
                                         style={{ width: "100%", padding: "14px 16px", border: `1px solid ${errors.name ? '#EF4444' : 'rgba(0,0,0,0.1)'}`, borderRadius: "12px", fontSize: "15px", color: "#1d1d1f", background: "#ffffff", boxSizing: "border-box" }}
                                     />
-                                    {errors.name && <div style={{ fontSize: "12px", color: "#EF4444", marginTop: "4px" }}>This field is required</div>}
+                                    {errors.name && <div style={{ fontSize: "12px", color: "#EF4444", marginTop: "4px" }}>Este campo es obligatorio</div>}
                                 </div>
 
                                 {/* Email */}
                                 <div>
-                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Email address *</label>
+                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Correo electrónico *</label>
                                     <input 
                                         type="email" 
                                         value={formData.email}
@@ -484,12 +484,12 @@ export default function QuotePage() {
                                         className="form-input"
                                         style={{ width: "100%", padding: "14px 16px", border: `1px solid ${errors.email ? '#EF4444' : 'rgba(0,0,0,0.1)'}`, borderRadius: "12px", fontSize: "15px", color: "#1d1d1f", background: "#ffffff", boxSizing: "border-box" }}
                                     />
-                                    {errors.email && <div style={{ fontSize: "12px", color: "#EF4444", marginTop: "4px" }}>This field is required</div>}
+                                    {errors.email && <div style={{ fontSize: "12px", color: "#EF4444", marginTop: "4px" }}>Este campo es obligatorio</div>}
                                 </div>
 
                                 {/* Phone */}
                                 <div>
-                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Phone number (optional)</label>
+                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Teléfono (opcional)</label>
                                     <input 
                                         type="tel" 
                                         value={formData.phone}
@@ -501,7 +501,7 @@ export default function QuotePage() {
 
                                 {/* Message */}
                                 <div>
-                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Briefly describe what you need *</label>
+                                    <label style={{ display: "block", fontSize: "13px", color: "#6e6e73", fontWeight: 500, marginBottom: "6px" }}>Describe brevemente lo que necesitas *</label>
                                     <textarea 
                                         value={formData.message}
                                         onChange={(e) => updateData("message", e.target.value)}
@@ -509,7 +509,7 @@ export default function QuotePage() {
                                         className="form-input"
                                         style={{ width: "100%", padding: "14px 16px", border: `1px solid ${errors.message ? '#EF4444' : 'rgba(0,0,0,0.1)'}`, borderRadius: "12px", fontSize: "15px", color: "#1d1d1f", background: "#ffffff", boxSizing: "border-box", resize: "vertical" }}
                                     />
-                                    {errors.message && <div style={{ fontSize: "12px", color: "#EF4444", marginTop: "4px" }}>This field is required</div>}
+                                    {errors.message && <div style={{ fontSize: "12px", color: "#EF4444", marginTop: "4px" }}>Este campo es obligatorio</div>}
                                 </div>
 
                                 {/* Botcheck */}
@@ -536,12 +536,12 @@ export default function QuotePage() {
                                     className="send-button"
                                     style={{
                                         flex: 1,
-                                        height: "54px", background: "#2d6a4f", color: "#ffffff",
+                                        height: "54px", background: "#f97316", color: "#ffffff",
                                         fontSize: "17px", fontWeight: 700, borderRadius: "14px", border: "none", cursor: isSubmitting ? "not-allowed" : "pointer",
                                         boxShadow: "0 4px 16px rgba(45,106,79,0.2)", position: "relative", overflow: "hidden", transition: "all 0.2s"
                                     }}
                                 >
-                                    {isSubmitting ? "Sending..." : "Send Request"}
+                                    {isSubmitting ? "Enviando..." : "Enviar solicitud"}
                                 </button>
                             </div>
                         </div>
@@ -552,15 +552,15 @@ export default function QuotePage() {
                         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "40px 0 20px" }}>
                             <div className="success-check-container" style={{ position: "relative", width: "80px", height: "80px", marginBottom: "24px" }}>
                                 <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle className="success-circle" cx="40" cy="40" r="38" stroke="#2d6a4f" strokeWidth="3" fill="transparent" strokeDasharray="240" strokeDashoffset="240" />
-                                    <path className="success-path" d="M25 40 L35 50 L55 28" stroke="#2d6a4f" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="50" strokeDashoffset="50" />
+                                    <circle className="success-circle" cx="40" cy="40" r="38" stroke="#f97316" strokeWidth="3" fill="transparent" strokeDasharray="240" strokeDashoffset="240" />
+                                    <path className="success-path" d="M25 40 L35 50 L55 28" stroke="#f97316" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="50" strokeDashoffset="50" />
                                 </svg>
                             </div>
                             <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1d1d1f", margin: "0 0 12px 0" }}>
                                 You're all set!
                             </h2>
                             <p style={{ fontSize: "16px", color: "#6e6e73", maxWidth: "400px", lineHeight: 1.5, margin: "0 0 32px 0" }}>
-                                Thanks, {formData.name}! I'll review your request and get back to you within 24 hours.
+                                Gracias, {formData.name}. Revisaré tu solicitud y te responderé en un máximo de 24 horas.
                             </p>
                             
                             <Link href="/" style={{
@@ -584,7 +584,7 @@ export default function QuotePage() {
 
             {/* Bottom Quote */}
             <div className="bottom-quote" style={{ marginTop: "32px", fontSize: "14px", fontStyle: "italic", color: "#86868b", textAlign: "center" }}>
-                "No commitment. Just a conversation."
+                "Sin compromiso. Solo una conversación."
             </div>
 
             <style dangerouslySetInnerHTML={{__html: `
@@ -592,12 +592,12 @@ export default function QuotePage() {
                     /* Initial state handled by JS, but fallback here */
                 }
                 .form-input:focus {
-                    border-color: #2d6a4f !important;
+                    border-color: #f97316 !important;
                     box-shadow: 0 0 0 3px rgba(45,106,79,0.1) !important;
                     outline: none;
                 }
                 .send-button:hover:not(:disabled) {
-                    background: #3a8a64 !important;
+                    background: #ea580c !important;
                     transform: translateY(-2px);
                     box-shadow: 0 6px 20px rgba(45,106,79,0.25) !important;
                 }

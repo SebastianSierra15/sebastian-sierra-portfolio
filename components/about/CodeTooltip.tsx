@@ -18,7 +18,7 @@ const tooltipConfigs: Record<string, {
 }> = {
   name: {
     title: "Sebastián Sierra",
-    accent: "#52b788",
+    accent: "#fb923c",
     content: (
       <div className="space-y-2">
         <p className="text-white/80 text-sm">Full-Stack Developer basado en Colombia</p>
@@ -47,7 +47,7 @@ const tooltipConfigs: Record<string, {
   },
   location: {
     title: "Colombia",
-    accent: "#38bdf8",
+    accent: "#fbbf24",
     content: (
       <div className="space-y-2">
         <p className="text-white/80 text-sm">Working remotely with teams worldwide</p>

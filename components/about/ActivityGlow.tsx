@@ -14,18 +14,18 @@ interface HeatCell {
 
 const HEAT_COLORS = [
   "rgba(255, 255, 255, 0.05)",   // 0 - empty
-  "rgba(82, 183, 136, 0.2)",     // 1 - low
-  "rgba(82, 183, 136, 0.4)",     // 2 - medium
-  "rgba(82, 183, 136, 0.6)",     // 3 - high
-  "rgba(82, 183, 136, 0.9)",     // 4 - max
+  "rgba(251, 146, 60, 0.2)",     // 1 - low
+  "rgba(251, 146, 60, 0.4)",     // 2 - medium
+  "rgba(251, 146, 60, 0.6)",     // 3 - high
+  "rgba(251, 146, 60, 0.9)",     // 4 - max
 ];
 
 const GLOW_COLORS = [
   "transparent",
-  "rgba(82, 183, 136, 0.3)",
-  "rgba(82, 183, 136, 0.5)",
-  "rgba(82, 183, 136, 0.7)",
-  "rgba(82, 183, 136, 1)",
+  "rgba(251, 146, 60, 0.3)",
+  "rgba(251, 146, 60, 0.5)",
+  "rgba(251, 146, 60, 0.7)",
+  "rgba(251, 146, 60, 1)",
 ];
 
 // Generate deterministic random data
@@ -189,7 +189,7 @@ export default function ActivityGlow() {
             className="absolute z-10 px-3 py-2 rounded-lg text-xs font-mono"
             style={{
               background: "rgba(15, 23, 42, 0.95)",
-              border: "1px solid rgba(82, 183, 136, 0.3)",
+              border: "1px solid rgba(251, 146, 60, 0.3)",
               backdropFilter: "blur(10px)",
               left: `calc(${(hoveredCell.weekIndex / 52) * 100}% - 50px)`,
               bottom: "80px",

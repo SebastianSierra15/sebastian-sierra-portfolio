@@ -13,7 +13,7 @@ const STAGES = [
     title: "DISCOVER",
     descriptor: "Research",
     detail: "Diving deep into user pain points, market gaps, and emerging tech. Every great product starts with understanding.",
-    color: "#52b788",
+    color: "#fb923c",
   },
   {
     icon: "🔬",
@@ -48,7 +48,7 @@ const STAGES = [
 const METRICS = [
   { value: "12", label: "coffees", icon: "☕", color: "#8B5CF6" },
   { value: "47", label: "commits", icon: "🔥", color: "#F97316" },
-  { value: "3", label: "shipping", icon: "🚀", color: "#52b788" },
+  { value: "3", label: "shipping", icon: "🚀", color: "#fb923c" },
   { value: "94%", label: "AI accuracy", icon: "🤖", color: "#A855F7" },
 ];
 
@@ -93,7 +93,7 @@ function ParticleConnector({ stageIndex, isActive }: { stageIndex: number; isAct
       ctx.beginPath();
       ctx.moveTo(20, 0);
       ctx.lineTo(20, 40);
-      ctx.strokeStyle = "rgba(82, 183, 136, 0.15)";
+      ctx.strokeStyle = "rgba(251, 146, 60, 0.15)";
       ctx.lineWidth = 1;
       ctx.stroke();
 
@@ -104,7 +104,7 @@ function ParticleConnector({ stageIndex, isActive }: { stageIndex: number; isAct
 
         ctx.beginPath();
         ctx.arc(20, p.y, isActive ? 3 : 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(82, 183, 136, ${p.alpha * (isActive ? 1.5 : 1)})`;
+        ctx.fillStyle = `rgba(251, 146, 60, ${p.alpha * (isActive ? 1.5 : 1)})`;
         ctx.fill();
       });
 
@@ -147,7 +147,7 @@ function HeartbeatLine() {
       <motion.path
         d="M0,10 L10,10 L15,5 L20,15 L25,10 L35,10 L40,5 L45,15 L50,10 L60,10"
         fill="none"
-        stroke="#52b788"
+        stroke="#fb923c"
         strokeWidth="1.5"
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}

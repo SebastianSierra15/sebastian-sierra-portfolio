@@ -175,7 +175,7 @@ export default function ForgeBento({ skills, filter, highlightedName }: Props) {
                   <span style={{
                     width: 24, height: 24, borderRadius: "50%",
                     display: "inline-flex", alignItems: "center", justifyContent: "center",
-                    background: "linear-gradient(135deg, #52b788 0%, #A855F7 100%)",
+                    background: "linear-gradient(135deg, #fb923c 0%, #A855F7 100%)",
                     boxShadow: "0 0 16px rgba(168,85,247,0.4)",
                     transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                     transform: showAllChips ? "rotate(180deg)" : "rotate(0deg)",

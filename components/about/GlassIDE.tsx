@@ -23,7 +23,7 @@ export default function GlassIDE({ children }: GlassIDEProps) {
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 80% 50% at 50% -20%, rgba(82, 183, 136, 0.15), transparent),
+              radial-gradient(ellipse 80% 50% at 50% -20%, rgba(251, 146, 60, 0.15), transparent),
               radial-gradient(ellipse 60% 40% at 80% 50%, rgba(56, 189, 248, 0.1), transparent),
               radial-gradient(ellipse 50% 60% at 20% 80%, rgba(139, 92, 246, 0.1), transparent)
             `,
@@ -48,7 +48,7 @@ export default function GlassIDE({ children }: GlassIDEProps) {
         <div
           className="absolute -inset-[1px] rounded-2xl z-0"
           style={{
-            background: "conic-gradient(from 0deg, transparent, rgba(82, 183, 136, 0.3), rgba(56, 189, 248, 0.3), rgba(139, 92, 246, 0.3), transparent)",
+            background: "conic-gradient(from 0deg, transparent, rgba(251, 146, 60, 0.3), rgba(56, 189, 248, 0.3), rgba(139, 92, 246, 0.3), transparent)",
             animation: "borderRotate 8s linear infinite",
           }}
         />
@@ -66,7 +66,7 @@ export default function GlassIDE({ children }: GlassIDEProps) {
             boxShadow: `
               0 40px 80px rgba(0, 0, 0, 0.4),
               0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-              0 0 100px rgba(82, 183, 136, 0.05) inset
+              0 0 100px rgba(251, 146, 60, 0.05) inset
             `,
           }}
         >
@@ -86,7 +86,7 @@ export default function GlassIDE({ children }: GlassIDEProps) {
               style={{
                 width: 300,
                 height: 300,
-                background: "radial-gradient(circle, rgba(82, 183, 136, 0.15) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(251, 146, 60, 0.15) 0%, transparent 70%)",
                 left: mousePosition.x - 150,
                 top: mousePosition.y - 150,
               }}

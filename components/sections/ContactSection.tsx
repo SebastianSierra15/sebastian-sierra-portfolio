@@ -116,7 +116,7 @@ export default function ContactSection() {
                         lineHeight: 1.05, letterSpacing: "-0.04em", margin: "0 0 24px 0",
                         fontFamily: "var(--font-display), sans-serif",
                         display: "inline-block",
-                        background: "linear-gradient(135deg, #1d1d1f 0%, #2d6a4f 100%)",
+                        background: "linear-gradient(135deg, #1d1d1f 0%, #f97316 100%)",
                         backgroundSize: "200% auto",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
@@ -139,7 +139,7 @@ export default function ContactSection() {
                     {/* Card 1 */}
                     <div className="service-card" style={serviceCardStyle}>
                         <div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "rgba(45,106,79,0.08)" }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
                                 <line x1="12" y1="18" x2="12.01" y2="18" />
                             </svg>
@@ -149,32 +149,32 @@ export default function ContactSection() {
                             <p style={{ fontSize: "13px", color: "#86868b", margin: "0" }}>Interfaces y dashboards</p>
                         </div>
                         <div style={{ textAlign: "left", marginTop: "auto", paddingTop: "8px" }}>
-                            <span style={{ fontSize: "14px", fontWeight: 600, color: "#2d6a4f" }}>A la medida</span>
+                            <span style={{ fontSize: "14px", fontWeight: 600, color: "#f97316" }}>A la medida</span>
                         </div>
                     </div>
 
                     {/* Card 2 */}
                     <div className="service-card" style={serviceCardStyle}>
                         <div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "rgba(45,106,79,0.08)" }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="12" cy="12" r="10" />
                                 <line x1="2" y1="12" x2="22" y2="12" />
                                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                             </svg>
                         </div>
                         <div style={{ textAlign: "left" }}>
-                            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0", fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.02em" }}>Website</h3>
+                            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0", fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.02em" }}>Sitio web</h3>
                             <p style={{ fontSize: "13px", color: "#86868b", margin: "0" }}>Sitios y plataformas</p>
                         </div>
                         <div style={{ textAlign: "left", marginTop: "auto", paddingTop: "8px" }}>
-                            <span style={{ fontSize: "14px", fontWeight: 600, color: "#2d6a4f" }}>Pensado para tu flujo</span>
+                            <span style={{ fontSize: "14px", fontWeight: 600, color: "#f97316" }}>Pensado para tu flujo</span>
                         </div>
                     </div>
 
                     {/* Card 3 */}
                     <div className="service-card" style={serviceCardStyle}>
                         <div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "rgba(45,106,79,0.08)" }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
                                 <rect x="9" y="9" width="6" height="6" />
                                 <line x1="9" y1="1" x2="9" y2="4" />
@@ -192,7 +192,7 @@ export default function ContactSection() {
                             <p style={{ fontSize: "13px", color: "#86868b", margin: "0" }}>Datos y herramientas internas</p>
                         </div>
                         <div style={{ textAlign: "left", marginTop: "auto", paddingTop: "8px" }}>
-                            <span style={{ fontSize: "14px", fontWeight: 600, color: "#2d6a4f" }}>Menos trabajo repetitivo</span>
+                            <span style={{ fontSize: "14px", fontWeight: 600, color: "#f97316" }}>Menos trabajo repetitivo</span>
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@ export default function ContactSection() {
                         style={{
                             display: "flex", justifyContent: "center", alignItems: "center", gap: "12px",
                             width: "min(480px, 100%)", height: "60px", 
-                            backgroundColor: "#2d6a4f", color: "#ffffff",
+                            backgroundColor: "#f97316", color: "#ffffff",
                             fontSize: "18px", fontWeight: 700, borderRadius: "16px", textDecoration: "none",
                             boxShadow: "0 4px 16px rgba(45,106,79,0.2), 0 12px 40px rgba(45,106,79,0.15)",
                             fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.01em"
@@ -288,10 +288,10 @@ export default function ContactSection() {
                 <div className="secondary-fade" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "80px", maxWidth: "480px" }}>
                     <div style={{ fontSize: "48px", color: "rgba(45,106,79,0.2)", lineHeight: "0.5", margin: "0" }}>"</div>
                     <p style={{ fontSize: "15px", color: "#86868b", fontStyle: "italic", lineHeight: 1.6, margin: "16px 0 8px 0" }}>
-                        Working with Sebastián was exceptional. He delivered beyond our expectations and on time.
+                        Trabajar con Sebastián fue excepcional. Entregó más de lo que esperábamos y cumplió a tiempo.
                     </p>
                     <div style={{ fontSize: "13px", color: "#a1a1a6", fontWeight: 500 }}>
-                        — A satisfied client
+                        — Cliente satisfecho
                     </div>
                 </div>
 
@@ -303,7 +303,7 @@ export default function ContactSection() {
                 display: "flex", justifyContent: "space-between", alignItems: "center",
                 padding: "24px 40px", fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: 500,
             }} className="footer-layout">
-                <div>© {new Date().getFullYear()} {aboutData.name}. All rights reserved.</div>
+                <div>© {new Date().getFullYear()} {aboutData.name}. Todos los derechos reservados.</div>
                 
                 <div style={{ display: "flex", gap: "24px" }}>
                     <a href={aboutData.githubUrl || "https://github.com/SebastianSierra15"} target="_blank" rel="noreferrer" className="social-icon">
@@ -320,7 +320,7 @@ export default function ContactSection() {
                     </a>
                 </div>
 
-                <div>Built with Next.js, GSAP & <span style={{ color: "#52b788" }}>♥</span></div>
+                <div>Construido con Next.js, GSAP y <span style={{ color: "#f97316" }}>♥</span></div>
             </div>
 
             <style dangerouslySetInnerHTML={{ __html: `
@@ -329,14 +329,14 @@ export default function ContactSection() {
                 }
                 .service-card:hover {
                     transform: translateY(-4px);
-                    box-shadow: 0 12px 32px rgba(45,106,79,0.08);
-                    border-color: rgba(45,106,79,0.2) !important;
+                    box-shadow: 0 12px 32px rgba(194,65,12,0.10);
+                    border-color: rgba(249,115,22,0.24) !important;
                 }
                 .banner-cta:hover {
                     transform: translateY(-3px) !important;
                 }
                 .email-link-light:hover {
-                    color: #2d6a4f !important;
+                    color: #c2410c !important;
                     text-decoration: underline !important;
                 }
                 .social-icon {

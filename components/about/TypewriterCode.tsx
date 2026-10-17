@@ -40,7 +40,7 @@ const codeLines = [
 const syntaxColors: Record<string, string> = {
   comment: "rgba(148, 163, 184, 0.6)",    // slate-400
   keyword: "rgba(139, 92, 246, 1)",      // violet-500
-  string: "rgba(82, 183, 136, 1)",       // emerald-400
+  string: "rgba(251, 146, 60, 1)",       // emerald-400
   number: "rgba(56, 189, 248, 1)",      // sky-400
   property: "rgba(255, 255, 255, 0.9)",  // white
   punctuation: "rgba(148, 163, 184, 0.8)", // slate-400

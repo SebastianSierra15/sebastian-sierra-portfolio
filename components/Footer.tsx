@@ -3,10 +3,10 @@ export default function Footer() {
     <footer className="py-16 px-6 text-center border-t border-gray-100">
       <div className="max-w-4xl mx-auto">
         <p className="text-sm text-[#86868b] mb-2">
-          Built with Next.js, Framer Motion & a lot of ☕
+          Construido con Next.js, Framer Motion y mucho ☕
         </p>
         <p className="text-xs text-[#c7c7cc]">
-          © {new Date().getFullYear()} Sebastián Sierra. All rights reserved.
+          © {new Date().getFullYear()} Sebastián Sierra. Todos los derechos reservados.
         </p>
       </div>
     </footer>

@@ -14,7 +14,7 @@ interface CategoryTabsProps {
 const TABS: Category[] = ["All", "Web", "AI & GenAI", "Mobile", "Infra", "DesignOps"];
 
 const TAB_COLORS: Record<Category, string> = {
-  "All":        "#52b788",
+  "All":        "#fb923c",
   "Web":        "#61DAFB",
   "AI & GenAI": "#A855F7",
   "Mobile":     "#027DFD",

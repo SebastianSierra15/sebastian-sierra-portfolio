@@ -15,14 +15,14 @@ const WELCOME_MESSAGE: Message = {
   id: "welcome",
   role: "assistant",
   content:
-    "Hey there! I'm Paul, Sebastián's assistant. Whether you're looking to build an app, a website, or an AI-powered tool, I'm here to help. What can I do for you?",
+    "Hola, soy el asistente de Sebastián. Si quieres construir una app, un sitio web o una herramienta con IA, estoy aquí para ayudarte. ¿Qué te gustaría crear?",
   timestamp: new Date(),
 };
 
 const QUICK_CHIPS = [
-  { label: "What services do you offer?", action: "services" },
-  { label: "Show me your work", action: "work" },
-  { label: "I want to get a quote", action: "quote" },
+  { label: "¿Qué servicios ofreces?", action: "services" },
+  { label: "Muéstrame tus proyectos", action: "work" },
+  { label: "Quiero solicitar una cotización", action: "quote" },
 ] as const;
 
 const FONT = "var(--font-inter), Inter, -apple-system, sans-serif";
@@ -30,28 +30,28 @@ const EMAIL = "sebsirra13@gmail.com";
 
 const HIRE_NUDGE_COPY = [
   {
-    question: "Tiny question: should Sebastián build your next thing?",
-    yes: "Yes, copy email",
-    noA: "Not yet",
-    noB: "Show me proof",
+    question: "Una pregunta rápida: ¿Sebastián debería construir tu próximo proyecto?",
+    yes: "Sí, copiar correo",
+    noA: "Todavía no",
+    noB: "Muéstrame pruebas",
   },
   {
-    question: "Fair. Is the idea not ready, or is my timing dramatic?",
-    yes: "Copy it anyway",
-    noA: "Idea not ready",
-    noB: "Too early",
+    question: "Entiendo. ¿La idea aún no está lista o me estoy adelantando?",
+    yes: "Copiarlo de todos modos",
+    noA: "La idea no está lista",
+    noB: "Es muy pronto",
   },
   {
-    question: "Reasonable. But if the idea wakes up tonight, should the email be ready?",
-    yes: "Leave it ready",
-    noA: "Still resisting",
-    noB: "Make me smile",
+    question: "Tiene sentido. Pero si la idea despierta esta noche, ¿dejamos listo el correo?",
+    yes: "Déjalo listo",
+    noA: "Sigo dudando",
+    noB: "Hazme sonreír",
   },
   {
-    question: "Strong resistance. I respect it. One final tiny nudge?",
-    yes: "Fine, copy it",
-    noA: "Loop again",
-    noB: "Hide this",
+    question: "Veo resistencia. La respeto. ¿Un último pequeño empujón?",
+    yes: "Está bien, cópialo",
+    noA: "Repetir",
+    noB: "Ocultar esto",
   },
 ];
 
@@ -165,7 +165,7 @@ export default function ChatWidget() {
           setMessages((prev) =>
             prev.map((m) =>
               m.id === assistantId
-                ? { ...m, content: "Sorry, I'm having trouble connecting right now. Please try again!" }
+                ? { ...m, content: "No pude conectar en este momento. Inténtalo de nuevo." }
                 : m
             )
           );
@@ -230,7 +230,7 @@ export default function ChatWidget() {
     }
 
     if (chip.action === "work") {
-      appendLocalReply(chip.label, "Taking you to the proof of work section.");
+      appendLocalReply(chip.label, "Te llevo a la sección de proyectos.");
       window.setTimeout(() => {
         setIsOpen(false);
         scrollToWork();
@@ -238,7 +238,7 @@ export default function ChatWidget() {
       return;
     }
 
-    appendLocalReply(chip.label, "Opening the quote page now.");
+    appendLocalReply(chip.label, "Abriendo ahora la página para solicitar una cotización.");
     window.setTimeout(() => router.push("/quote"), 180);
   };
 
@@ -271,7 +271,7 @@ export default function ChatWidget() {
           width: "286px",
           maxWidth: "calc(100vw - 48px)",
           borderRadius: "8px",
-          border: "1px solid rgba(45,106,79,0.16)",
+          border: "1px solid rgba(249,115,22,0.18)",
           background: "rgba(255,255,255,0.82)",
           boxShadow: "0 18px 46px rgba(16,35,28,0.12)",
           backdropFilter: "blur(22px) saturate(160%)",
@@ -283,7 +283,7 @@ export default function ChatWidget() {
       >
         <button
           type="button"
-          aria-label="Dismiss hire prompt"
+          aria-label="Cerrar aviso de contratación"
           onClick={() => setHireNudgeVisible(false)}
           style={{
             position: "absolute",
@@ -294,7 +294,7 @@ export default function ChatWidget() {
             borderRadius: "50%",
             border: "0",
             background: "rgba(16,35,28,0.06)",
-            color: "#52645c",
+            color: "#7c675d",
             cursor: "pointer",
             fontSize: "15px",
             lineHeight: 1,
@@ -309,7 +309,7 @@ export default function ChatWidget() {
               display: "inline-flex",
               alignItems: "center",
               gap: "7px",
-              color: "#1f7a5c",
+              color: "#c2410c",
               fontSize: "11px",
               fontWeight: 800,
               textTransform: "uppercase",
@@ -321,23 +321,23 @@ export default function ChatWidget() {
                 width: "7px",
                 height: "7px",
                 borderRadius: "50%",
-                background: "#1f7a5c",
-                boxShadow: "0 0 0 5px rgba(31,122,92,0.1)",
+                background: "#f97316",
+                boxShadow: "0 0 0 5px rgba(249,115,22,0.12)",
               }}
             />
-            After 30 seconds
+            Después de 30 segundos
           </span>
 
           <p
             style={{
               margin: "9px 0 0",
-              color: "#10231c",
+              color: "#24150f",
               fontSize: "14px",
               lineHeight: 1.45,
               fontWeight: 750,
             }}
           >
-            {hireNudgeCopied ? "Copied. Sebastián's email is on your clipboard." : hireNudge.question}
+            {hireNudgeCopied ? "Listo. El correo de Sebastián está en tu portapapeles." : hireNudge.question}
           </p>
         </div>
 
@@ -350,7 +350,7 @@ export default function ChatWidget() {
                 minHeight: "38px",
                 border: "0",
                 borderRadius: "999px",
-                background: "#2d6a4f",
+                background: "#f97316",
                 color: "#ffffff",
                 fontSize: "13px",
                 fontWeight: 800,
@@ -369,7 +369,7 @@ export default function ChatWidget() {
                   border: "1px solid rgba(16,35,28,0.1)",
                   borderRadius: "999px",
                   background: "rgba(255,255,255,0.72)",
-                  color: "#52645c",
+                  color: "#7c675d",
                   fontSize: "12px",
                   fontWeight: 800,
                   cursor: "pointer",
@@ -380,18 +380,18 @@ export default function ChatWidget() {
               <button
                 type="button"
                 onClick={() => {
-                  if (hireNudge.noB === "Show me proof") {
+                  if (hireNudge.noB === "Muéstrame pruebas") {
                     scrollToWork();
                     return;
                   }
-                  handleHireNo(hireNudge.noB === "Hide this");
+                  handleHireNo(hireNudge.noB === "Ocultar esto");
                 }}
                 style={{
                   minHeight: "34px",
                   border: "1px solid rgba(16,35,28,0.1)",
                   borderRadius: "999px",
                   background: "rgba(255,255,255,0.72)",
-                  color: "#52645c",
+                  color: "#7c675d",
                   fontSize: "12px",
                   fontWeight: 800,
                   cursor: "pointer",
@@ -408,7 +408,7 @@ export default function ChatWidget() {
       {/* ── FLOATING BUBBLE ── */}
       <button
         onClick={() => setIsOpen((v) => !v)}
-        aria-label={isOpen ? "Close chat" : "Chat with Paul"}
+          aria-label={isOpen ? "Cerrar chat" : "Abrir chat con Sebastián"}
         style={{
           position: "fixed",
           bottom: "24px",
@@ -416,23 +416,23 @@ export default function ChatWidget() {
           width: "56px",
           height: "56px",
           borderRadius: "50%",
-          background: "#2d6a4f",
+          background: "#f97316",
           border: "none",
           cursor: "pointer",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 4px 16px rgba(45,106,79,0.3)",
+          boxShadow: "0 4px 16px rgba(194,65,12,0.28)",
           zIndex: 9999,
           transition: "transform 0.2s ease, box-shadow 0.2s ease",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "scale(1.06)";
-          e.currentTarget.style.boxShadow = "0 6px 20px rgba(45,106,79,0.4)";
+          e.currentTarget.style.boxShadow = "0 6px 20px rgba(194,65,12,0.38)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 16px rgba(45,106,79,0.3)";
+          e.currentTarget.style.boxShadow = "0 4px 16px rgba(194,65,12,0.28)";
         }}
       >
         {isOpen ? (
@@ -478,7 +478,7 @@ export default function ChatWidget() {
         <div
           style={{
             height: "56px",
-            background: "#2d6a4f",
+            background: "#f97316",
             borderRadius: "20px 20px 0 0",
             display: "flex",
             alignItems: "center",
@@ -513,28 +513,28 @@ export default function ChatWidget() {
           <div style={{ flex: 1 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
               <span style={{ fontSize: "15px", fontWeight: 600, color: "#ffffff", fontFamily: FONT }}>
-                Paul
+                Sebastián
               </span>
               <span
                 style={{
                   width: "6px",
                   height: "6px",
                   borderRadius: "50%",
-                  background: "#52b788",
+                  background: "#fb923c",
                   display: "inline-block",
                   animation: "onlinePulse 2s ease-in-out infinite",
                 }}
               />
             </div>
             <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)", marginTop: "1px", fontFamily: FONT }}>
-              Sebastián&apos;s Assistant
+              Asistente de Sebastián
             </div>
           </div>
 
           {/* Close */}
           <button
             onClick={() => setIsOpen(false)}
-            aria-label="Close chat"
+            aria-label="Cerrar chat"
             style={{
               background: "rgba(255,255,255,0.12)",
               border: "none",
@@ -590,8 +590,8 @@ export default function ChatWidget() {
                     padding: "10px 14px",
                     borderRadius:
                       msg.role === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
-                    background: msg.role === "user" ? "#2d6a4f" : "#f5f5f5",
-                    color: msg.role === "user" ? "#ffffff" : "#1d1d1f",
+                    background: msg.role === "user" ? "#f97316" : "#fff7ed",
+                    color: msg.role === "user" ? "#ffffff" : "#24150f",
                     fontSize: "14px",
                     lineHeight: 1.5,
                     wordBreak: "break-word",
@@ -640,7 +640,7 @@ export default function ChatWidget() {
                     border: "1px solid rgba(45,106,79,0.25)",
                     borderRadius: "100px",
                     background: "rgba(45,106,79,0.04)",
-                    color: "#2d6a4f",
+                    color: "#c2410c",
                     fontSize: "12px",
                     fontWeight: 500,
                     cursor: "pointer",
@@ -670,7 +670,7 @@ export default function ChatWidget() {
                 alignSelf: "flex-start",
                 padding: "7px 14px",
                 borderRadius: "100px",
-                background: "#2d6a4f",
+                background: "#f97316",
                 color: "#ffffff",
                 fontSize: "13px",
                 fontWeight: 600,
@@ -710,7 +710,7 @@ export default function ChatWidget() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type a message..."
+          placeholder="Escribe un mensaje..."
             disabled={isStreaming}
             style={{
               flex: 1,
@@ -724,18 +724,18 @@ export default function ChatWidget() {
               fontFamily: FONT,
               transition: "border-color 0.2s ease",
             }}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "#2d6a4f")}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#f97316")}
             onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)")}
           />
           <button
             onClick={() => sendMessage(inputValue)}
             disabled={isStreaming || !inputValue.trim()}
-            aria-label="Send"
+            aria-label="Enviar mensaje"
             style={{
               width: "36px",
               height: "36px",
               borderRadius: "50%",
-              background: isStreaming || !inputValue.trim() ? "rgba(0,0,0,0.08)" : "#2d6a4f",
+              background: isStreaming || !inputValue.trim() ? "rgba(0,0,0,0.08)" : "#f97316",
               border: "none",
               cursor: isStreaming || !inputValue.trim() ? "not-allowed" : "pointer",
               display: "flex",
@@ -747,12 +747,12 @@ export default function ChatWidget() {
             }}
             onMouseEnter={(e) => {
               if (!isStreaming && inputValue.trim()) {
-                e.currentTarget.style.background = "#3a8a64";
+                e.currentTarget.style.background = "#ea580c";
               }
             }}
             onMouseLeave={(e) => {
               if (!isStreaming && inputValue.trim()) {
-                e.currentTarget.style.background = "#2d6a4f";
+                e.currentTarget.style.background = "#f97316";
               }
             }}
             onMouseDown={(e) => {

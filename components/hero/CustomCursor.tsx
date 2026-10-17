@@ -10,12 +10,12 @@ type CursorState = "default" | "drag" | "click" | "view" | "text" | "link" | "wa
 
 const LABELS: Record<CursorState, string> = {
   default: "",
-  drag: "DRAG",
-  click: "CLICK",
-  view: "VIEW",
+  drag: "MOVER",
+  click: "CLIC",
+  view: "VER",
   text: "",
   link: "",
-  watch: "WATCH",
+  watch: "MIRA",
 };
 
 const SIZES: Record<CursorState, number> = {
@@ -106,13 +106,13 @@ export default function CustomCursor() {
         background: state === "default" || state === "text"
           ? "rgba(255,255,255,0.85)"
           : state === "drag"
-          ? "rgba(82,183,136,0.95)"
+          ? "rgba(249,115,22,0.95)"
           : state === "click"
-          ? "rgba(82,183,136,0.92)"
+          ? "rgba(249,115,22,0.92)"
           : state === "view"
-          ? "rgba(56,189,248,0.92)"
+          ? "rgba(234,88,12,0.92)"
           : state === "watch"
-          ? "rgba(250,204,21,0.92)"
+          ? "rgba(245,158,11,0.92)"
           : "transparent",
         border: state === "link" ? "1.5px solid rgba(255,255,255,0.85)" : "none",
         mixBlendMode: state === "default" || state === "text" ? "difference" : "normal",

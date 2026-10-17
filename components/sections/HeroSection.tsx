@@ -23,8 +23,8 @@ const BUILD_LANES = [
     short: "Flujos + datos",
     line: "Sistemas que reducen trabajo manual y convierten datos dispersos en acción útil.",
     metric: "Herramientas internas",
-    accent: "#1f7a5c",
-    secondaryAccent: "#2563eb",
+    accent: "#ea580c",
+    secondaryAccent: "#f97316",
   },
   {
     id: "web",
@@ -33,8 +33,8 @@ const BUILD_LANES = [
     short: "Dashboards + apps",
     line: "Interfaces rápidas, claras y cuidadas que ayudan a las personas a avanzar con confianza.",
     metric: "Frontend + full stack",
-    accent: "#2563eb",
-    secondaryAccent: "#1f7a5c",
+    accent: "#f97316",
+    secondaryAccent: "#ea580c",
   },
   {
     id: "mobile",
@@ -43,8 +43,8 @@ const BUILD_LANES = [
     short: "UI + sistemas",
     line: "Experiencias responsive con una base reutilizable y una dirección visual coherente.",
     metric: "Diseño y código",
-    accent: "#d97706",
-    secondaryAccent: "#1f7a5c",
+    accent: "#c2410c",
+    secondaryAccent: "#ea580c",
   },
 ] as const;
 
@@ -214,7 +214,7 @@ function CraftCoreScene({
       aiGroup.position.set(0, 0.06, 0);
       aiGroup.rotation.set(-0.16, 0.28, 0.06);
 
-      const aiCoreMaterial = glass("#1f7a5c", 0.92, 0.22);
+      const aiCoreMaterial = glass("#ea580c", 0.92, 0.22);
       aiMaterials.push(aiCoreMaterial);
       const aiCore = new THREE.Mesh(new THREE.IcosahedronGeometry(1.08, 5), aiCoreMaterial);
       aiCore.userData.isCore = true;
@@ -232,7 +232,7 @@ function CraftCoreScene({
       ];
 
       aiRingRotations.forEach((rotation, index) => {
-        const ringMaterial = basic(index === 1 ? "#2563eb" : "#1f7a5c", index === 1 ? 0.28 : 0.22);
+        const ringMaterial = basic(index === 1 ? "#f97316" : "#ea580c", index === 1 ? 0.28 : 0.22);
         aiMaterials.push(ringMaterial);
         const ring = new THREE.Mesh(new THREE.TorusGeometry(2.05 + index * 0.28, 0.006, 12, 192), ringMaterial);
         ring.rotation.set(rotation[0], rotation[1], rotation[2]);
@@ -242,7 +242,7 @@ function CraftCoreScene({
       });
 
       const aiSparkGeometry = new THREE.SphereGeometry(0.048, 14, 14);
-      const aiSparkColors = ["#1f7a5c", "#2563eb", "#52b788", "#10231c"];
+      const aiSparkColors = ["#ea580c", "#f97316", "#fb923c", "#24150f"];
       for (let i = 0; i < 16; i += 1) {
         const material = basic(aiSparkColors[i % aiSparkColors.length], i % 4 === 0 ? 0.46 : 0.76);
         aiMaterials.push(material);
@@ -267,7 +267,7 @@ function CraftCoreScene({
 
       const webBackMaterial = glass("#e8fff4", 0.45, 0.34);
       const webMainMaterial = glass("#ffffff", 0.74, 0.2);
-      const webAccentMaterial = basic("#2563eb", 0.62);
+      const webAccentMaterial = basic("#f97316", 0.62);
       const webSoftMaterial = basic("#dff7ea", 0.72);
       webMaterials.push(webBackMaterial, webMainMaterial, webAccentMaterial, webSoftMaterial);
 
@@ -294,10 +294,10 @@ function CraftCoreScene({
 
       const cardGeometry = new THREE.BoxGeometry(0.82, 0.38, 0.08);
       [
-        [-0.48, 0.34, 0.07, "#1f7a5c", 0.5],
+        [-0.48, 0.34, 0.07, "#ea580c", 0.5],
         [0.55, 0.34, 0.08, "#dff7ea", 0.82],
         [-0.48, -0.2, 0.08, "#edfdf3", 0.82],
-        [0.55, -0.2, 0.09, "#2563eb", 0.22],
+        [0.55, -0.2, 0.09, "#f97316", 0.22],
       ].forEach(([x, y, z, color, opacity], index) => {
         const material = basic(String(color), Number(opacity));
         webMaterials.push(material);
@@ -310,7 +310,7 @@ function CraftCoreScene({
 
       const barGeometry = new THREE.BoxGeometry(0.18, 1, 0.1);
       [0.42, 0.72, 0.55, 0.92, 0.64].forEach((height, index) => {
-        const material = basic(index % 2 === 0 ? "#1f7a5c" : "#2563eb", 0.62);
+        const material = basic(index % 2 === 0 ? "#ea580c" : "#f97316", 0.62);
         webMaterials.push(material);
         const bar = new THREE.Mesh(barGeometry, material);
         bar.scale.y = height;
@@ -329,10 +329,10 @@ function CraftCoreScene({
       mobileGroup.position.set(0.04, 0.02, 0);
       mobileGroup.rotation.set(-0.1, 0.28, -0.04);
 
-      const phoneBodyMaterial = glass("#10231c", 0.9, 0.3);
+      const phoneBodyMaterial = glass("#24150f", 0.9, 0.3);
       const phoneScreenMaterial = glass("#fafffc", 0.78, 0.2);
-      const mobileAccentMaterial = basic("#d97706", 0.7);
-      const mobileGreenMaterial = basic("#1f7a5c", 0.58);
+      const mobileAccentMaterial = basic("#c2410c", 0.7);
+      const mobileGreenMaterial = basic("#ea580c", 0.58);
       mobileMaterials.push(phoneBodyMaterial, phoneScreenMaterial, mobileAccentMaterial, mobileGreenMaterial);
 
       const phoneBody = new THREE.Mesh(
@@ -358,9 +358,9 @@ function CraftCoreScene({
       mobileGroup.add(notch);
 
       [
-        [0, 0.64, 0.78, 0.34, "#1f7a5c", 0.42],
+        [0, 0.64, 0.78, 0.34, "#ea580c", 0.42],
         [-0.22, 0.08, 0.78, 0.44, "#e8fff4", 0.88],
-        [0.22, -0.55, 0.78, 0.5, "#d97706", 0.36],
+        [0.22, -0.55, 0.78, 0.5, "#c2410c", 0.36],
       ].forEach(([x, y, width, height, color, opacity], index) => {
         const material = basic(String(color), Number(opacity));
         mobileMaterials.push(material);
@@ -401,7 +401,7 @@ function CraftCoreScene({
 
       const targetColor = new THREE.Color(accentRef.current);
       const secondaryColor = new THREE.Color(secondaryAccentRef.current);
-      const aiRestColor = new THREE.Color("#1f7a5c");
+      const aiRestColor = new THREE.Color("#ea580c");
       const startTime = window.performance.now();
 
       webPanels.forEach((panel, index) => {
@@ -577,7 +577,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="hero-atelier" aria-label="Sebastián Sierra portfolio introduction">
+    <section className="hero-atelier" aria-label="Introducción al portafolio de Sebastián Sierra">
       <div className="hero-grid-sheen" aria-hidden="true" />
       <div className="hero-light-ribbon" aria-hidden="true" />
 
@@ -600,7 +600,7 @@ export default function HeroSection() {
             con una base técnica lista para evolucionar.
           </p>
 
-          <div className="hero-actions" aria-label="Primary actions">
+          <div className="hero-actions" aria-label="Acciones principales">
             <a className="hero-primary" href="#work" onClick={scrollToWork}>
               Ver proyectos
               <span aria-hidden="true">+</span>
@@ -610,7 +610,7 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          <div className="hero-lane-tabs" role="tablist" aria-label="What Sebastián builds">
+          <div className="hero-lane-tabs" role="tablist" aria-label="Lo que Sebastián construye">
             {BUILD_LANES.map((lane, index) => (
               <button
                 key={lane.id}
@@ -653,7 +653,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      <div className="hero-proof-line" aria-label="Portfolio proof points">
+      <div className="hero-proof-line" aria-label="Puntos destacados del portafolio">
         <span>Frontend con criterio de producto</span>
         <span>Full stack cuando el proyecto lo necesita</span>
         <span>Entrega clara y mantenible</span>
@@ -669,8 +669,8 @@ export default function HeroSection() {
           align-items: center;
           background:
             linear-gradient(180deg, rgba(251, 255, 251, 0.98) 0%, #ffffff 54%, #f4faf6 100%),
-            linear-gradient(120deg, rgba(31, 122, 92, 0.09), rgba(37, 99, 235, 0.045), rgba(217, 119, 6, 0.035));
-          color: #10231c;
+            linear-gradient(120deg, rgba(249, 115, 22, 0.09), rgba(249, 115, 22, 0.045), rgba(194, 65, 12, 0.035));
+          color: #24150f;
           padding: 104px 24px 60px;
           font-family: var(--font-inter), Inter, sans-serif;
         }
@@ -680,8 +680,8 @@ export default function HeroSection() {
           inset: 0;
           pointer-events: none;
           background-image:
-            linear-gradient(rgba(31, 122, 92, 0.052) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(31, 122, 92, 0.046) 1px, transparent 1px);
+            linear-gradient(rgba(249, 115, 22, 0.052) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(249, 115, 22, 0.046) 1px, transparent 1px);
           background-size: 58px 58px;
           mask-image: linear-gradient(to bottom, transparent, black 18%, black 72%, transparent);
           -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 72%, transparent);
@@ -695,7 +695,7 @@ export default function HeroSection() {
           pointer-events: none;
           background:
             linear-gradient(108deg, transparent 7%, rgba(255, 255, 255, 0.78) 34%, transparent 58%),
-            linear-gradient(98deg, transparent 20%, rgba(82, 183, 136, 0.14) 48%, transparent 74%);
+            linear-gradient(98deg, transparent 20%, rgba(251, 146, 60, 0.14) 48%, transparent 74%);
           transform: rotate(-5deg);
           filter: blur(2px);
           opacity: 0.84;
@@ -724,10 +724,10 @@ export default function HeroSection() {
           gap: 10px;
           min-height: 34px;
           padding: 8px 12px;
-          border: 1px solid rgba(31, 122, 92, 0.14);
+          border: 1px solid rgba(249, 115, 22, 0.14);
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.66);
-          color: #1f5f49;
+          color: #9a3412;
           backdrop-filter: blur(18px) saturate(160%);
           -webkit-backdrop-filter: blur(18px) saturate(160%);
           font-size: 12px;
@@ -738,8 +738,8 @@ export default function HeroSection() {
           width: 8px;
           height: 8px;
           border-radius: 999px;
-          background: #1f7a5c;
-          box-shadow: 0 0 0 6px rgba(31, 122, 92, 0.12);
+          background: #ea580c;
+          box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.12);
           flex: 0 0 auto;
         }
 
@@ -750,7 +750,7 @@ export default function HeroSection() {
           font-size: clamp(54px, 6.1vw, 78px);
           line-height: 0.94;
           letter-spacing: 0;
-          color: #10231c;
+          color: #24150f;
           font-weight: 850;
           text-wrap: balance;
         }
@@ -758,7 +758,7 @@ export default function HeroSection() {
         .hero-lede {
           margin: 18px 0 0;
           max-width: 560px;
-          color: #50645b;
+          color: #7c675d;
           font-size: 17px;
           line-height: 1.58;
         }
@@ -786,7 +786,7 @@ export default function HeroSection() {
         }
 
         .hero-primary {
-          background: #163f32;
+          background: #9a3412;
           color: #ffffff;
           box-shadow: 0 18px 42px rgba(22, 63, 50, 0.22);
         }
@@ -801,9 +801,9 @@ export default function HeroSection() {
         }
 
         .hero-secondary {
-          color: #163f32;
+          color: #9a3412;
           background: rgba(255, 255, 255, 0.7);
-          border: 1px solid rgba(31, 122, 92, 0.17);
+          border: 1px solid rgba(249, 115, 22, 0.17);
           backdrop-filter: blur(18px) saturate(160%);
           -webkit-backdrop-filter: blur(18px) saturate(160%);
         }
@@ -824,10 +824,10 @@ export default function HeroSection() {
         .hero-lane-tabs button {
           position: relative;
           min-height: 74px;
-          border: 1px solid rgba(16, 35, 28, 0.1);
+          border: 1px solid rgba(36, 21, 15, 0.1);
           border-radius: 8px;
           background: rgba(255, 255, 255, 0.62);
-          color: #52645c;
+          color: #7c675d;
           padding: 14px;
           text-align: left;
           cursor: pointer;
@@ -853,9 +853,9 @@ export default function HeroSection() {
         .hero-lane-tabs button:hover,
         .hero-lane-tabs button.is-active {
           transform: translateY(-2px);
-          border-color: color-mix(in srgb, var(--lane) 35%, rgba(16, 35, 28, 0.1));
+          border-color: color-mix(in srgb, var(--lane) 35%, rgba(36, 21, 15, 0.1));
           background: rgba(255, 255, 255, 0.82);
-          box-shadow: 0 18px 38px rgba(16, 35, 28, 0.08);
+          box-shadow: 0 18px 38px rgba(36, 21, 15, 0.08);
         }
 
         .hero-lane-tabs button.is-active:before {
@@ -870,7 +870,7 @@ export default function HeroSection() {
         }
 
         .hero-lane-tabs span {
-          color: #10231c;
+          color: #24150f;
           font-size: 14px;
           line-height: 1.25;
           font-weight: 850;
@@ -878,7 +878,7 @@ export default function HeroSection() {
 
         .hero-lane-tabs small {
           margin-top: 6px;
-          color: #64746d;
+          color: #8b7569;
           font-size: 11px;
           line-height: 1.35;
           font-weight: 700;
@@ -919,8 +919,8 @@ export default function HeroSection() {
           z-index: 1;
           border-radius: 999px;
           background:
-            repeating-radial-gradient(circle at 50% 50%, rgba(31, 122, 92, 0.14) 0 1px, transparent 1px 38px),
-            conic-gradient(from 120deg, rgba(31, 122, 92, 0.14), rgba(37, 99, 235, 0.11), rgba(217, 119, 6, 0.08), rgba(31, 122, 92, 0.14));
+            repeating-radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.14) 0 1px, transparent 1px 38px),
+            conic-gradient(from 120deg, rgba(249, 115, 22, 0.14), rgba(249, 115, 22, 0.11), rgba(194, 65, 12, 0.08), rgba(249, 115, 22, 0.14));
           filter: blur(0.2px);
           mask-image: radial-gradient(circle, black 0%, black 54%, transparent 72%);
           -webkit-mask-image: radial-gradient(circle, black 0%, black 54%, transparent 72%);
@@ -931,9 +931,9 @@ export default function HeroSection() {
         .hero-scene-label {
           position: absolute;
           z-index: 4;
-          border: 1px solid rgba(16, 35, 28, 0.1);
+          border: 1px solid rgba(36, 21, 15, 0.1);
           background: rgba(255, 255, 255, 0.74);
-          box-shadow: 0 18px 42px rgba(16, 35, 28, 0.1);
+          box-shadow: 0 18px 42px rgba(36, 21, 15, 0.1);
           backdrop-filter: blur(22px) saturate(160%);
           -webkit-backdrop-filter: blur(22px) saturate(160%);
         }
@@ -952,7 +952,7 @@ export default function HeroSection() {
           max-width: min(260px, 58%);
           border-radius: 999px;
           padding: 9px 12px;
-          color: #10231c;
+          color: #24150f;
           line-height: 1;
           white-space: nowrap;
           transform-origin: center;
@@ -981,7 +981,7 @@ export default function HeroSection() {
           font-size: 12px;
           font-weight: 950;
           letter-spacing: 0;
-          box-shadow: 0 16px 36px rgba(16, 35, 28, 0.1);
+          box-shadow: 0 16px 36px rgba(36, 21, 15, 0.1);
         }
 
         .hero-scene-label-title {
@@ -990,12 +990,12 @@ export default function HeroSection() {
           font-family: var(--font-display), Plus Jakarta Sans, sans-serif;
           font-size: 20px;
           font-weight: 850;
-          box-shadow: 0 22px 48px rgba(16, 35, 28, 0.12);
+          box-shadow: 0 22px 48px rgba(36, 21, 15, 0.12);
         }
 
         .hero-scene-label-proof {
           padding: 8px 11px;
-          color: #52645c;
+          color: #7c675d;
           font-size: 11px;
           font-weight: 850;
           background: rgba(255, 255, 255, 0.6);
@@ -1070,7 +1070,7 @@ export default function HeroSection() {
           height: 52px;
           border-radius: 8px;
           object-fit: cover;
-          border: 1px solid rgba(31, 122, 92, 0.18);
+          border: 1px solid rgba(249, 115, 22, 0.18);
         }
 
         .hero-identity-card strong,
@@ -1080,14 +1080,14 @@ export default function HeroSection() {
         }
 
         .hero-identity-card strong {
-          color: #10231c;
+          color: #24150f;
           font-size: 14px;
           line-height: 1;
         }
 
         .hero-identity-card span {
           margin-top: 5px;
-          color: #63736b;
+          color: #8b7569;
           font-size: 12px;
           font-weight: 700;
         }
@@ -1103,7 +1103,7 @@ export default function HeroSection() {
           justify-content: center;
           gap: 9px;
           flex-wrap: wrap;
-          color: #66786f;
+          color: #8b7569;
           font-size: 12px;
           font-weight: 850;
           pointer-events: none;
@@ -1116,9 +1116,9 @@ export default function HeroSection() {
           gap: 8px;
           border-radius: 999px;
           padding: 8px 14px;
-          border: 1px solid rgba(31, 122, 92, 0.13);
+          border: 1px solid rgba(249, 115, 22, 0.13);
           background: rgba(255, 255, 255, 0.68);
-          box-shadow: 0 14px 32px rgba(16, 35, 28, 0.08);
+          box-shadow: 0 14px 32px rgba(36, 21, 15, 0.08);
           backdrop-filter: blur(18px) saturate(160%);
           -webkit-backdrop-filter: blur(18px) saturate(160%);
         }
@@ -1128,7 +1128,7 @@ export default function HeroSection() {
           width: 6px;
           height: 6px;
           border-radius: 999px;
-          background: rgba(31, 122, 92, 0.72);
+          background: rgba(249, 115, 22, 0.72);
         }
 
         @media (max-width: 1040px) {

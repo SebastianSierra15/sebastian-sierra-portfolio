@@ -13,7 +13,7 @@ function mulberry32(seed: number) {
   };
 }
 
-const COLORS = ["#52b788", "#A855F7", "#61DAFB", "#027DFD", "#10A37F", "#F97316"];
+const COLORS = ["#fb923c", "#A855F7", "#61DAFB", "#027DFD", "#10A37F", "#F97316"];
 const NODE_COUNT = 16;
 const LINK_DIST = 280;
 

@@ -68,7 +68,7 @@ function MagneticChar({
         willChange: "transform",
         ...(gradient
           ? {
-              background: "linear-gradient(90deg,#52b788 0%,#38bdf8 55%,#818cf8 100%)",
+              background: "linear-gradient(90deg,#ea580c 0%,#f97316 55%,#fbbf24 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -131,10 +131,10 @@ export default function KineticHeadline() {
     return () => window.clearTimeout(t);
   }, [reduceMotion]);
 
-  // Line 1: "I bring dead"
-  const line1 = useMemo(() => "I bring dead".split(""), []);
-  // Line 2: "projects " then gradient word "to life."
-  const line2A = useMemo(() => "projects ".split(""), []);
+  // Línea 1: el inicio del mensaje principal.
+  const line1 = useMemo(() => "Convierto ideas".split(""), []);
+  // Línea 2: el cierre con el acento visual.
+  const line2A = useMemo(() => "en productos ".split(""), []);
 
   return (
     <h1
@@ -164,16 +164,16 @@ export default function KineticHeadline() {
             ))}
           </span>
           <span
-            aria-label="to life."
+            aria-label="que funcionan."
             style={{
-              background: "linear-gradient(90deg,#52b788 0%,#38bdf8 55%,#818cf8 100%)",
+              background: "linear-gradient(90deg,#ea580c 0%,#f97316 55%,#fbbf24 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               display: "inline-block",
             }}
           >
-            <ScrambleWord target="to life." active={scrambleActive} reduceMotion={reduceMotion} />
+            <ScrambleWord target="que funcionan." active={scrambleActive} reduceMotion={reduceMotion} />
           </span>
         </span>
       </div>

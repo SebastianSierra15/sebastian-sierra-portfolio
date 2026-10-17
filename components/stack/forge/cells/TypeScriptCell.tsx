@@ -46,7 +46,7 @@ export default function TypeScriptCell({ skill, index = 0, span }: { skill: Skil
   useEffect(() => { if (hovered && state === "error") setState("fixing"); }, [hovered, state]);
 
   const value = state === "error" ? '"god-tier"' : '"expert"';
-  const checkColor = state === "ok" ? "#52b788" : state === "error" ? "#ef4444" : "#fbbf24";
+  const checkColor = state === "ok" ? "#fb923c" : state === "error" ? "#ef4444" : "#fbbf24";
   const checkSymbol = state === "ok" ? "✓" : state === "error" ? "✗" : "↻";
   const checkLabel  = state === "ok" ? "OK" : state === "error" ? "TS2322" : "FIXING";
 
@@ -113,7 +113,7 @@ export default function TypeScriptCell({ skill, index = 0, span }: { skill: Skil
             <span style={{ color: "#A855F7" }}>const</span>{" "}
             <span style={{ color: "#61DAFB" }}>skill</span>
             <span style={{ color: "#94a3b8" }}>:</span>{" "}
-            <span style={{ color: "#52b788" }}>Mastery</span>
+            <span style={{ color: "#fb923c" }}>Mastery</span>
             <span style={{ color: "#94a3b8" }}>{"<"}</span>
             <span style={{ color: "#fbbf24" }}>&quot;{skill.name}&quot;</span>
             <span style={{ color: "#94a3b8" }}>{">"}</span>{" "}

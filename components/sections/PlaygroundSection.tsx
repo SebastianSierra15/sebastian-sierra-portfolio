@@ -91,7 +91,7 @@ function GravityGarden() {
         const ctx = canvasRef.current.getContext("2d");
         if (!ctx) return;
 
-        const leafColors = ["#2d6a4f", "#52b788", "#95d5b2", "#b7e4c7"];
+        const leafColors = ["#f97316", "#fb923c", "#95d5b2", "#b7e4c7"];
 
         const drawBranch = (b: Branch, alpha: number) => {
             ctx.beginPath();
@@ -164,7 +164,7 @@ function GravityGarden() {
                 
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, 4, 0, Math.PI * 2);
-                ctx.fillStyle = "#2d6a4f";
+                ctx.fillStyle = "#f97316";
                 ctx.fill();
 
                 if (s.y >= ctx.canvas.height - 10) {
@@ -264,7 +264,7 @@ function ParticlePainter() {
         // Speed interpolation: 0-2 -> green, > 10 -> gold
         let r, g, b;
         const s = Math.min(speed, 10) / 10;
-        // Green: #52b788 (82, 183, 136)
+        // Green: #fb923c (82, 183, 136)
         // Gold: #b68d40 (182, 141, 64)
         r = 82 + (182 - 82) * s;
         g = 183 + (141 - 183) * s;
@@ -438,7 +438,7 @@ function MagneticLetter({ char, containerMouseX, containerMouseY, containerRef }
                 const force = (influenceRadius - dist) / influenceRadius; // 0 to 1
                 targetX = dx * force * 0.4;
                 targetY = dy * force * 0.4;
-                // Interpolate color to #2d6a4f based on force
+                // Interpolate color to #f97316 based on force
                 color = `rgba(${29 - force * (29 - 45)}, ${29 + force * (106 - 29)}, ${31 + force * (79 - 31)}, 1)`;
             }
         }
@@ -545,7 +545,7 @@ export default function PlaygroundSection() {
                         fontSize: "12px", fontWeight: 600, textTransform: "uppercase",
                         letterSpacing: "0.2em", color: "#86868b", marginBottom: "24px"
                     }}>
-                        — Interactive Design
+                        — Diseño interactivo
                     </div>
                     
                     <h2 
@@ -555,14 +555,14 @@ export default function PlaygroundSection() {
                             fontFamily: "var(--font-display), sans-serif", margin: "0 0 24px 0"
                         }}
                     >
-                        Because good software<br />should feel alive.
+                        El buen software<br />también debe sentirse vivo.
                     </h2>
 
                     <p style={{
                         fontSize: "20px", lineHeight: 1.6, color: "#6e6e73", margin: 0, maxWidth: "600px"
                     }}>
-                        Tap, hover, and play. These aren't demos — they're proof
-                        that digital experiences can feel as alive as nature.
+                        Toca, pasa el cursor y juega. No son simples demos: son pruebas
+                        de que una experiencia digital también puede sentirse viva.
                     </p>
                 </div>
 
@@ -583,7 +583,7 @@ export default function PlaygroundSection() {
                                 Gravity Garden
                             </h3>
                             <p style={{ fontSize: "14px", color: "#86868b", marginTop: "4px", margin: "4px 0 0 0" }}>
-                                Click to plant. Watch it grow.
+                                Haz clic para plantar. Mira cómo crece.
                             </p>
                         </div>
                     </div>
@@ -596,7 +596,7 @@ export default function PlaygroundSection() {
                                 Particle Painter
                             </h3>
                             <p style={{ fontSize: "14px", color: "#86868b", marginTop: "4px", margin: "4px 0 0 0" }}>
-                                Move your cursor. Speed changes color.
+                                Mueve el cursor. La velocidad cambia el color.
                             </p>
                         </div>
                     </div>
@@ -609,7 +609,7 @@ export default function PlaygroundSection() {
                                 Magnetic Type
                             </h3>
                             <p style={{ fontSize: "14px", color: "#86868b", marginTop: "4px", margin: "4px 0 0 0" }}>
-                                Hover over the letters. They follow you.
+                                Pasa el cursor sobre las letras. Te siguen.
                             </p>
                         </div>
                     </div>

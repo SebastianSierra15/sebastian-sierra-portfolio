@@ -12,7 +12,7 @@ const TABS = ["now", "activity", "shipping", "contact"];
 export default function SebastiánOSPanel() {
   return (
     <aside
-      aria-label="Sebastián's personal status panel"
+      aria-label="Panel de estado personal de Sebastián"
       style={{
         position: "relative",
         background: "linear-gradient(180deg, #0f1626 0%, #0a0f1c 100%)",
@@ -90,10 +90,10 @@ export default function SebastiánOSPanel() {
         position: "absolute", width: 1, height: 1, padding: 0, margin: -1,
         overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0,
       }}>
-        <dt>Status</dt><dd>Available, 2 slots open for Q1 2026</dd>
+        <dt>Estado</dt><dd>Disponible, 2 espacios para nuevos proyectos</dd>
         <dt>Focus</dt><dd>Frontend, full stack y producto digital</dd>
-        <dt>Location</dt><dd>Colombia</dd>
-        <dt>Reply time</dt><dd>Within 2 hours</dd>
+        <dt>Ubicación</dt><dd>Colombia</dd>
+        <dt>Tiempo de respuesta</dt><dd>En menos de 2 horas</dd>
       </dl>
     </aside>
   );

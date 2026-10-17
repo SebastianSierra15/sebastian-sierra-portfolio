@@ -149,9 +149,9 @@ export default function EmailPopup({
                   style={{
                     background:
                       i % 3 === 0
-                        ? "#52b788"
+                        ? "#fb923c"
                         : i % 3 === 1
-                          ? "#38bdf8"
+                          ? "#fbbf24"
                           : "#8b5cf6",
                     left: "50%",
                     top: "30%",

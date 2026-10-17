@@ -18,12 +18,12 @@ export default function PaneFooter() {
         <span style={{ position: "relative", display: "inline-flex", width: 8, height: 8 }}>
           <span style={{
             position: "absolute", inset: 0, borderRadius: "50%",
-            background: "#52b788", opacity: 0.55,
+            background: "#fb923c", opacity: 0.55,
             animation: reduceMotion ? "none" : "presenceRipple 1.8s ease-out infinite",
           }} />
           <span style={{
             position: "relative", width: 8, height: 8, borderRadius: "50%",
-            background: "#52b788",
+            background: "#fb923c",
           }} />
         </span>
         <span style={{ color: "rgba(255,255,255,0.85)" }}>Available</span>

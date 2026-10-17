@@ -27,9 +27,9 @@ export default function AudioToggle({ dark = true }: { dark?: boolean }) {
     <button
       type="button"
       onClick={toggle}
-      aria-label={on ? "Mute UI sounds" : "Enable UI sounds"}
+      aria-label={on ? "Silenciar sonidos de la interfaz" : "Activar sonidos de la interfaz"}
       aria-pressed={on}
-      title={on ? "Sounds on" : "Sounds off"}
+      title={on ? "Sonidos activados" : "Sonidos desactivados"}
       style={{
         width: 28, height: 28, borderRadius: "50%",
         background: bg, border: `1px solid ${bd}`,

@@ -14,7 +14,7 @@ const ContactSection = dynamic(
 
 export default function Home() {
   return (
-    <main style={{ backgroundColor: "#ffffff" }}>
+    <main style={{ backgroundColor: "#fffaf6" }}>
       {/* === Hero === */}
       <HeroSection />
 

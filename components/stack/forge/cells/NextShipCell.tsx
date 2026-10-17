@@ -64,7 +64,7 @@ export default function NextShipCell({ skill, index = 0, span }: { skill: Skill;
   const colorFor = (cls?: typeof SCRIPT[number]["cls"]) => {
     switch (cls) {
       case "cmd":    return "#f1f5f9";
-      case "ok":     return "#52b788";
+      case "ok":     return "#fb923c";
       case "info":   return "#cbd5e1";
       case "head":   return "rgba(148,163,184,0.85)";
       case "deploy": return skill.color;
@@ -86,7 +86,7 @@ export default function NextShipCell({ skill, index = 0, span }: { skill: Skill;
       <div style={{ position: "relative", display: "flex", flexDirection: "column", height: "100%", gap: 12, zIndex: 1 }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#52b788", boxShadow: `0 0 10px #52b788` }} />
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#fb923c", boxShadow: `0 0 10px #fb923c` }} />
             <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", color: "#f1f5f9", fontFamily: "var(--font-mono), monospace" }}>
               {skill.name} · BUILD
             </span>
@@ -126,7 +126,7 @@ export default function NextShipCell({ skill, index = 0, span }: { skill: Skill;
               </div>
             ))}
             {lineIdx < SCRIPT.length && (
-              <span style={{ display: "inline-block", width: 6, height: 12, background: "#52b788", verticalAlign: "middle", animation: "term-blink 1s steps(2) infinite" }} />
+              <span style={{ display: "inline-block", width: 6, height: 12, background: "#fb923c", verticalAlign: "middle", animation: "term-blink 1s steps(2) infinite" }} />
             )}
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function NextShipCell({ skill, index = 0, span }: { skill: Skill;
               animation: "pill-in 0.5s cubic-bezier(0.16,1,0.3,1)",
             }}
           >
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#52b788", animation: "pulse-dot 1.6s ease-in-out infinite" }} />
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#fb923c", animation: "pulse-dot 1.6s ease-in-out infinite" }} />
             <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.1em", color: "#f1f5f9", fontFamily: "var(--font-mono), monospace" }}>
               DEPLOYED · 1.4s
             </span>

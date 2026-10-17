@@ -3,17 +3,17 @@
 @theme {
   --color-glass-bg: rgba(255, 255, 255, 0.6);
   --color-glass-border: rgba(209, 213, 219, 0.5);
-  --color-accent: #2d6a4f;
-  --color-accent-light: #52b788;
-  --color-surface: #f8f9fb;
+  --color-accent: #f97316;
+  --color-accent-light: #fb923c;
+  --color-surface: #fff7ed;
   --font-sans: "Inter", sans-serif;
   --font-display: "Plus Jakarta Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1d1d1f;
+  --background: #fffaf6;
+  --foreground: #24150f;
 }
 
 /* ─── Base ─────────────────────────────────────────────────────────────────── */
@@ -74,17 +74,17 @@ body {
 /* ─── Glassmorphism utilities ─────────────────────────────────────────────── */
 
 .glass {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 250, 246, 0.72);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(249, 115, 22, 0.14);
 }
 
 .glass-heavy {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 250, 246, 0.82);
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(249, 115, 22, 0.16);
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -386,13 +386,13 @@ a[style*="background: transparent"]:hover {
 /* ========== CONTACT SECTION BUTTONS ========== */
 
 .cta-primary {
-  background: #2d6a4f;
+  background: #f97316;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
 }
 .cta-primary:hover {
-  background: #3a8a64;
+  background: #ea580c;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(45, 106, 79, 0.25);
 }

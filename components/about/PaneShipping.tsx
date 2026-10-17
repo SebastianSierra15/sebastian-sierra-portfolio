@@ -8,8 +8,8 @@ import { useReducedMotion } from "framer-motion";
 type EntryType = "feat" | "ship" | "fix" | "spec" | "chore";
 
 const TYPE_COLORS: Record<EntryType, string> = {
-  feat:  "#52b788",
-  ship:  "#38bdf8",
+  feat:  "#fb923c",
+  ship:  "#fbbf24",
   fix:   "#facc15",
   spec:  "#a78bfa",
   chore: "rgba(255,255,255,0.45)",
@@ -62,7 +62,7 @@ export default function PaneShipping() {
       color: "rgba(255,255,255,0.85)",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-        <span style={{ color: "#52b788" }}>▸</span>
+        <span style={{ color: "#fb923c" }}>▸</span>
         <span style={{ color: "rgba(255,255,255,0.55)", letterSpacing: "0.06em" }}>shipping</span>
         <span style={{ flex: 1 }} />
         <span style={{ fontSize: 10, color: "rgba(255,255,255,0.30)" }}>last 7 days</span>

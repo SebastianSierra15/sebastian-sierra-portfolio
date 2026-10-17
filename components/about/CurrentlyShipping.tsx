@@ -11,7 +11,7 @@ export default function CurrentlyShipping() {
         position: "relative",
         background: "#f8f9fb",
         border: "1px solid rgba(15,23,42,0.06)",
-        borderLeft: "4px solid #2d6a4f",
+        borderLeft: "4px solid #f97316",
         borderRadius: "0 18px 18px 0",
         padding: "20px 24px",
         maxWidth: 540,
@@ -26,7 +26,7 @@ export default function CurrentlyShipping() {
         marginBottom: 10,
         display: "inline-flex", alignItems: "center", gap: 8,
       }}>
-        <span style={{ color: "#2d6a4f" }}>▸</span>
+        <span style={{ color: "#f97316" }}>▸</span>
         Currently shipping
       </div>
 
@@ -51,7 +51,7 @@ export default function CurrentlyShipping() {
           display: "inline-flex", alignItems: "center", gap: 8,
           fontSize: 13,
           fontWeight: 600,
-          color: "#2d6a4f",
+          color: "#f97316",
           textDecoration: "none",
           fontFamily: "var(--font-inter), Inter, sans-serif",
           letterSpacing: "-0.01em",

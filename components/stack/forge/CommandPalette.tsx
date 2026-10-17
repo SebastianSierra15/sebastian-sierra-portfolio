@@ -114,7 +114,7 @@ export default function CommandPalette({ open, onClose, skills, onPick }: Props)
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            aria-label="Search tools"
+            aria-label="Buscar herramientas"
             style={{
               width: "100%",
               maxWidth: 580,
@@ -137,8 +137,8 @@ export default function CommandPalette({ open, onClose, skills, onPick }: Props)
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 onKeyDown={onKey}
-                placeholder="Search 33 tools, projects, frameworks…"
-                aria-label="Search"
+                placeholder="Buscar herramientas, proyectos y frameworks…"
+                aria-label="Buscar"
                 style={{
                   flex: 1,
                   background: "transparent",
