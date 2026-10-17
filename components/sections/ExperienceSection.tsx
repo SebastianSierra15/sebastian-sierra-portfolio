@@ -5,8 +5,10 @@ import Link from "next/link";
 import { experienceTimeline, type ExperienceEntry } from "@/data/content";
 
 const YEAR_START = 2023;
+const TIMELINE_TODAY = 2026.8;
 const TIMELINE_END = 2026.85;
 const YEARS = [2023, 2024, 2025, 2026];
+const EXPERIENCE_ORDER = ["habitta", "prometeondev", "fudia", "souls-in-xtinction"];
 
 function getTimelinePosition(value: number) {
   return Math.max(0, Math.min(100, ((value - YEAR_START) / (TIMELINE_END - YEAR_START)) * 100));
@@ -43,29 +45,29 @@ function TimelineEntry({
   const width = Math.max(3.5, getTimelinePosition(end) - left);
 
   return (
-    <div className={`experience-row${selected ? " is-selected" : ""}`}>
-      <div className="experience-row-label">
+    <button
+      type="button"
+      className={`experience-row${selected ? " is-selected" : ""}`}
+      aria-label={`Ver experiencia en ${entry.company}`}
+      aria-pressed={selected}
+      onClick={onSelect}
+    >
+      <span className="experience-row-label">
         <span>{entry.code}</span>
         <strong>{entry.company}</strong>
-      </div>
-      <button
-        type="button"
-        className="experience-bar-button"
-        aria-label={`Ver experiencia en ${entry.company}`}
-        aria-pressed={selected}
-        onClick={onSelect}
-      >
+      </span>
+      <span className="experience-bar-button" aria-hidden="true">
         <span
-          className={`experience-bar ${entry.status === "current" ? "is-current" : ""}`}
+          className="experience-bar"
           style={{ left: `${left}%`, width: `${width}%`, "--bar-color": entry.accent } as React.CSSProperties}
         >
           <span className="experience-bar-glow" />
           <span className="experience-bar-dot" />
         </span>
         <span className="experience-bar-tooltip">{entry.period}</span>
-      </button>
+      </span>
       <span className="experience-row-context">{entry.context}</span>
-    </div>
+    </button>
   );
 }
 
@@ -80,7 +82,10 @@ function ExperienceDetails({ entry }: { entry: ExperienceEntry }) {
           {entry.status === "current" ? "Experiencia actual" : "Experiencia completada"}
         </div>
         <p className="experience-details-period">{entry.period}</p>
-        <h3>{entry.company}</h3>
+        <div className="experience-details-title">
+          <ExperienceLogo entry={entry} />
+          <h3>{entry.company}</h3>
+        </div>
         <p className="experience-details-role">{entry.role}</p>
         <p className="experience-details-summary">{entry.summary}</p>
         {links.length > 0 && (
@@ -103,22 +108,19 @@ function ExperienceDetails({ entry }: { entry: ExperienceEntry }) {
           {entry.stack.map((technology) => <span key={technology}>{technology}</span>)}
         </div>
       </div>
-      <div className="experience-details-footer">
-        <div className="experience-brand">
-          <ExperienceLogo entry={entry} />
-          <strong>{entry.company}</strong>
-        </div>
-        <span>{entry.context}</span>
-      </div>
     </article>
   );
 }
 
 export default function ExperienceSection() {
-  const [selectedId, setSelectedId] = useState("prometeondev");
+  const orderedExperienceTimeline = useMemo(
+    () => EXPERIENCE_ORDER.map((id) => experienceTimeline.find((entry) => entry.id === id)).filter(Boolean) as ExperienceEntry[],
+    [],
+  );
+  const [selectedId, setSelectedId] = useState("souls-in-xtinction");
   const selectedEntry = useMemo(
-    () => experienceTimeline.find((entry) => entry.id === selectedId) ?? experienceTimeline[0],
-    [selectedId],
+    () => orderedExperienceTimeline.find((entry) => entry.id === selectedId) ?? orderedExperienceTimeline[0],
+    [orderedExperienceTimeline, selectedId],
   );
 
   return (
@@ -138,11 +140,6 @@ export default function ExperienceSection() {
           <div className="experience-board-topline">
             <span>Franja de tiempo</span>
             <strong>2023 — 2026</strong>
-            <div className="experience-legend" aria-label="Leyenda de estados">
-              <span><i className="legend-swatch current" /> En curso</span>
-              <span><i className="legend-swatch completed" /> Completada</span>
-              <span><i className="legend-today" /> Hoy</span>
-            </div>
           </div>
 
           <div className="experience-chart" style={{ "--years": YEARS.length } as React.CSSProperties}>
@@ -151,10 +148,10 @@ export default function ExperienceSection() {
             </div>
             <div className="experience-axis-line" aria-hidden="true">
               {YEARS.map((year) => <i key={year} style={{ left: `${getTimelinePosition(year)}%` }} />)}
-              <b style={{ left: `${getTimelinePosition(2026.8)}%` }} />
+              <b style={{ left: `${getTimelinePosition(TIMELINE_TODAY)}%` }} />
             </div>
             <div className="experience-rows">
-              {experienceTimeline.map((entry) => (
+              {orderedExperienceTimeline.map((entry) => (
                 <TimelineEntry
                   key={entry.id}
                   entry={entry}
@@ -163,7 +160,6 @@ export default function ExperienceSection() {
                 />
               ))}
             </div>
-            <div className="experience-today-line" aria-hidden="true" />
           </div>
 
           <ExperienceDetails entry={selectedEntry} />
@@ -260,35 +256,6 @@ export default function ExperienceSection() {
           letter-spacing: 0.03em;
         }
 
-        .experience-legend {
-          display: flex;
-          gap: 18px;
-          margin-left: auto;
-          color: #7c6a60;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-          text-transform: none;
-        }
-
-        .experience-legend span {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          white-space: nowrap;
-        }
-
-        .legend-swatch {
-          display: inline-block;
-          width: 18px;
-          height: 7px;
-          border-radius: 99px;
-        }
-
-        .legend-swatch.current { background: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.45); }
-        .legend-swatch.completed { background: #aaa39d; }
-        .legend-today { width: 1px; height: 14px; border-left: 1px dashed #22a267; }
-
         .experience-chart {
           position: relative;
           padding: 0 28px 24px;
@@ -325,8 +292,7 @@ export default function ExperienceSection() {
           background: rgba(36, 21, 15, 0.08);
         }
 
-        .experience-axis-line b,
-        .experience-today-line {
+        .experience-axis-line b {
           position: absolute;
           z-index: 2;
           top: -6px;
@@ -344,9 +310,17 @@ export default function ExperienceSection() {
         }
 
         .experience-row {
-          display: grid;
-          grid-template-columns: 166px minmax(0, 1fr) 185px;
+          position: relative;
+          display: block;
+          width: 100%;
           min-height: 42px;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          color: inherit;
+          font: inherit;
+          text-align: left;
+          cursor: pointer;
           align-items: center;
           border-radius: 10px;
           transition: background 220ms ease, transform 220ms ease;
@@ -357,12 +331,23 @@ export default function ExperienceSection() {
 
         .experience-row.is-selected { transform: translateX(4px); }
 
+        .experience-row:focus-visible {
+          outline: 2px solid #f97316;
+          outline-offset: 4px;
+        }
+
         .experience-row-label {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 4;
           display: flex;
           align-items: baseline;
           gap: 8px;
           min-width: 0;
-          padding-left: 10px;
+          padding: 0 12px 0 10px;
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.86) 76%, rgba(255, 255, 255, 0) 100%);
         }
 
         .experience-row-label span {
@@ -382,15 +367,10 @@ export default function ExperienceSection() {
 
         .experience-bar-button {
           position: relative;
-          width: 100%;
-          height: 38px;
-          padding: 0;
-          border: 0;
-          background: transparent;
-          cursor: pointer;
+          position: absolute;
+          inset: 2px 0;
+          pointer-events: none;
         }
-
-        .experience-bar-button:focus-visible { outline: 2px solid #f97316; outline-offset: 4px; border-radius: 4px; }
 
         .experience-bar-button:before {
           content: "";
@@ -415,10 +395,8 @@ export default function ExperienceSection() {
           transition: height 220ms ease, filter 220ms ease;
         }
 
-        .experience-bar-button:hover .experience-bar,
+        .experience-row:hover .experience-bar,
         .experience-row.is-selected .experience-bar { height: 12px; filter: saturate(1.15); }
-
-        .experience-bar.is-current { background: linear-gradient(90deg, color-mix(in srgb, var(--bar-color) 64%, #ffffff), #22c55e); }
 
         .experience-bar-glow {
           position: absolute;
@@ -442,8 +420,6 @@ export default function ExperienceSection() {
           transform: translateY(-50%);
         }
 
-        .experience-bar.is-current .experience-bar-dot { background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.13), 0 0 13px rgba(34, 197, 94, 0.7); }
-
         .experience-bar-tooltip {
           position: absolute;
           right: 0;
@@ -459,17 +435,27 @@ export default function ExperienceSection() {
           transition: opacity 180ms ease, transform 180ms ease;
         }
 
-        .experience-bar-button:hover .experience-bar-tooltip,
+        .experience-row:hover .experience-bar-tooltip,
         .experience-row.is-selected .experience-bar-tooltip { opacity: 1; transform: translateY(0); }
 
         .experience-row-context {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 4;
+          display: flex;
+          align-items: center;
+          max-width: 185px;
           overflow: hidden;
           padding-left: 16px;
+          background: transparent;
           color: #998b82;
           font-family: var(--font-mono), monospace;
           font-size: 10px;
           text-overflow: ellipsis;
           white-space: nowrap;
+          text-shadow: 0 0 5px #fffaf6, 0 0 9px #fffaf6;
         }
 
         .experience-details {
@@ -489,7 +475,10 @@ export default function ExperienceSection() {
 
         .experience-live-dot { display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 10%, transparent); }
         .experience-details-period { margin: 18px 0 4px; color: #a08d82; font-family: var(--font-mono), monospace; font-size: 12px; }
-        .experience-details h3 { margin: 0; font-family: var(--font-display), sans-serif; font-size: clamp(34px, 5vw, 58px); letter-spacing: -0.055em; line-height: 0.98; }
+        .experience-details-title { display: flex; align-items: center; gap: 16px; min-width: 0; }
+        .experience-details-title .experience-brand-mark { width: 58px; height: 58px; flex: 0 0 auto; border-radius: 16px; }
+        .experience-details-title .experience-brand-mark img { padding: 9px; }
+        .experience-details h3 { min-width: 0; margin: 0; font-family: var(--font-display), sans-serif; font-size: clamp(34px, 5vw, 58px); letter-spacing: -0.055em; line-height: 0.98; }
         .experience-details-role { margin: 12px 0 0; color: #c2410c; font-size: 14px; font-weight: 800; }
         .experience-details-summary { max-width: 590px; margin: 18px 0 0; color: #735f53; font-size: 15px; line-height: 1.7; }
 
@@ -503,8 +492,6 @@ export default function ExperienceSection() {
         .experience-details-proof li:before { content: "↗"; display: inline-block; width: 22px; color: #f97316; }
         .experience-stack { display: flex; flex-wrap: wrap; gap: 7px; }
         .experience-stack span { padding: 7px 10px; border: 1px solid rgba(36, 21, 15, 0.11); border-radius: 999px; background: rgba(255, 255, 255, 0.72); color: #78665b; font-family: var(--font-mono), monospace; font-size: 10px; font-weight: 700; }
-        .experience-details-footer { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; gap: 18px; padding-top: 22px; border-top: 1px solid rgba(36, 21, 15, 0.1); color: #998b82; font-family: var(--font-mono), monospace; font-size: 10px; }
-        .experience-brand { display: inline-flex; align-items: center; gap: 10px; color: #57463c; font-family: var(--font-display), sans-serif; font-size: 13px; }
         .experience-brand-mark { display: grid; width: 34px; height: 34px; place-items: center; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-color) 28%, rgba(36, 21, 15, 0.12)); border-radius: 10px; background: color-mix(in srgb, var(--brand-color) 11%, #ffffff); color: var(--brand-color); }
         .experience-brand-mark img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
         .experience-brand-mark strong { font-size: 15px; }
@@ -512,17 +499,14 @@ export default function ExperienceSection() {
         @media (max-width: 900px) {
           .experience-heading { grid-template-columns: 1fr; gap: 20px; }
           .experience-intro { margin: 0; }
-          .experience-row { grid-template-columns: 136px minmax(0, 1fr); }
           .experience-row-context { display: none; }
           .experience-details { grid-template-columns: 1fr; gap: 28px; }
           .experience-details-proof { padding: 26px 0 0; border-top: 1px solid rgba(36, 21, 15, 0.1); border-left: 0; }
-          .experience-details-footer { grid-column: auto; }
         }
 
         @media (max-width: 640px) {
           .experience-section { padding: 90px 16px 110px; }
           .experience-board-topline { flex-wrap: wrap; padding: 18px; }
-          .experience-legend { width: 100%; margin: 4px 0 0; gap: 12px; }
           .experience-chart { overflow-x: auto; padding: 0 18px 20px; }
           .experience-axis-line { right: 18px; left: 18px; }
           .experience-axis-line i { height: calc(100% + 330px); }
@@ -530,6 +514,9 @@ export default function ExperienceSection() {
           .experience-rows { min-width: 650px; }
           .experience-axis { min-width: 650px; }
           .experience-details { padding: 28px 22px; }
+          .experience-details-title { align-items: flex-start; gap: 12px; }
+          .experience-details-title .experience-brand-mark { width: 48px; height: 48px; border-radius: 13px; }
+          .experience-details-title .experience-brand-mark img { padding: 7px; }
           .experience-details h3 { font-size: 42px; }
         }
 
