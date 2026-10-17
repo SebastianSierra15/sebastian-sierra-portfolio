@@ -202,16 +202,51 @@ function PhoneFrame({ src, accentColor, alt }: { src: string, accentColor: strin
     );
 }
 
+function ProductVisual({ project }: { project: Project }) {
+    return (
+        <div
+            className="product-visual"
+            style={{ "--project-color": project.color } as React.CSSProperties}
+            aria-label={`Vista conceptual de ${project.name}`}
+        >
+            <div className="product-visual-topline">
+                <span>Producto destacado</span>
+                <b>0{project.id === "simulador" ? "2" : "3"}</b>
+            </div>
+            <div className="product-visual-orbit" aria-hidden="true">
+                <span className="product-visual-core">
+                    <CategoryIcon type={project.type} color={project.color} />
+                </span>
+                <span className="product-visual-node product-visual-node-one" />
+                <span className="product-visual-node product-visual-node-two" />
+                <span className="product-visual-node product-visual-node-three" />
+            </div>
+            <div className="product-visual-label">
+                <small>{project.type}</small>
+                <strong>{project.name}</strong>
+            </div>
+            <div className="product-visual-stack">
+                {project.stack.slice(0, 3).map((tech) => <span key={tech}>{tech}</span>)}
+            </div>
+        </div>
+    );
+}
+
 function AppProjectBlock({ project, index }: { project: Project, index: number }) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const isMobileApp = project.id === "fudia";
 
     return (
         <div ref={containerRef} className="app-project-block" style={{ width: "100%", margin: "0 auto 80px", position: "relative" }}>
             <div className="app-container" style={{
                 display: "flex", width: "100%", gap: "60px", alignItems: "center"
             }}>
-                <div className="app-mockup" style={{ flex: "0 0 340px", width: "340px", display: "flex", justifyContent: "center" }}>
-                    <PhoneFrame src={project.imageUrl} accentColor={project.color} alt={project.name} />
+                <div className={isMobileApp ? "app-mockup" : "product-mockup"} style={{ flex: "0 0 340px", width: "340px", display: "flex", justifyContent: "center" }}>
+                    {isMobileApp ? (
+                        <PhoneFrame src={project.imageUrl} accentColor={project.color} alt={project.name} />
+                    ) : (
+                        <ProductVisual project={project} />
+                    )}
                 </div>
                 <div className="app-text" style={{ flex: 1 }}>
                     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -498,7 +533,9 @@ export default function WorkSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
 
-    const appsList = allProjects.filter((project) => project.id === "fudia");
+    const appsList = ["fudia", "simulador", "souls-in-xtinction"]
+        .map((id) => allProjects.find((project) => project.id === id))
+        .filter(Boolean) as Project[];
     const websitesList = allProjects;
 
     useEffect(() => {
@@ -654,6 +691,162 @@ export default function WorkSection() {
                     pointer-events: auto !important;
                 }
 
+                .product-visual {
+                    --project-color: #f97316;
+                    position: relative;
+                    width: 100%;
+                    aspect-ratio: 0.82;
+                    overflow: hidden;
+                    border: 1px solid color-mix(in srgb, var(--project-color) 22%, rgba(15,23,42,0.12));
+                    border-radius: 28px;
+                    padding: 24px;
+                    background:
+                        radial-gradient(circle at 70% 34%, color-mix(in srgb, var(--project-color) 24%, transparent), transparent 28%),
+                        linear-gradient(145deg, #111827 0%, #172033 46%, color-mix(in srgb, var(--project-color) 28%, #111827) 100%);
+                    color: white;
+                    box-shadow: 0 24px 60px color-mix(in srgb, var(--project-color) 16%, transparent);
+                }
+
+                .product-visual:after {
+                    content: "";
+                    position: absolute;
+                    inset: 14px;
+                    border: 1px solid rgba(255,255,255,0.12);
+                    border-radius: 20px;
+                    pointer-events: none;
+                }
+
+                .product-visual-topline,
+                .product-visual-label,
+                .product-visual-stack {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .product-visual-topline {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: rgba(255,255,255,0.62);
+                    font: 700 10px/1 var(--font-mono), monospace;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                }
+
+                .product-visual-topline b {
+                    color: var(--project-color);
+                    font-size: 14px;
+                }
+
+                .product-visual-orbit {
+                    position: absolute;
+                    inset: 92px 20px 116px;
+                    border: 1px solid color-mix(in srgb, var(--project-color) 45%, transparent);
+                    border-radius: 50%;
+                    transform: rotate(-18deg);
+                    animation: product-orbit 8s ease-in-out infinite;
+                }
+
+                .product-visual-orbit:before,
+                .product-visual-orbit:after {
+                    content: "";
+                    position: absolute;
+                    inset: 18% -8%;
+                    border: 1px dashed rgba(255,255,255,0.2);
+                    border-radius: 50%;
+                    transform: rotate(56deg);
+                }
+
+                .product-visual-orbit:after {
+                    inset: -4% 20%;
+                    transform: rotate(-52deg);
+                }
+
+                .product-visual-core {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 76px;
+                    height: 76px;
+                    display: grid;
+                    place-items: center;
+                    transform: translate(-50%, -50%) rotate(18deg);
+                    border-radius: 24px;
+                    background: color-mix(in srgb, var(--project-color) 84%, #111827);
+                    box-shadow: 0 14px 40px color-mix(in srgb, var(--project-color) 42%, transparent);
+                }
+
+                .product-visual-core svg {
+                    width: 32px;
+                    height: 32px;
+                    stroke: white;
+                }
+
+                .product-visual-node {
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: var(--project-color);
+                    box-shadow: 0 0 0 6px color-mix(in srgb, var(--project-color) 18%, transparent);
+                }
+
+                .product-visual-node-one { left: 8%; top: 28%; }
+                .product-visual-node-two { right: 7%; top: 55%; }
+                .product-visual-node-three { left: 36%; bottom: 5%; }
+
+                .product-visual-label {
+                    position: absolute;
+                    left: 24px;
+                    right: 24px;
+                    bottom: 72px;
+                    display: grid;
+                    gap: 6px;
+                }
+
+                .product-visual-label small {
+                    color: rgba(255,255,255,0.56);
+                    font: 700 10px/1.2 var(--font-mono), monospace;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                }
+
+                .product-visual-label strong {
+                    font: 800 clamp(24px, 3vw, 34px)/1 var(--font-display), sans-serif;
+                    letter-spacing: -0.04em;
+                }
+
+                .product-visual-stack {
+                    position: absolute;
+                    left: 24px;
+                    right: 24px;
+                    bottom: 24px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 6px;
+                }
+
+                .product-visual-stack span {
+                    padding: 6px 9px;
+                    border: 1px solid rgba(255,255,255,0.14);
+                    border-radius: 999px;
+                    color: rgba(255,255,255,0.72);
+                    background: rgba(255,255,255,0.06);
+                    font-size: 10px;
+                    font-weight: 700;
+                }
+
+                @keyframes product-orbit {
+                    0%, 100% { transform: rotate(-18deg) scale(0.98); }
+                    50% { transform: rotate(8deg) scale(1.02); }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .product-visual-orbit {
+                        animation: none;
+                    }
+                }
+
                 @media (max-width: 1024px) {
                     .website-grid {
                         grid-template-columns: repeat(2, 1fr);
@@ -668,6 +861,11 @@ export default function WorkSection() {
                     .app-mockup {
                         width: 100% !important;
                         max-width: 320px !important;
+                        flex: 1 1 auto !important;
+                    }
+                    .product-mockup {
+                        width: 100% !important;
+                        max-width: 360px !important;
                         flex: 1 1 auto !important;
                     }
                     .accent-glow {

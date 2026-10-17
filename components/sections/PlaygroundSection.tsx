@@ -1,621 +1,417 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
-gsap.registerPlugin(ScrollTrigger);
+type EvidenceId = "interfaces" | "sistemas" | "flujos";
 
-// ─── 1. Gravity Garden ────────────────────────────────────────────────────────
-
-type Seed = { x: number; y: number; vy: number; active: boolean; id: string };
-
-type Leaf = { x: number; y: number; scale: number; color: string };
-
-type Branch = {
-    startX: number;
-    startY: number;
-    endX: number;
-    endY: number;
-    currentX: number;
-    currentY: number;
-    angle: number;
-    targetLength: number;
-    length: number;
-    width: number;
-    generation: number;
-    finished: boolean;
-    children: Branch[];
-    leaf?: Leaf;
+type Evidence = {
+    id: EvidenceId;
+    kicker: string;
+    title: string;
+    description: string;
+    projects: string[];
+    steps: string[];
+    accent: string;
 };
 
-type Plant = {
-    id: string;
-    root: Branch;
-    alpha: number;
-};
+const EVIDENCE: Evidence[] = [
+    {
+        id: "interfaces",
+        kicker: "Frontend",
+        title: "Interfaces que se entienden.",
+        description: "Jerarquía visual, responsive y componentes reutilizables para que cada pantalla ayude a avanzar.",
+        projects: ["Fudia", "Habitta", "Turismo App"],
+        steps: ["Estructura", "Componentes", "Responsive"],
+        accent: "#f97316",
+    },
+    {
+        id: "sistemas",
+        kicker: "Full stack",
+        title: "Datos que cuentan una historia.",
+        description: "Conecto la interfaz con APIs, lógica de negocio y persistencia para que las decisiones sean visibles.",
+        projects: ["Simulador", "Invehin", "Sistema Estanco"],
+        steps: ["Interfaz", "API", "Persistencia"],
+        accent: "#2563eb",
+    },
+    {
+        id: "flujos",
+        kicker: "Flujos y datos",
+        title: "Menos fricción en el trabajo.",
+        description: "Identifico tareas repetibles y las convierto en procesos claros, medibles y fáciles de mantener.",
+        projects: ["Fudia", "Invehin", "Sistema Estanco"],
+        steps: ["Entrada", "Regla", "Resultado"],
+        accent: "#16a34a",
+    },
+];
 
-function GravityGarden() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    const seeds = useRef<Seed[]>([]);
-    const plants = useRef<Plant[]>([]);
-    const frameRef = useRef<number>(0);
-
-    // Initialize observer
-    useEffect(() => {
-        if (!containerRef.current) return;
-        const observer = new IntersectionObserver(
-            ([entry]) => setIsVisible(entry.isIntersecting),
-            { threshold: 0 }
-        );
-        observer.observe(containerRef.current);
-        return () => observer.disconnect();
-    }, []);
-
-    // Handle Resize
-    useEffect(() => {
-        const resize = () => {
-            if (canvasRef.current && containerRef.current) {
-                canvasRef.current.width = containerRef.current.clientWidth;
-                canvasRef.current.height = containerRef.current.clientHeight;
-            }
-        };
-        resize();
-        window.addEventListener("resize", resize);
-        return () => window.removeEventListener("resize", resize);
-    }, []);
-
-    const createBranch = (x: number, y: number, angle: number, gen: number): Branch => {
-        const targetLength = gen === 0 ? 30 + Math.random() * 40 : 15 + Math.random() * 30;
-        return {
-            startX: x, startY: y,
-            currentX: x, currentY: y,
-            endX: 0, endY: 0, // Calculated dynamically
-            angle, targetLength, length: 0,
-            width: Math.max(1, 4 - gen),
-            generation: gen,
-            finished: false,
-            children: []
-        };
-    };
-
-    const addSeed = (x: number, y: number) => {
-        seeds.current.push({ x, y, vy: 0, active: true, id: Math.random().toString() });
-    };
-
-    useEffect(() => {
-        if (!isVisible || !canvasRef.current) return;
-        const ctx = canvasRef.current.getContext("2d");
-        if (!ctx) return;
-
-        const leafColors = ["#f97316", "#fb923c", "#95d5b2", "#b7e4c7"];
-
-        const drawBranch = (b: Branch, alpha: number) => {
-            ctx.beginPath();
-            ctx.moveTo(b.startX, b.startY);
-            ctx.lineTo(b.currentX, b.currentY);
-            ctx.strokeStyle = `rgba(45, 106, 79, ${alpha})`;
-            ctx.lineWidth = b.width;
-            ctx.lineCap = "round";
-            ctx.stroke();
-
-            if (b.leaf) {
-                const grad = ctx.createRadialGradient(b.leaf.x, b.leaf.y, 0, b.leaf.x, b.leaf.y, 6 * b.leaf.scale);
-                grad.addColorStop(0, "#d8f3dc");
-                grad.addColorStop(1, b.leaf.color);
-                ctx.beginPath();
-                ctx.arc(b.leaf.x, b.leaf.y, 6 * b.leaf.scale, 0, Math.PI * 2);
-                ctx.fillStyle = grad;
-                ctx.globalAlpha = alpha;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-            }
-
-            b.children.forEach(child => drawBranch(child, alpha));
-        };
-
-        const updateBranch = (b: Branch) => {
-            if (!b.finished) {
-                b.length += 2;
-                if (b.length >= b.targetLength) {
-                    b.length = b.targetLength;
-                    b.finished = true;
-                    // Spawning children or leaf
-                    if (b.generation < 3 && Math.random() > 0.2) {
-                        const numChildren = Math.floor(Math.random() * 3) + 1; // 1 to 3
-                        for (let i = 0; i < numChildren; i++) {
-                            const offset = (Math.random() * 1.2 - 0.6); // -0.6 to 0.6 rads (~ ±35 deg)
-                            b.children.push(createBranch(b.currentX, b.currentY, b.angle + offset, b.generation + 1));
-                        }
-                    } else {
-                        b.leaf = {
-                            x: b.currentX, y: b.currentY, scale: 0,
-                            color: leafColors[Math.floor(Math.random() * leafColors.length)]
-                        };
-                    }
-                }
-                b.currentX = b.startX + Math.cos(b.angle) * b.length;
-                b.currentY = b.startY + Math.sin(b.angle) * b.length;
-            } else {
-                if (b.leaf && b.leaf.scale < 1) b.leaf.scale += 0.05;
-                b.children.forEach(updateBranch);
-            }
-        };
-
-        const loop = () => {
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            
-            // Draw soil
-            ctx.beginPath();
-            ctx.moveTo(0, ctx.canvas.height - 10);
-            ctx.lineTo(ctx.canvas.width, ctx.canvas.height - 10);
-            ctx.strokeStyle = "rgba(0,0,0,0.05)";
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            // Update & Draw Seeds
-            seeds.current.forEach(s => {
-                if (!s.active) return;
-                s.vy += 0.3; // Gravity
-                s.y += s.vy;
-                
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, 4, 0, Math.PI * 2);
-                ctx.fillStyle = "#f97316";
-                ctx.fill();
-
-                if (s.y >= ctx.canvas.height - 10) {
-                    s.y = ctx.canvas.height - 10;
-                    s.active = false;
-                    plants.current.push({
-                        id: s.id,
-                        alpha: 1,
-                        root: createBranch(s.x, s.y, -Math.PI / 2 + (Math.random() * 0.4 - 0.2), 0)
-                    });
-                }
-            });
-            seeds.current = seeds.current.filter(s => s.active);
-
-            // Update & Draw Plants
-            if (plants.current.length > 15) {
-                plants.current[0].alpha -= 0.02;
-                if (plants.current[0].alpha <= 0) {
-                    plants.current.shift();
-                }
-            }
-
-            plants.current.forEach(p => {
-                updateBranch(p.root);
-                drawBranch(p.root, p.alpha);
-            });
-
-            frameRef.current = requestAnimationFrame(loop);
-        };
-
-        loop();
-        return () => cancelAnimationFrame(frameRef.current);
-    }, [isVisible]);
-
-    const handleInteract = (clientX: number, clientY: number) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        addSeed(clientX - rect.left, clientY - rect.top);
-    };
-
+function EvidenceDiagram({ evidence }: { evidence: Evidence }) {
     return (
-        <div 
-            ref={containerRef} 
-            style={{ width: "100%", height: "320px", position: "relative", cursor: "pointer" }}
-            onClick={(e) => handleInteract(e.clientX, e.clientY)}
-            onTouchStart={(e) => {
-                e.preventDefault();
-                handleInteract(e.touches[0].clientX, e.touches[0].clientY);
-            }}
-        >
-            <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%" }} />
-        </div>
-    );
-}
-
-// ─── 2. Particle Painter ──────────────────────────────────────────────────────
-
-type Particle = {
-    x: number; y: number;
-    vx: number; vy: number;
-    life: number; maxLife: number;
-    size: number; r: number; g: number; b: number;
-};
-
-function ParticlePainter() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-    
-    const particles = useRef<Particle[]>([]);
-    const lastMouse = useRef<{x: number, y: number, time: number} | null>(null);
-    const frameRef = useRef<number>(0);
-
-    useEffect(() => {
-        if (!containerRef.current) return;
-        const observer = new IntersectionObserver(
-            ([entry]) => setIsVisible(entry.isIntersecting),
-            { threshold: 0 }
-        );
-        observer.observe(containerRef.current);
-        return () => observer.disconnect();
-    }, []);
-
-    useEffect(() => {
-        const resize = () => {
-            if (canvasRef.current && containerRef.current) {
-                canvasRef.current.width = containerRef.current.clientWidth;
-                canvasRef.current.height = containerRef.current.clientHeight;
-            }
-        };
-        resize();
-        window.addEventListener("resize", resize);
-        return () => window.removeEventListener("resize", resize);
-    }, []);
-
-    const emitParticles = (mx: number, my: number, speed: number) => {
-        // Speed interpolation: 0-2 -> green, > 10 -> gold
-        let r, g, b;
-        const s = Math.min(speed, 10) / 10;
-        // Green: #fb923c (82, 183, 136)
-        // Gold: #b68d40 (182, 141, 64)
-        r = 82 + (182 - 82) * s;
-        g = 183 + (141 - 183) * s;
-        b = 136 + (64 - 136) * s;
-
-        const count = Math.min(Math.floor(speed) + 2, 5);
-        for (let i = 0; i < count; i++) {
-            particles.current.push({
-                x: mx, y: my,
-                vx: (Math.random() - 0.5) * (speed * 0.4 + 1),
-                vy: (Math.random() - 0.5) * (speed * 0.4 + 1),
-                maxLife: 40 + Math.random() * 30,
-                life: 40 + Math.random() * 30,
-                size: 2 + Math.random() * 4 + s * 3,
-                r, g, b
-            });
-        }
-
-        if (particles.current.length > 300) {
-            particles.current.splice(0, particles.current.length - 300);
-        }
-    };
-
-    useEffect(() => {
-        if (!isVisible || !canvasRef.current) return;
-        const ctx = canvasRef.current.getContext("2d");
-        if (!ctx) return;
-
-        // Start with a clean slate
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-        const loop = () => {
-            // Fade out existing trails slightly
-            ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            
-            ctx.globalCompositeOperation = "source-over";
-
-            particles.current.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
-                p.size = Math.max(0.1, p.size * 0.96);
-
-                const alpha = p.life / p.maxLife;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${p.r}, ${p.g}, ${p.b}, ${alpha})`;
-                ctx.fill();
-            });
-
-            particles.current = particles.current.filter(p => p.life > 0);
-            frameRef.current = requestAnimationFrame(loop);
-        };
-
-        loop();
-        return () => cancelAnimationFrame(frameRef.current);
-    }, [isVisible]);
-
-    const handlePointerMove = (clientX: number, clientY: number) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        const mx = clientX - rect.left;
-        const my = clientY - rect.top;
-        const now = performance.now();
-
-        if (lastMouse.current) {
-            const dx = mx - lastMouse.current.x;
-            const dy = my - lastMouse.current.y;
-            const dt = Math.max(1, now - lastMouse.current.time);
-            const speed = Math.sqrt(dx * dx + dy * dy) / dt * 10;
-            emitParticles(mx, my, speed);
-        }
-        
-        lastMouse.current = { x: mx, y: my, time: now };
-    };
-
-    return (
-        <div 
-            ref={containerRef} 
-            style={{ width: "100%", height: "320px", position: "relative", cursor: "crosshair" }}
-            onMouseMove={(e) => handlePointerMove(e.clientX, e.clientY)}
-            onTouchMove={(e) => {
-                e.preventDefault();
-                handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
-            }}
-            onMouseLeave={() => { lastMouse.current = null; }}
-            onTouchEnd={() => { lastMouse.current = null; }}
-        >
-            <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%", borderRadius: "20px 20px 0 0" }} />
-        </div>
-    );
-}
-
-// ─── 3. Magnetic Typography ───────────────────────────────────────────────────
-
-function MagneticTypography() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const word = "CREATE";
-    const letters = word.split("");
-    const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
-    
-    const handleMove = (clientX: number, clientY: number) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        setMousePos({ x: clientX - rect.left, y: clientY - rect.top });
-    };
-
-    const handleLeave = () => {
-        setMousePos({ x: -1000, y: -1000 });
-    };
-
-    return (
-        <div 
-            ref={containerRef}
-            style={{ 
-                width: "100%", height: "320px", position: "relative", 
-                display: "flex", alignItems: "center", justifyContent: "center",
-                overflow: "hidden", backgroundColor: "#fcfcfc"
-            }}
-            onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
-            onTouchMove={(e) => handleMove(e.touches[0].clientX, e.touches[0].clientY)}
-            onMouseLeave={handleLeave}
-            onTouchEnd={handleLeave}
-        >
-            <div style={{ display: "flex", gap: "2px" }}>
-                {letters.map((char, i) => {
-                    return (
-                        <MagneticLetter 
-                            key={i} 
-                            char={char} 
-                            containerMouseX={mousePos.x} 
-                            containerMouseY={mousePos.y} 
-                            containerRef={containerRef}
-                        />
-                    );
-                })}
+        <div className="evidence-diagram" style={{ "--evidence-accent": evidence.accent } as React.CSSProperties}>
+            <div className="evidence-diagram-grid" aria-hidden="true" />
+            <div className="evidence-route" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+            </div>
+            <div className="evidence-route-labels">
+                {evidence.steps.map((step, index) => (
+                    <div key={step}>
+                        <small>0{index + 1}</small>
+                        <strong>{step}</strong>
+                    </div>
+                ))}
+            </div>
+            <div className="evidence-signal" aria-hidden="true">
+                <span>{evidence.id === "interfaces" ? "UI" : evidence.id === "sistemas" ? "API" : "FLOW"}</span>
             </div>
         </div>
     );
 }
 
-function MagneticLetter({ char, containerMouseX, containerMouseY, containerRef }: { char: string, containerMouseX: number, containerMouseY: number, containerRef: React.RefObject<HTMLDivElement | null> }) {
-    const letterRef = useRef<HTMLSpanElement>(null);
-    const [transform, setTransform] = useState({ x: 0, y: 0, color: "#1d1d1f" });
-    const frameRef = useRef<number>(0);
-    const currentTx = useRef({ x: 0, y: 0 });
-
-    useEffect(() => {
-        if (!letterRef.current || !containerRef.current) return;
-        
-        // Target calculation
-        let targetX = 0;
-        let targetY = 0;
-        let color = "#1d1d1f";
-
-        if (containerMouseX !== -1000) {
-            // Get center of letter relative to container
-            const lRect = letterRef.current.getBoundingClientRect();
-            const cRect = containerRef.current.getBoundingClientRect();
-            const centerX = (lRect.left - cRect.left) + lRect.width / 2;
-            const centerY = (lRect.top - cRect.top) + lRect.height / 2;
-
-            const dx = containerMouseX - centerX;
-            const dy = containerMouseY - centerY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            const influenceRadius = 120;
-            if (dist < influenceRadius) {
-                const force = (influenceRadius - dist) / influenceRadius; // 0 to 1
-                targetX = dx * force * 0.4;
-                targetY = dy * force * 0.4;
-                // Interpolate color to #f97316 based on force
-                color = `rgba(${29 - force * (29 - 45)}, ${29 + force * (106 - 29)}, ${31 + force * (79 - 31)}, 1)`;
-            }
-        }
-
-        // Spring interpolation loop
-        const animate = () => {
-            currentTx.current.x += (targetX - currentTx.current.x) * 0.15;
-            currentTx.current.y += (targetY - currentTx.current.y) * 0.15;
-            
-            setTransform({ x: currentTx.current.x, y: currentTx.current.y, color });
-            
-            // Only continue loop if still moving significantly
-            if (Math.abs(targetX - currentTx.current.x) > 0.1 || Math.abs(targetY - currentTx.current.y) > 0.1) {
-                frameRef.current = requestAnimationFrame(animate);
-            }
-        };
-        
-        frameRef.current = requestAnimationFrame(animate);
-        return () => { if(frameRef.current) cancelAnimationFrame(frameRef.current) };
-    }, [containerMouseX, containerMouseY, containerRef]);
-
-    return (
-        <span 
-            ref={letterRef}
-            style={{
-                display: "inline-block",
-                fontSize: "clamp(48px, 6vw, 72px)",
-                fontWeight: 800,
-                color: transform.color,
-                fontFamily: "var(--font-display), sans-serif",
-                transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-                willChange: "transform",
-                pointerEvents: "none",
-                userSelect: "none"
-            }}
-        >
-            {char}
-        </span>
-    );
-}
-
-// ─── Main Section ─────────────────────────────────────────────────────────────
-
 export default function PlaygroundSection() {
-    const sectionRef = useRef<HTMLElement>(null);
-    const headingRef = useRef<HTMLDivElement>(null);
-    const cardsRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const section = sectionRef.current;
-        if (!section) return;
-        
-        if (headingRef.current) {
-            gsap.fromTo(headingRef.current.children,
-               { y: 30, opacity: 0 },
-               { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 75%" } }
-            );
-        }
-
-        if (cardsRef.current) {
-            const cards = cardsRef.current.children;
-            gsap.fromTo(cards,
-               { y: 60, opacity: 0 },
-               { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: cardsRef.current, start: "top 80%" } }
-            );
-        }
-    }, []);
-
-    const cardStyle: React.CSSProperties = {
-        background: "#fff",
-        borderRadius: "20px",
-        border: "1px solid rgba(0,0,0,0.06)",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 8px 32px rgba(0,0,0,0.05)",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        height: "400px"
-    };
-
-    const labelStyle: React.CSSProperties = {
-        padding: "20px 24px",
-        borderTop: "1px solid rgba(0,0,0,0.04)",
-        backgroundColor: "#ffffff",
-        flexGrow: 1
-    };
+    const [activeId, setActiveId] = useState<EvidenceId>("interfaces");
+    const prefersReducedMotion = useReducedMotion();
+    const activeEvidence = EVIDENCE.find((item) => item.id === activeId) ?? EVIDENCE[0];
 
     return (
-        <section
-            id="playground"
-            ref={sectionRef}
-            style={{
-                backgroundColor: "#f7f7f8",
-                padding: "160px 0",
-                width: "100%",
-                fontFamily: "var(--font-inter), Inter, sans-serif",
-                position: "relative",
-                overflow: "hidden"
-            }}
-        >
-            <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "0 24px" }}>
-                
-                <div ref={headingRef} style={{ maxWidth: "800px", marginBottom: "64px" }}>
-                    <div style={{
-                        fontSize: "12px", fontWeight: 600, textTransform: "uppercase",
-                        letterSpacing: "0.2em", color: "#86868b", marginBottom: "24px"
-                    }}>
-                        — Diseño interactivo
-                    </div>
-                    
-                    <h2 
-                        style={{
-                            fontSize: "clamp(34px, 4.2vw, 58px)", fontWeight: 800,
-                            lineHeight: 1.06, letterSpacing: "-0.04em", color: "#0f172a",
-                            fontFamily: "var(--font-display), sans-serif", margin: "0 0 24px 0"
-                        }}
-                    >
-                        El buen software<br />también debe sentirse vivo.
-                    </h2>
-
-                    <p style={{
-                        fontSize: "20px", lineHeight: 1.6, color: "#6e6e73", margin: 0, maxWidth: "600px"
-                    }}>
-                        Toca, pasa el cursor y juega. No son simples demos: son pruebas
-                        de que una experiencia digital también puede sentirse viva.
+        <section id="playground" className="evidence-section" aria-labelledby="evidence-title">
+            <div className="evidence-inner">
+                <div className="evidence-heading">
+                    <span className="evidence-kicker">— Cómo trabajo</span>
+                    <h2 id="evidence-title">Decisiones que sí aparecen en mis proyectos.</h2>
+                    <p>
+                        Una vista rápida de los problemas que suelo resolver y de la forma en que conecto diseño,
+                        código y producto.
                     </p>
                 </div>
 
-                <div 
-                    ref={cardsRef}
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                        gap: "24px",
-                        width: "100%"
-                    }}
-                >
-                    {/* Gravity Garden */}
-                    <div style={cardStyle}>
-                        <GravityGarden />
-                        <div style={labelStyle}>
-                            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#0f172a", margin: 0, fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.02em" }}>
-                                Gravity Garden
-                            </h3>
-                            <p style={{ fontSize: "14px", color: "#86868b", marginTop: "4px", margin: "4px 0 0 0" }}>
-                                Haz clic para plantar. Mira cómo crece.
-                            </p>
-                        </div>
+                <div className="evidence-layout">
+                    <div className="evidence-tabs" role="tablist" aria-label="Áreas de trabajo">
+                        {EVIDENCE.map((evidence) => (
+                            <button
+                                key={evidence.id}
+                                type="button"
+                                role="tab"
+                                aria-selected={activeId === evidence.id}
+                                className={activeId === evidence.id ? "is-active" : ""}
+                                style={{ "--evidence-accent": evidence.accent } as React.CSSProperties}
+                                onClick={() => setActiveId(evidence.id)}
+                            >
+                                <span>{evidence.kicker}</span>
+                                <strong>{evidence.title}</strong>
+                            </button>
+                        ))}
                     </div>
 
-                    {/* Particle Painter */}
-                    <div style={cardStyle}>
-                        <ParticlePainter />
-                        <div style={labelStyle}>
-                            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#0f172a", margin: 0, fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.02em" }}>
-                                Particle Painter
-                            </h3>
-                            <p style={{ fontSize: "14px", color: "#86868b", marginTop: "4px", margin: "4px 0 0 0" }}>
-                                Mueve el cursor. La velocidad cambia el color.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Magnetic Typography */}
-                    <div style={cardStyle}>
-                        <MagneticTypography />
-                        <div style={labelStyle}>
-                            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#0f172a", margin: 0, fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.02em" }}>
-                                Magnetic Type
-                            </h3>
-                            <p style={{ fontSize: "14px", color: "#86868b", marginTop: "4px", margin: "4px 0 0 0" }}>
-                                Pasa el cursor sobre las letras. Te siguen.
-                            </p>
-                        </div>
-                    </div>
+                    <AnimatePresence mode="wait">
+                        <motion.article
+                            key={activeEvidence.id}
+                            className="evidence-panel"
+                            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+                            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                            exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8 }}
+                            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                            role="tabpanel"
+                        >
+                            <EvidenceDiagram evidence={activeEvidence} />
+                            <div className="evidence-panel-copy">
+                                <span className="evidence-panel-kicker">{activeEvidence.kicker}</span>
+                                <h3>{activeEvidence.title}</h3>
+                                <p>{activeEvidence.description}</p>
+                                <div className="evidence-projects" aria-label="Proyectos relacionados">
+                                    {activeEvidence.projects.map((project) => <span key={project}>{project}</span>)}
+                                </div>
+                            </div>
+                        </motion.article>
+                    </AnimatePresence>
                 </div>
-
             </div>
+
+            <style jsx global>{`
+                .evidence-section {
+                    position: relative;
+                    overflow: hidden;
+                    padding: 148px 24px;
+                    background: #f7f7f8;
+                    color: #111827;
+                    font-family: var(--font-inter), Inter, sans-serif;
+                }
+
+                .evidence-inner {
+                    width: min(1120px, 100%);
+                    margin: 0 auto;
+                }
+
+                .evidence-heading {
+                    max-width: 760px;
+                    margin-bottom: 54px;
+                }
+
+                .evidence-kicker,
+                .evidence-panel-kicker {
+                    display: block;
+                    margin-bottom: 18px;
+                    color: #ea580c;
+                    font-size: 12px;
+                    font-weight: 850;
+                    letter-spacing: 0.16em;
+                    text-transform: uppercase;
+                }
+
+                .evidence-heading h2 {
+                    max-width: 720px;
+                    margin: 0 0 18px;
+                    font-family: var(--font-display), sans-serif;
+                    font-size: clamp(38px, 5vw, 68px);
+                    line-height: 0.98;
+                    letter-spacing: -0.055em;
+                }
+
+                .evidence-heading p {
+                    max-width: 610px;
+                    margin: 0;
+                    color: #68766f;
+                    font-size: 18px;
+                    line-height: 1.6;
+                }
+
+                .evidence-layout {
+                    display: grid;
+                    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+                    gap: 18px;
+                    align-items: stretch;
+                }
+
+                .evidence-tabs {
+                    display: grid;
+                    gap: 10px;
+                }
+
+                .evidence-tabs button {
+                    position: relative;
+                    min-height: 118px;
+                    padding: 22px 24px;
+                    border: 1px solid rgba(15, 23, 42, 0.1);
+                    border-radius: 14px;
+                    background: rgba(255,255,255,0.76);
+                    color: #172033;
+                    text-align: left;
+                    cursor: pointer;
+                    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+                }
+
+                .evidence-tabs button:before {
+                    content: "";
+                    position: absolute;
+                    inset: 0 auto 0 0;
+                    width: 4px;
+                    border-radius: 14px 0 0 14px;
+                    background: var(--evidence-accent);
+                    opacity: 0;
+                    transition: opacity 0.25s ease;
+                }
+
+                .evidence-tabs button:hover,
+                .evidence-tabs button.is-active {
+                    transform: translateX(4px);
+                    border-color: color-mix(in srgb, var(--evidence-accent) 38%, rgba(15, 23, 42, 0.1));
+                    background: #ffffff;
+                    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+                }
+
+                .evidence-tabs button.is-active:before {
+                    opacity: 1;
+                }
+
+                .evidence-tabs span {
+                    display: block;
+                    margin-bottom: 12px;
+                    color: var(--evidence-accent);
+                    font-size: 11px;
+                    font-weight: 850;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                }
+
+                .evidence-tabs strong {
+                    display: block;
+                    max-width: 210px;
+                    font-family: var(--font-display), sans-serif;
+                    font-size: 20px;
+                    line-height: 1.08;
+                    letter-spacing: -0.035em;
+                }
+
+                .evidence-panel {
+                    display: grid;
+                    grid-template-columns: minmax(260px, 0.95fr) minmax(250px, 1.05fr);
+                    min-height: 390px;
+                    overflow: hidden;
+                    border: 1px solid rgba(15, 23, 42, 0.1);
+                    border-radius: 18px;
+                    background: #ffffff;
+                    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+                }
+
+                .evidence-diagram {
+                    position: relative;
+                    min-height: 390px;
+                    overflow: hidden;
+                    background: #111827;
+                }
+
+                .evidence-diagram-grid {
+                    position: absolute;
+                    inset: 0;
+                    opacity: 0.32;
+                    background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+                    background-size: 36px 36px;
+                }
+
+                .evidence-route {
+                    position: absolute;
+                    left: 12%;
+                    right: 12%;
+                    top: 48%;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    align-items: center;
+                }
+
+                .evidence-route:before {
+                    content: "";
+                    position: absolute;
+                    left: 12%;
+                    right: 12%;
+                    height: 2px;
+                    background: linear-gradient(90deg, transparent, var(--evidence-accent), transparent);
+                }
+
+                .evidence-route span {
+                    position: relative;
+                    z-index: 1;
+                    justify-self: center;
+                    width: 18px;
+                    height: 18px;
+                    border: 4px solid #111827;
+                    border-radius: 50%;
+                    background: var(--evidence-accent);
+                    box-shadow: 0 0 0 7px color-mix(in srgb, var(--evidence-accent) 18%, transparent);
+                    animation: evidence-pulse 2.4s ease-in-out infinite;
+                }
+
+                .evidence-route span:nth-child(2) { animation-delay: 0.25s; }
+                .evidence-route span:nth-child(3) { animation-delay: 0.5s; }
+
+                .evidence-route-labels {
+                    position: absolute;
+                    left: 12%;
+                    right: 12%;
+                    top: calc(48% + 34px);
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    text-align: center;
+                }
+
+                .evidence-route-labels div {
+                    display: grid;
+                    gap: 5px;
+                }
+
+                .evidence-route-labels small {
+                    color: rgba(255,255,255,0.42);
+                    font: 700 10px/1 var(--font-mono), monospace;
+                }
+
+                .evidence-route-labels strong {
+                    color: rgba(255,255,255,0.86);
+                    font-size: 12px;
+                }
+
+                .evidence-signal {
+                    position: absolute;
+                    top: 28px;
+                    right: 28px;
+                    display: grid;
+                    place-items: center;
+                    width: 58px;
+                    height: 58px;
+                    border: 1px solid color-mix(in srgb, var(--evidence-accent) 42%, transparent);
+                    border-radius: 16px;
+                    color: var(--evidence-accent);
+                    background: color-mix(in srgb, var(--evidence-accent) 12%, transparent);
+                    font: 800 11px/1 var(--font-mono), monospace;
+                    letter-spacing: 0.08em;
+                }
+
+                .evidence-panel-copy {
+                    align-self: center;
+                    padding: 42px;
+                }
+
+                .evidence-panel-copy h3 {
+                    margin: 0 0 18px;
+                    font-family: var(--font-display), sans-serif;
+                    font-size: clamp(28px, 3vw, 42px);
+                    line-height: 1;
+                    letter-spacing: -0.045em;
+                }
+
+                .evidence-panel-copy p {
+                    margin: 0;
+                    color: #68766f;
+                    font-size: 16px;
+                    line-height: 1.65;
+                }
+
+                .evidence-projects {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    margin-top: 28px;
+                }
+
+                .evidence-projects span {
+                    padding: 8px 11px;
+                    border: 1px solid rgba(15, 23, 42, 0.1);
+                    border-radius: 999px;
+                    color: #53635c;
+                    background: #f7f7f8;
+                    font-size: 12px;
+                    font-weight: 800;
+                }
+
+                @keyframes evidence-pulse {
+                    0%, 100% { transform: scale(0.88); opacity: 0.74; }
+                    50% { transform: scale(1.12); opacity: 1; }
+                }
+
+                @media (max-width: 820px) {
+                    .evidence-section { padding: 110px 18px; }
+                    .evidence-layout { grid-template-columns: 1fr; }
+                    .evidence-tabs { grid-template-columns: repeat(3, 1fr); }
+                    .evidence-tabs button { min-height: 112px; padding: 18px; }
+                    .evidence-tabs button:hover,
+                    .evidence-tabs button.is-active { transform: translateY(-3px); }
+                    .evidence-tabs strong { font-size: 16px; }
+                }
+
+                @media (max-width: 620px) {
+                    .evidence-heading h2 { font-size: 42px; }
+                    .evidence-heading p { font-size: 16px; }
+                    .evidence-tabs { grid-template-columns: 1fr; }
+                    .evidence-tabs button { min-height: auto; }
+                    .evidence-panel { grid-template-columns: 1fr; }
+                    .evidence-diagram { min-height: 300px; }
+                    .evidence-panel-copy { padding: 30px 24px; }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .evidence-tabs button,
+                    .evidence-route span { transition: none; animation: none; }
+                }
+            `}</style>
         </section>
     );
 }

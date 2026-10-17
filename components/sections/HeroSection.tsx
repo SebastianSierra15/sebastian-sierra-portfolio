@@ -661,6 +661,8 @@ export default function HeroSection() {
           min-height: calc(100svh - 32px);
           overflow: hidden;
           display: flex;
+          flex-direction: column;
+          justify-content: center;
           align-items: center;
           background:
             linear-gradient(180deg, rgba(251, 255, 251, 0.98) 0%, #ffffff 54%, #f4faf6 100%),
@@ -1088,12 +1090,14 @@ export default function HeroSection() {
         }
 
         .hero-proof-line {
-          position: absolute;
+          position: relative;
           z-index: 3;
-          left: 50%;
-          bottom: 22px;
-          transform: translateX(-50%);
+          left: auto;
+          bottom: auto;
+          transform: none;
           width: min(860px, calc(100% - 48px));
+          margin: 28px auto 0;
+          flex: 0 0 auto;
           display: flex;
           justify-content: center;
           gap: 9px;
@@ -1347,7 +1351,7 @@ export default function HeroSection() {
           }
 
           .hero-proof-line {
-            bottom: 12px;
+            margin-top: 18px;
             width: calc(100% - 32px);
             flex-wrap: nowrap;
             gap: 0;

@@ -21,17 +21,6 @@ interface StackLane {
 
 const STACK_LANES: StackLane[] = [
   {
-    id: "ai",
-    kicker: "Automatización",
-    title: "Datos y flujos conectados al trabajo real.",
-    metric: "Procesos claros",
-    proof: "APIs, datos y herramientas internas",
-    note: "Para convertir tareas repetibles en productos y flujos más confiables.",
-    accent: "#ea580c",
-    secondary: "#fdba74",
-    tools: ["Node.js", "Python", "Appwrite"],
-  },
-  {
     id: "web",
     kicker: "Productos web",
     title: "Interfaces rápidas que se sienten diseñadas.",
@@ -41,6 +30,17 @@ const STACK_LANES: StackLane[] = [
     accent: "#f97316",
     secondary: "#fbbf24",
     tools: ["Next.js", "React", "TypeScript", "Node.js"],
+  },
+  {
+    id: "ai",
+    kicker: "Automatización",
+    title: "Datos y flujos conectados al trabajo real.",
+    metric: "Procesos claros",
+    proof: "APIs, datos y herramientas internas",
+    note: "Para convertir tareas repetibles en productos y flujos más confiables.",
+    accent: "#ea580c",
+    secondary: "#fdba74",
+    tools: ["Node.js", "Python", "Appwrite"],
   },
   {
     id: "mobile",
@@ -56,10 +56,10 @@ const STACK_LANES: StackLane[] = [
 ];
 
 const CATEGORY_ORDER: SkillCategory[] = [
-  "AI & GenAI",
   "Web",
-  "Mobile",
   "Infra",
+  "Mobile",
+  "AI & GenAI",
   "DesignOps",
 ];
 
@@ -199,7 +199,7 @@ function StackLens({
 }
 
 export default function StackSection() {
-  const [activeLaneId, setActiveLaneId] = useState<LaneId>("ai");
+  const [activeLaneId, setActiveLaneId] = useState<LaneId>("web");
   const [activeToolName, setActiveToolName] = useState<string | null>(null);
   const [toolkitOpen, setToolkitOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
