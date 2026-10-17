@@ -63,6 +63,14 @@ const CATEGORY_ORDER: SkillCategory[] = [
   "DesignOps",
 ];
 
+const CATEGORY_LABELS: Record<SkillCategory, string> = {
+  "AI & GenAI": "IA y GenAI",
+  Web: "Web",
+  Mobile: "Mobile",
+  Infra: "Infra",
+  DesignOps: "DesignOps",
+};
+
 function getSkill(name: string) {
   return SKILLS.find((skill) => skill.name === name);
 }
@@ -349,7 +357,7 @@ export default function StackSection() {
             >
               {groupedSkills.map((group) => (
                 <div className="toolkit-group" key={group.category}>
-                  <h3>{group.category}</h3>
+                  <h3>{CATEGORY_LABELS[group.category]}</h3>
                   <div>
                     {group.skills.map((skill) => (
                       <span
