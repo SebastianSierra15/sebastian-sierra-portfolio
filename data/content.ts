@@ -187,9 +187,9 @@ export const websiteProjects: Project[] = [
     stack: ["Java", "JSP", "Servlets", "MySQL", "Tomcat", "JDBC"], color: "#E76F00", liveUrl: "#", githubUrl: "https://github.com/SebastianSierra15/Invehin", imageUrl: projectImage,
   },
   {
-    id: "habitta", name: "Habitta", tagline: "Experiencia digital para vivienda", type: "Product Website", description: "Interfaz orientada a presentar información inmobiliaria con claridad, confianza y una navegación cómoda.",
-    caseStudy: "Habitta se enfoca en convertir información habitacional en una experiencia fácil de recorrer. La prioridad fue organizar contenido, jerarquía y llamadas a la acción para que cada pantalla ayude a comparar y decidir.",
-    stack: ["React", "TypeScript", "Responsive UI", "SEO", "Design Systems"], color: "#E76F8C", liveUrl: "#", githubUrl: "#", imageUrl: projectImage,
+    id: "habitta", name: "Habitta", tagline: "Plataforma digital para vivienda", type: "Product Website", description: "Plataforma inmobiliaria para explorar y administrar propiedades y proyectos, con filtros, mapas, galerías e información de contacto.",
+    caseStudy: "Habitta conecta la experiencia pública de exploración inmobiliaria con herramientas privadas de gestión. El proyecto contempla autenticación, administración de propiedades y proyectos, filtros de búsqueda, ubicación en mapas, carga de imágenes a AWS S3 y formularios para convertir el interés en solicitudes de contacto.",
+    stack: ["Next.js", "React", "TypeScript", "MySQL", "AWS S3"], color: "#E76F8C", liveUrl: "#", githubUrl: "#", imageUrl: projectImage,
   },
   {
     id: "sistema-estanco", name: "Sistema Estanco", tagline: "Operación y control administrativo", type: "App web full stack", description: "Aplicación para centralizar operación, datos y control de un negocio con una arquitectura full stack.",
@@ -210,19 +210,19 @@ export const websiteProjects: Project[] = [
 
 export const appProjects: Project[] = [
   {
-    id: "fudia", name: "Fudia", tagline: "Ecosistema multiproyecto", type: "App móvil", description: "Un conjunto de productos y superficies digitales que deben sentirse como un mismo sistema.",
-    caseStudy: "Fudia reúne varios proyectos en paralelo. El reto está en sostener una experiencia coherente mientras cada producto resuelve una necesidad distinta. El trabajo combina interfaces, arquitectura modular, integración de servicios y decisiones de producto.",
-    stack: ["React", "Next.js", "TypeScript", "Node.js", "Appwrite", "UI Systems"], color: "#52B788", liveUrl: "https://fudia.app", githubUrl: "#", imageUrl: projectImage,
+    id: "fudia", name: "Fudia", tagline: "Seguimiento nutricional con IA", type: "App móvil", description: "Aplicación para registrar comidas por foto, texto o voz, analizar su información nutricional y seguir metas, historial y progreso diario.",
+    caseStudy: "Fudia combina una app móvil con landing, portal web y superficies administrativas sobre un mismo sistema. El flujo permite capturar una comida por imagen, texto o audio, recibir un análisis nutricional asistido por IA, registrar el resultado y consultar metas, historial y métricas desde un dashboard. La arquitectura integra React Native, Expo, Next.js, Appwrite y funciones serverless.",
+    stack: ["React Native", "Expo", "Next.js", "Appwrite", "OpenAI API", "UI Systems"], color: "#52B788", liveUrl: "https://fudia.app", githubUrl: "#", imageUrl: projectImage,
   },
   {
-    id: "souls-in-xtinction", name: "Souls in Xtinction", tagline: "TCG colombiano de estrategia y diversión", type: "Juego de cartas coleccionables", description: "Juego de cartas coleccionables colombiano con plataforma digital, contenido, torneos y herramientas para su comunidad.",
-    caseStudy: "Souls in Xtinction explora cómo una interfaz puede acompañar un universo narrativo sin perder claridad. La propuesta trabaja progreso, guías y contenido con componentes preparados para evolucionar junto al juego.",
-    stack: ["React", "TypeScript", "Design Systems", "Responsive UI"], color: "#8B5CF6", liveUrl: "https://soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage,
+    id: "souls-in-xtinction", name: "Souls in Xtinction", tagline: "Plataforma digital para un TCG colombiano", type: "Juego de cartas coleccionables", description: "Plataforma para descubrir cartas y productos, construir mazos, consultar reglas, seguir torneos, noticias, perfiles y la comunidad del juego.",
+    caseStudy: "Souls in Xtinction reúne el sitio público y las herramientas que sostienen el ecosistema del juego: catálogo y bóveda de cartas, creación y laboratorio de mazos, guía para aprender a jugar, torneos, noticias, tiendas, productos, perfiles de jugadores y pase de batalla. El trabajo consiste en convertir un universo de cartas y contenido en una experiencia navegable para jugadores y administradores.",
+    stack: ["Next.js", "React", "TypeScript", "Prisma", "NextAuth"], color: "#8B5CF6", liveUrl: "https://soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage,
   },
   {
-    id: "simulador", name: "Simulador", tagline: "Simulador del TCG Souls In Xtinction", type: "Simulador web del juego", description: "Simulador web del juego de cartas coleccionables Souls In Xtinction.",
-    caseStudy: "Simulador convierte procesos complejos en una vista de control que permite comparar escenarios y entender resultados. El proyecto pone el foco en jerarquía de datos, estados y una narrativa de decisión fácil de seguir.",
-    stack: ["Next.js", "TypeScript", "Charts", "APIs", "UX de datos"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
+    id: "simulador", name: "Simulador", tagline: "Mesa web para partidas del TCG", type: "Simulador web del juego", description: "Mesa digital para jugar partidas de Souls In Xtinction en salas en tiempo real, mover cartas entre zonas, consultar mazos y conversar durante la partida.",
+    caseStudy: "El simulador lleva la mesa de Souls In Xtinction al navegador. Permite crear o unirse a salas, seleccionar mazos, mover cartas entre mano, mazos, campo, cementerio, limbo y otras zonas, mantener el estado sincronizado entre jugadores y usar chat de sala. El servidor valida las acciones principales y protege la información privada de cada jugador mediante React, TypeScript, Colyseus y contratos compartidos.",
+    stack: ["React", "TypeScript", "Vite", "Colyseus", "MongoDB"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
   },
 ];
 
