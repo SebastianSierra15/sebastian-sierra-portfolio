@@ -17,7 +17,6 @@ export default function QuotePage() {
     });
     
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
     
     const [errors, setErrors] = useState({
         name: false,
@@ -106,11 +105,11 @@ export default function QuotePage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     access_key: "3a367f75-64de-4c74-9e5d-314745066edd",
-                    subject: "New Quote Request — Sebastián Portfolio",
-                    from_name: "Portfolio Quote Form",
+                    subject: "Nueva solicitud de proyecto — Portafolio de Sebastián",
+                    from_name: "Formulario de solicitud del portafolio",
                     name: formData.name,
                     email: formData.email,
-                    phone: formData.phone || "Not provided",
+                    phone: formData.phone || "No proporcionado",
                     service: formData.service,
                     timeline: formData.timeline,
                     budget: formData.budget,
@@ -122,7 +121,6 @@ export default function QuotePage() {
             if (result.success) {
                 // Progress to Step 5 (Done)
                 animateStepChange(5, 'forward');
-                setIsSubmitted(true);
             }
         } catch (error) {
             console.error("Form submission error:", error);
@@ -150,7 +148,7 @@ export default function QuotePage() {
                     textDecoration: "none",
                     transition: "color 0.2s ease"
                 }} onMouseOver={(e) => e.currentTarget.style.color = "#1d1d1f"} onMouseOut={(e) => e.currentTarget.style.color = "#86868b"}>
-                    ← Back to portfolio
+                    ← Volver al portafolio
                 </Link>
             </div>
 
@@ -230,7 +228,7 @@ export default function QuotePage() {
                     {currentStep === 1 && (
                         <div>
                             <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#1d1d1f", textAlign: "center", marginBottom: "32px" }}>
-                                What would you like me to build?
+                                ¿Qué te gustaría que construyamos?
                             </h2>
                             <div style={{
                                 display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px"
@@ -300,7 +298,7 @@ export default function QuotePage() {
                                         transition: "all 0.2s ease"
                                     }}
                                 >
-                                    Next →
+                                    Siguiente →
                                 </button>
                             </div>
                         </div>
@@ -314,10 +312,10 @@ export default function QuotePage() {
                             </h2>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
-                                    "🚀 ASAP — I need it yesterday",
-                                    "📅 1–2 weeks",
-                                    "🗓️ About a month",
-                                    "🌱 No rush — let's do it right"
+                                    "🚀 Lo antes posible",
+                                    "📅 En 1–2 semanas",
+                                    "🗓️ Aproximadamente en un mes",
+                                    "🌱 No hay prisa; hagámoslo bien"
                                 ].map((option) => {
                                     const isSelected = formData.timeline === option;
                                     return (
@@ -363,7 +361,7 @@ export default function QuotePage() {
                                     onMouseOver={(e) => e.currentTarget.style.color = "#1d1d1f"}
                                     onMouseOut={(e) => e.currentTarget.style.color = "#86868b"}
                                 >
-                                    ← Back
+                                    ← Atrás
                                 </button>
                                 <button
                                     onClick={nextStep}
@@ -374,7 +372,7 @@ export default function QuotePage() {
                                         fontWeight: 600, fontSize: "15px", cursor: formData.timeline ? "pointer" : "not-allowed", transition: "all 0.2s ease"
                                     }}
                                 >
-                                    Next →
+                                    Siguiente →
                                 </button>
                             </div>
                         </div>
@@ -387,14 +385,14 @@ export default function QuotePage() {
                                 ¿Cuál es el presupuesto aproximado?
                             </h2>
                             <p style={{ fontSize: "14px", color: "#86868b", textAlign: "center", marginBottom: "32px", marginTop: 0 }}>
-                                This helps me tailor the right solution for you.
+                                Esta información me ayuda a preparar una solución adecuada para ti.
                             </p>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
-                                    "💰 Under $1,000",
-                                    "💰💰 $1,000 – $3,000",
-                                    "💰💰💰 $3,000 – $5,000",
-                                    "🏦 $5,000+"
+                                    "💰 Menos de $500.000 COP",
+                                    "💰💰 $500.000 – $1.500.000 COP",
+                                    "💰💰💰 $1.500.000 – $3.000.000 COP",
+                                    "🏦 Más de $3.000.000 COP"
                                 ].map((option) => {
                                     const isSelected = formData.budget === option;
                                     return (
@@ -436,7 +434,7 @@ export default function QuotePage() {
                                     onMouseOver={(e) => e.currentTarget.style.color = "#1d1d1f"}
                                     onMouseOut={(e) => e.currentTarget.style.color = "#86868b"}
                                 >
-                                    ← Back
+                                    ← Atrás
                                 </button>
                                 <button
                                     onClick={nextStep}
@@ -447,7 +445,7 @@ export default function QuotePage() {
                                         fontWeight: 600, fontSize: "15px", cursor: formData.budget ? "pointer" : "not-allowed", transition: "all 0.2s ease"
                                     }}
                                 >
-                                    Next →
+                                    Siguiente →
                                 </button>
                             </div>
                         </div>
@@ -528,7 +526,7 @@ export default function QuotePage() {
                                     onMouseOver={(e) => e.currentTarget.style.color = "#1d1d1f"}
                                     onMouseOut={(e) => e.currentTarget.style.color = "#86868b"}
                                 >
-                                    ← Back
+                                    ← Atrás
                                 </button>
                                 <button
                                     onClick={handleSubmit}
@@ -557,10 +555,10 @@ export default function QuotePage() {
                                 </svg>
                             </div>
                             <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1d1d1f", margin: "0 0 12px 0" }}>
-                                You're all set!
+                                ¡Todo listo!
                             </h2>
                             <p style={{ fontSize: "16px", color: "#6e6e73", maxWidth: "400px", lineHeight: 1.5, margin: "0 0 32px 0" }}>
-                                Gracias, {formData.name}. Revisaré tu solicitud y te responderé en un máximo de 24 horas.
+                                Gracias, {formData.name}. Revisaré tu solicitud y te responderé en un máximo de 12 horas.
                             </p>
                             
                             <Link href="/" style={{
@@ -570,11 +568,11 @@ export default function QuotePage() {
                             }}
                             onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.03)" }}
                             onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}>
-                                ← Back to portfolio
+                                ← Volver al portafolio
                             </Link>
 
                             <p style={{ fontSize: "13px", color: "#86868b", margin: 0 }}>
-                                You can also reach me directly at sebsirra13@gmail.com
+                                También puedes escribirme directamente a sebsirra13@gmail.com
                             </p>
                         </div>
                     )}
