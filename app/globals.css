@@ -181,6 +181,105 @@ body {
   animation: preloader-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: #fffaf6;
+  color: #24150f;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.55s ease;
+}
+
+.page-loader[data-loader-state="hidden"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader-content {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+}
+
+.page-loader-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(249, 115, 22, 0.28);
+  border-radius: 18px;
+  background: #f97316;
+  box-shadow: 0 16px 40px rgba(234, 88, 12, 0.22);
+  color: #fffaf6;
+  font-family: var(--font-display), sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.14em;
+  animation: logo-pulse 1.8s ease-in-out infinite;
+}
+
+.page-loader-mark span:first-child {
+  transform: translateX(-4px);
+}
+
+.page-loader-mark span:last-child {
+  position: absolute;
+  transform: translateX(4px) translateY(4px);
+  color: #7c2d12;
+  opacity: 0.72;
+}
+
+.page-loader-track {
+  width: 112px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(249, 115, 22, 0.14);
+}
+
+.page-loader-track span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: #f97316;
+  animation: loader-progress 1.15s ease-in-out infinite;
+}
+
+.page-loader p {
+  margin: 0;
+  color: #8b7569;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes loader-progress {
+  0% { transform: translateX(-125%); }
+  55%, 100% { transform: translateX(285%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader-mark,
+  .page-loader-track span {
+    animation: none;
+  }
+
+  .page-loader-track span {
+    width: 100%;
+  }
+}
+
 /* ========== HERO V3 ANIMATIONS ========== */
 
 @keyframes heroPulseDot {

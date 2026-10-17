@@ -4,6 +4,7 @@ import LenisProvider from "@/components/providers/LenisProvider";
 import Navbar from "@/components/Navbar";
 import ChatWidget from "@/components/chat/ChatWidget";
 import CustomCursor from "@/components/hero/CustomCursor";
+import PageLoader from "@/components/PageLoader";
 import "./globals.css";
 
 const inter = Inter({
@@ -64,6 +65,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jakarta.variable} ${syne.variable} ${jetbrains.variable} antialiased font-sans`}
       >
+        <PageLoader />
         <Navbar />
         <LenisProvider>{children}</LenisProvider>
         <CustomCursor />
