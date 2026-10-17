@@ -104,7 +104,7 @@ export default function QuotePage() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    access_key: "3a367f75-64de-4c74-9e5d-314745066edd",
+                    access_key: "ce56dc05-15ba-480d-bedb-7763b31a773b",
                     subject: "Nueva solicitud de proyecto — Portafolio de Sebastián",
                     from_name: "Formulario de solicitud del portafolio",
                     name: formData.name,
