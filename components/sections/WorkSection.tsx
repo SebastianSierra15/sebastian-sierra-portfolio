@@ -440,8 +440,7 @@ function WebsiteCard({ project }: { project: Project }) {
 
             <div ref={containerRef} className="iframe-container" style={{
                 width: "100%",
-                height: project.id === "simulador" ? undefined : `${900 * iframeScale}px`,
-                aspectRatio: project.id === "simulador" ? "1855 / 917" : undefined,
+                height: `${900 * iframeScale}px`,
                 position: "relative",
                 overflow: "hidden",
                 borderBottom: "1px solid rgba(0,0,0,0.06)",
