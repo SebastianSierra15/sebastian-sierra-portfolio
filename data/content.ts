@@ -222,7 +222,7 @@ export const appProjects: Project[] = [
   {
     id: "simulador", name: "Simulador", tagline: "Procesos y decisiones visibles", type: "App web interactiva", description: "Dashboard para modelar escenarios, comparar estados y entender resultados de forma visual.",
     caseStudy: "Simulador convierte procesos complejos en una vista de control que permite comparar escenarios y entender resultados. El proyecto pone el foco en jerarquía de datos, estados y una narrativa de decisión fácil de seguir.",
-    stack: ["Next.js", "TypeScript", "Charts", "APIs", "UX de datos"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage,
+    stack: ["Next.js", "TypeScript", "Charts", "APIs", "UX de datos"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
   },
 ];
 

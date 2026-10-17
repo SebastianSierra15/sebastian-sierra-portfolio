@@ -232,6 +232,60 @@ function ProductVisual({ project }: { project: Project }) {
     );
 }
 
+function ConceptPreview({ project }: { project: Project }) {
+    return (
+        <div
+            role="img"
+            aria-label={`Vista conceptual de ${project.name}`}
+            style={{
+                position: "absolute",
+                inset: 0,
+                overflow: "hidden",
+                background: `linear-gradient(145deg, #f8fafc 0%, ${project.color}18 100%)`,
+                color: "#0f172a",
+                padding: "28px 26px",
+            }}
+        >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "28px" }}>
+                <span style={{ color: project.color, font: "700 10px/1 var(--font-mono), monospace", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                    Vista conceptual
+                </span>
+                <span style={{ width: "30px", height: "30px", borderRadius: "9px", background: project.color, opacity: 0.9 }} />
+            </div>
+
+            <div style={{ maxWidth: "80%" }}>
+                <strong style={{ display: "block", font: "800 30px/1.05 var(--font-display), sans-serif", letterSpacing: "-0.04em" }}>
+                    {project.name}
+                </strong>
+                <span style={{ display: "block", marginTop: "10px", color: project.color, font: "600 13px/1.4 var(--font-inter), sans-serif" }}>
+                    {project.tagline}
+                </span>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1.35fr 0.8fr", gap: "12px", marginTop: "30px" }}>
+                <div style={{ height: "92px", borderRadius: "14px", background: "rgba(255,255,255,0.84)", border: "1px solid rgba(15,23,42,0.08)", boxShadow: "0 16px 32px rgba(15,23,42,0.08)", padding: "14px" }}>
+                    <span style={{ display: "block", width: "54%", height: "7px", borderRadius: "99px", background: `${project.color}55`, marginBottom: "14px" }} />
+                    <span style={{ display: "block", width: "82%", height: "9px", borderRadius: "99px", background: "#dbe4ee", marginBottom: "9px" }} />
+                    <span style={{ display: "block", width: "64%", height: "9px", borderRadius: "99px", background: "#e7edf3" }} />
+                </div>
+                <div style={{ height: "92px", borderRadius: "14px", background: "rgba(255,255,255,0.7)", border: "1px solid rgba(15,23,42,0.08)", padding: "14px", display: "flex", alignItems: "flex-end", gap: "7px" }}>
+                    {[42, 68, 52, 84, 62].map((height, index) => (
+                        <span key={index} style={{ width: "12px", height: `${height}%`, borderRadius: "6px 6px 2px 2px", background: index % 2 ? project.color : `${project.color}88` }} />
+                    ))}
+                </div>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", position: "absolute", left: "26px", right: "26px", bottom: "24px" }}>
+                {project.stack.slice(0, 3).map((tech) => (
+                    <span key={tech} style={{ padding: "6px 9px", borderRadius: "999px", background: "rgba(255,255,255,0.78)", border: "1px solid rgba(15,23,42,0.08)", color: "#475569", font: "600 10px/1 var(--font-mono), monospace" }}>
+                        {tech}
+                    </span>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 function AppProjectBlock({ project, index }: { project: Project, index: number }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileApp = project.id === "fudia";
@@ -463,9 +517,11 @@ function WebsiteCard({ project }: { project: Project }) {
                         />
                     )}
                     
-                    {!useIframe && (
+                    {!useIframe && project.id === "simulador" ? (
+                        <ConceptPreview project={project} />
+                    ) : !useIframe ? (
                         <Image src={project.imageUrl} alt={project.name} title={`${project.name} - Sebastián Sierra`} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover", objectPosition: "top left" }} />
-                    )}
+                    ) : null}
                 </div>
             </div>
 
