@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -26,6 +27,56 @@ const QUICK_CHIPS = [
 ] as const;
 
 const FONT = "var(--font-inter), Inter, -apple-system, sans-serif";
+
+function renderInlineMarkdown(text: string): ReactNode[] {
+  const tokenPattern = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^)\s]+)\))/g;
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tokenPattern.exec(text)) !== null) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+
+    const token = match[0];
+    if (token.startsWith("**")) {
+      nodes.push(<strong key={`bold-${match.index}`}>{token.slice(2, -2)}</strong>);
+    } else if (token.startsWith("*")) {
+      nodes.push(<em key={`italic-${match.index}`}>{token.slice(1, -1)}</em>);
+    } else if (token.startsWith("`")) {
+      nodes.push(
+        <code key={`code-${match.index}`} style={{ fontSize: "0.92em", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+          {token.slice(1, -1)}
+        </code>
+      );
+    } else {
+      nodes.push(
+        <a
+          key={`link-${match.index}`}
+          href={match[3]}
+          target={match[3]?.startsWith("http") ? "_blank" : undefined}
+          rel={match[3]?.startsWith("http") ? "noreferrer" : undefined}
+          style={{ color: "#c2410c", textDecoration: "underline", textUnderlineOffset: "2px" }}
+        >
+          {match[2]}
+        </a>
+      );
+    }
+
+    lastIndex = tokenPattern.lastIndex;
+  }
+
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+  return nodes;
+}
+
+function renderMessageContent(content: string): ReactNode {
+  return content.split("\n").map((line, index) => (
+    <span key={`line-${index}`}>
+      {index > 0 && <br />}
+      {renderInlineMarkdown(line)}
+    </span>
+  ));
+}
 
 export default function ChatWidget() {
   const router = useRouter();
@@ -147,6 +198,7 @@ export default function ChatWidget() {
       (m) =>
         m.role === "assistant" &&
         (m.content.toLowerCase().includes("quote") ||
+          m.content.toLowerCase().includes("cotización") ||
           m.content.toLowerCase().includes("/quote"))
     );
 
@@ -387,7 +439,7 @@ export default function ChatWidget() {
                     fontFamily: FONT,
                   }}
                 >
-                  {msg.content || (
+                  {msg.content ? renderMessageContent(msg.content) : (
                     <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", height: "16px" }}>
                       {[0, 1, 2].map((i) => (
                         <span
@@ -474,7 +526,7 @@ export default function ChatWidget() {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              Get a Free Quote →
+              Solicitar cotización →
             </Link>
           )}
 
