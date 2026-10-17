@@ -536,7 +536,7 @@ export default function WorkSection() {
     const appsList = ["fudia", "simulador", "souls-in-xtinction"]
         .map((id) => allProjects.find((project) => project.id === id))
         .filter(Boolean) as Project[];
-    const websitesList = allProjects;
+    const websitesList = allProjects.filter((project) => project.id !== "sistema-estanco");
 
     useEffect(() => {
         const ctx = gsap.context(() => {
