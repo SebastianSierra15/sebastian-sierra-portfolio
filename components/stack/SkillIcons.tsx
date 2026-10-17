@@ -1,7 +1,58 @@
 "use client";
 
+import {
+  siAppwrite,
+  siCss,
+  siDart,
+  siFlutter,
+  siGit,
+  siHtml5,
+  siMysql,
+  siNextdotjs,
+  siNodedotjs,
+  siPython,
+  siReact,
+  siTailwindcss,
+  siTypescript,
+  type SimpleIcon,
+} from "simple-icons";
+
 interface IconProps {
   color: string;
+}
+
+const officialIconSets: Record<string, SimpleIcon[]> = {
+  "Next.js": [siNextdotjs],
+  React: [siReact],
+  TypeScript: [siTypescript],
+  "Node.js": [siNodedotjs],
+  Python: [siPython],
+  Appwrite: [siAppwrite],
+  "HTML / CSS": [siHtml5, siCss],
+  Flutter: [siFlutter],
+  Dart: [siDart],
+  MySQL: [siMysql],
+  Git: [siGit],
+  "Tailwind CSS": [siTailwindcss],
+};
+
+function OfficialIconSet({ icons }: { icons: SimpleIcon[] }) {
+  return (
+    <svg
+      viewBox={`0 0 ${24 * icons.length} 24`}
+      aria-hidden="true"
+      style={{ width: "100%", height: "100%" }}
+    >
+      {icons.map((icon, index) => (
+        <path
+          key={icon.title}
+          d={icon.path}
+          fill={`#${icon.hex}`}
+          transform={`translate(${index * 24} 0)`}
+        />
+      ))}
+    </svg>
+  );
 }
 
 const icons: Record<string, React.FC<IconProps>> = {
@@ -285,6 +336,9 @@ const icons: Record<string, React.FC<IconProps>> = {
 };
 
 export function SkillIcon({ name, color }: { name: string; color: string }) {
+  const officialIcons = officialIconSets[name];
+  if (officialIcons) return <OfficialIconSet icons={officialIcons} />;
+
   const Icon = icons[name];
   if (!Icon) {
     return (
