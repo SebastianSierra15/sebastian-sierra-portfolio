@@ -1,40 +1,12 @@
 "use client";
 // Live availability chip. Uses Colombia time without making the first render time-dependent.
 
-import { useEffect, useState } from "react";
-
 type Status = { color: string; label: string };
 
-function getStatus(hour: number): Status {
-  if (hour >= 9 && hour < 21) return { color: "#f97316", label: "Disponible" };
-  if (hour >= 21 && hour < 24) return { color: "#f59e0b", label: "Ausente" };
-  return { color: "#9ca3af", label: "Descansando" };
-}
-
 export default function PresenceChip({ dark = true }: { dark?: boolean }) {
-  const [time, setTime] = useState<string>("");
-  const [status, setStatus] = useState<Status>({ color: "#f97316", label: "Disponible" });
-
-  useEffect(() => {
-    const update = () => {
-      const fmt = new Intl.DateTimeFormat("es-CO", {
-        timeZone: "America/Bogota",
-        hour: "2-digit", minute: "2-digit", hour12: false,
-      });
-      const parts = fmt.format(new Date()); // "HH:mm"
-      setTime(parts);
-      const hour = parseInt(parts.split(":")[0], 10);
-      setStatus(getStatus(hour));
-    };
-    update();
-    const id = setInterval(update, 30_000);
-    return () => clearInterval(id);
-  }, []);
-
-  if (!time) return null;
+  const status: Status = { color: "#2d8a5b", label: "Disponible" };
 
   const fg = dark ? "rgba(255,255,255,0.85)" : "#0f172a";
-  const sub = dark ? "rgba(255,255,255,0.45)" : "rgba(15,23,42,0.5)";
   const bg = dark ? "rgba(255,255,255,0.06)" : "rgba(15,23,42,0.05)";
   const bd = dark ? "rgba(255,255,255,0.10)" : "rgba(15,23,42,0.08)";
 
@@ -68,8 +40,6 @@ export default function PresenceChip({ dark = true }: { dark?: boolean }) {
         }} />
       </span>
       <span style={{ color: fg }}>{status.label}</span>
-      <span style={{ color: sub }}>·</span>
-      <span style={{ color: sub, letterSpacing: "0.04em" }}>{time} COT</span>
     </a>
   );
 }

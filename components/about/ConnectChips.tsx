@@ -1,7 +1,6 @@
 "use client";
 // LinkedIn / GitHub / Email — replaces the "Beyond the Code" block.
 
-import { sounds } from "@/lib/audio";
 
 const CHIPS = [
   {
@@ -53,7 +52,6 @@ export default function ConnectChips() {
           target={c.href.startsWith("http") ? "_blank" : undefined}
           rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
           data-cursor="click"
-          onMouseEnter={() => sounds.hover()}
           className="connect-chip"
           style={{
             display: "inline-flex", alignItems: "center", gap: 10,

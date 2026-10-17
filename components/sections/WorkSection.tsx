@@ -498,8 +498,10 @@ export default function WorkSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
 
-    const appsList = allProjects.filter(p => p.type.toLowerCase().includes("app"));
-    const websitesList = allProjects.filter(p => !p.type.toLowerCase().includes("app") && p.name !== "Simulador");
+    const appsList = allProjects.filter((project) =>
+        ["fudia", "souls-in-xtinction", "simulador", "invehin", "sistema-estanco", "turismo-app"].includes(project.id)
+    );
+    const websitesList = allProjects.filter((project) => project.id === "habitta");
 
     useEffect(() => {
         const ctx = gsap.context(() => {

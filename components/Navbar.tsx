@@ -1,13 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import PresenceChip from "@/components/hero/PresenceChip";
-import AudioToggle from "@/components/hero/AudioToggle";
-import { sounds } from "@/lib/audio";
 
 const LINKS = [
   { id: "stack", label: "Tecnologías" },
@@ -46,8 +43,6 @@ export default function Navbar() {
 
   const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    sounds.click();
-
     if (isHome) {
       window.history.replaceState(null, "", "/");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -58,7 +53,6 @@ export default function Navbar() {
   };
 
   const handleSectionClick = (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
-    sounds.click();
     if (!isHome) return;
 
     const target = document.getElementById(id);
@@ -115,7 +109,6 @@ export default function Navbar() {
           href="/"
           data-cursor="click"
           onClick={handleHomeClick}
-          onMouseEnter={() => sounds.hover()}
           style={{
             padding: "8px 16px", borderRadius: "100px",
             fontSize: "15px", fontWeight: 700,
@@ -127,14 +120,6 @@ export default function Navbar() {
             display: "inline-flex", alignItems: "baseline", gap: 1,
           }}
         >
-          <Image
-            src="/assets/elias.jpg"
-            alt=""
-            width={26}
-            height={26}
-            className="nav-avatar"
-            style={{ borderRadius: "50%", objectFit: "cover", transition: "transform 0.5s cubic-bezier(0.16,1,0.3,1)" }}
-          />
           <span>Sebastián</span>
         </Link>
 
@@ -170,7 +155,7 @@ export default function Navbar() {
               href={`/#${l.id}`}
               data-cursor="click"
               onClick={handleSectionClick(l.id)}
-              onMouseEnter={() => { updatePill(i); sounds.hover(); }}
+              onMouseEnter={() => updatePill(i)}
               style={{
                 position: "relative", zIndex: 1,
                 padding: "8px 14px", borderRadius: 100,
@@ -198,16 +183,11 @@ export default function Navbar() {
           <PresenceChip dark={dark} />
         </span>
 
-        <span className="nav-audio" style={{ marginLeft: 6 }}>
-          <AudioToggle dark={dark} />
-        </span>
-
         {/* Primary CTA */}
         <Link
           href="/quote"
           data-cursor="click"
-          onClick={() => sounds.click()}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#ea580c"; sounds.hover(); }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#ea580c"; }}
           onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "#f97316")}
           style={{
             marginLeft: 6,
@@ -244,7 +224,6 @@ export default function Navbar() {
           .portfolio-nav .nav-links,
           .portfolio-nav .nav-divider-primary,
           .portfolio-nav .nav-divider-secondary,
-          .portfolio-nav .nav-audio,
           .portfolio-nav .nav-presence {
             display: none !important;
           }

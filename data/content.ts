@@ -69,7 +69,7 @@ export const SKILLS: Skill[] = [
   { name: "Appwrite", level: 78, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#FD366E", category: "Infra", role: "Backend como servicio" },
   { name: "Tailwind CSS", level: 86, years: "3+ años", tag: "Turismo App", projects: ["Turismo App", "Habitta"], color: "#06B6D4", category: "Web", role: "Sistemas visuales rápidos" },
   { name: "Git", level: 90, years: "4+ años", tag: "Todos", projects: ["Fudia", "Invehin", "Habitta"], color: "#F05032", category: "DesignOps", role: "Colaboración y control de cambios" },
-  { name: "Python", level: 72, years: "1+ año", tag: "Prometeon Mailer", projects: ["Prometeon Mailer"], color: "#3776AB", category: "Infra", role: "Automatización y herramientas internas" },
+  { name: "Python", level: 72, years: "1+ año", tag: "Automatización", projects: [], color: "#3776AB", category: "Infra", role: "Automatización y herramientas internas" },
   { name: "SEO", level: 78, years: "2+ años", tag: "Turismo App", projects: ["Turismo App", "Habitta"], color: "#52B788", category: "DesignOps", role: "Contenido técnico y descubribilidad" },
 ];
 
@@ -104,16 +104,11 @@ export const websiteProjects: Project[] = [
     caseStudy: "Turismo App trabaja la presentación del contenido como parte central del producto: navegación directa, diseño responsive y una estructura preparada para crecer hacia más rutas y experiencias.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Responsive UI"], color: "#2563EB", liveUrl: "https://turismo-app-five-black.vercel.app", githubUrl: "https://github.com/SebastianSierra15/turismo-app", imageUrl: projectImage, useIframe: false,
   },
-  {
-    id: "prometeon-mailer", name: "Prometeon Mailer", tagline: "Automatización para envíos operativos", type: "Automation Tool", description: "Herramienta para preparar, validar y ejecutar envíos con un flujo más controlado y repetible.",
-    caseStudy: "Prometeon Mailer convierte un proceso manual en una herramienta operativa con validaciones, procesamiento y una interfaz directa para reducir errores repetibles.",
-    stack: ["Python", "Streamlit", "Pandas", "SMTP", "Automatización"], color: "#D97706", liveUrl: "https://prometeon-mailer.streamlit.app", githubUrl: "https://github.com/SebastianSierra15/Prometeon-mailer", imageUrl: projectImage, useIframe: false,
-  },
 ];
 
 export const appProjects: Project[] = [
   {
-    id: "fudia", name: "Fudia", tagline: "Ecosistema multiproyecto", type: "Ecosistema de productos", description: "Un conjunto de productos y superficies digitales que deben sentirse como un mismo sistema.",
+    id: "fudia", name: "Fudia", tagline: "Ecosistema multiproyecto", type: "App móvil", description: "Un conjunto de productos y superficies digitales que deben sentirse como un mismo sistema.",
     caseStudy: "Fudia reúne varios proyectos en paralelo. El reto está en sostener una experiencia coherente mientras cada producto resuelve una necesidad distinta. El trabajo combina interfaces, arquitectura modular, integración de servicios y decisiones de producto.",
     stack: ["React", "Next.js", "TypeScript", "Node.js", "Appwrite", "UI Systems"], color: "#52B788", liveUrl: "#", githubUrl: "#", imageUrl: projectImage,
   },

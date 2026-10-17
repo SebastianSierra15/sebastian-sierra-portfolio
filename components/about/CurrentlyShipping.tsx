@@ -2,7 +2,6 @@
 // "Currently shipping" mini card — replaces the deleted Experience block.
 
 import Link from "next/link";
-import { sounds } from "@/lib/audio";
 
 export default function CurrentlyShipping() {
   return (
@@ -44,7 +43,6 @@ export default function CurrentlyShipping() {
       <Link
         href="/quote"
         data-cursor="click"
-        onMouseEnter={() => sounds.hover()}
         className="cs-cta"
         style={{
           marginTop: 16,

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import HeroSystemMap from "@/components/hero/HeroSystemMap";
 import type {
   Group,
   Mesh,
@@ -635,13 +636,7 @@ export default function HeroSection() {
           transition={{ duration: 0.72, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           style={{ "--lane": activeLane.accent } as CSSProperties}
         >
-          <CraftCoreScene activeLane={activeLane} reducedMotion={reducedMotion} />
-
-          <div className={`hero-scene-labels is-${activeLane.visualKind}`} aria-live="polite">
-            <span className="hero-scene-label hero-scene-label-metric">{activeLane.metric}</span>
-            <span className="hero-scene-label hero-scene-label-title">{activeLane.label}</span>
-            <span className="hero-scene-label hero-scene-label-proof">{activeLane.short}</span>
-          </div>
+          <HeroSystemMap lane={activeLane} reducedMotion={reducedMotion} />
 
           <div className="hero-identity-card">
             <Image src="/assets/sebastian-sierra.jpg" alt="Sebastián Sierra" width={52} height={52} priority />

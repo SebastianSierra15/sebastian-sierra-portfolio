@@ -65,55 +65,6 @@ export default function EmailPopup({
     }
   }, [email]);
 
-  // Play sound effect
-  useEffect(() => {
-    if (!isOpen) return;
-
-    // Create a subtle success sound using Web Audio API
-    const audioContext = new (window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-
-    const playSound = () => {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-
-      // Create a pleasant chime
-      oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
-      oscillator.frequency.exponentialRampToValueAtTime(
-        659.25,
-        audioContext.currentTime + 0.1
-      ); // E5
-
-      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(
-        0.01,
-        audioContext.currentTime + 0.5
-      );
-
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.5);
-    };
-
-    // Only play if user has interacted with the page
-    if (audioContext.state === "running") {
-      playSound();
-    } else {
-      // Wait for user interaction
-      const handleInteraction = () => {
-        playSound();
-        document.removeEventListener("click", handleInteraction);
-      };
-      document.addEventListener("click", handleInteraction, { once: true });
-    }
-
-    return () => {
-      audioContext.close();
-    };
-  }, [isOpen]);
-
   return (
     <AnimatePresence>
       {isOpen && (

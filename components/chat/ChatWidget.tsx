@@ -26,50 +26,6 @@ const QUICK_CHIPS = [
 ] as const;
 
 const FONT = "var(--font-inter), Inter, -apple-system, sans-serif";
-const EMAIL = "sebsirra13@gmail.com";
-
-const HIRE_NUDGE_COPY = [
-  {
-    question: "Una pregunta rápida: ¿Sebastián debería construir tu próximo proyecto?",
-    yes: "Sí, copiar correo",
-    noA: "Todavía no",
-    noB: "Muéstrame pruebas",
-  },
-  {
-    question: "Entiendo. ¿La idea aún no está lista o me estoy adelantando?",
-    yes: "Copiarlo de todos modos",
-    noA: "La idea no está lista",
-    noB: "Es muy pronto",
-  },
-  {
-    question: "Tiene sentido. Pero si la idea despierta esta noche, ¿dejamos listo el correo?",
-    yes: "Déjalo listo",
-    noA: "Sigo dudando",
-    noB: "Hazme sonreír",
-  },
-  {
-    question: "Veo resistencia. La respeto. ¿Un último pequeño empujón?",
-    yes: "Está bien, cópialo",
-    noA: "Repetir",
-    noB: "Ocultar esto",
-  },
-];
-
-async function copyEmailToClipboard() {
-  try {
-    await navigator.clipboard.writeText(EMAIL);
-  } catch {
-    const textarea = document.createElement("textarea");
-    textarea.value = EMAIL;
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-    document.body.appendChild(textarea);
-    textarea.focus();
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
-  }
-}
 
 export default function ChatWidget() {
   const router = useRouter();
@@ -78,18 +34,10 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [showChips, setShowChips] = useState(true);
-  const [hireNudgeVisible, setHireNudgeVisible] = useState(false);
-  const [hireNudgeStep, setHireNudgeStep] = useState(0);
-  const [hireNudgeCopied, setHireNudgeCopied] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => setHireNudgeVisible(true), 30000);
-    return () => window.clearTimeout(timeout);
-  }, []);
 
   // Listen for external openChat event (from ContactSection CTA)
   useEffect(() => {
@@ -196,9 +144,6 @@ export default function ChatWidget() {
           m.content.toLowerCase().includes("/quote"))
     );
 
-  const hireNudge = HIRE_NUDGE_COPY[hireNudgeStep];
-  const showHireNudge = hireNudgeVisible && !isOpen;
-
   const appendLocalReply = (userContent: string, assistantContent: string) => {
     const now = Date.now();
     setMessages((prev) => [
@@ -210,7 +155,6 @@ export default function ChatWidget() {
   };
 
   const scrollToWork = () => {
-    setHireNudgeVisible(false);
     const target = document.getElementById("work");
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -242,169 +186,8 @@ export default function ChatWidget() {
     window.setTimeout(() => router.push("/quote"), 180);
   };
 
-  const handleHireYes = async () => {
-    await copyEmailToClipboard();
-    setHireNudgeCopied(true);
-    window.setTimeout(() => setHireNudgeVisible(false), 4200);
-  };
-
-  const handleHireNo = (hide = false) => {
-    if (hide) {
-      setHireNudgeVisible(false);
-      return;
-    }
-    setHireNudgeStep((step) => (step + 1) % HIRE_NUDGE_COPY.length);
-  };
-
   return (
     <>
-      {/* Hire nudge */}
-      {showHireNudge && (
-      <div
-        className="hire-nudge"
-        role="status"
-        aria-live="polite"
-        style={{
-          position: "fixed",
-          right: "24px",
-          bottom: "92px",
-          width: "286px",
-          maxWidth: "calc(100vw - 48px)",
-          borderRadius: "8px",
-          border: "1px solid rgba(249,115,22,0.18)",
-          background: "rgba(255,255,255,0.82)",
-          boxShadow: "0 18px 46px rgba(16,35,28,0.12)",
-          backdropFilter: "blur(22px) saturate(160%)",
-          WebkitBackdropFilter: "blur(22px) saturate(160%)",
-          padding: "12px",
-          zIndex: 9997,
-          fontFamily: FONT,
-        }}
-      >
-        <button
-          type="button"
-          aria-label="Cerrar aviso de contratación"
-          onClick={() => setHireNudgeVisible(false)}
-          style={{
-            position: "absolute",
-            top: "8px",
-            right: "8px",
-            width: "24px",
-            height: "24px",
-            borderRadius: "50%",
-            border: "0",
-            background: "rgba(16,35,28,0.06)",
-            color: "#7c675d",
-            cursor: "pointer",
-            fontSize: "15px",
-            lineHeight: 1,
-          }}
-        >
-          x
-        </button>
-
-        <div style={{ paddingRight: "26px" }}>
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "7px",
-              color: "#c2410c",
-              fontSize: "11px",
-              fontWeight: 800,
-              textTransform: "uppercase",
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                width: "7px",
-                height: "7px",
-                borderRadius: "50%",
-                background: "#f97316",
-                boxShadow: "0 0 0 5px rgba(249,115,22,0.12)",
-              }}
-            />
-            Después de 30 segundos
-          </span>
-
-          <p
-            style={{
-              margin: "9px 0 0",
-              color: "#24150f",
-              fontSize: "14px",
-              lineHeight: 1.45,
-              fontWeight: 750,
-            }}
-          >
-            {hireNudgeCopied ? "Listo. El correo de Sebastián está en tu portapapeles." : hireNudge.question}
-          </p>
-        </div>
-
-        {!hireNudgeCopied && (
-          <div style={{ display: "grid", gap: "7px", marginTop: "12px" }}>
-            <button
-              type="button"
-              onClick={handleHireYes}
-              style={{
-                minHeight: "38px",
-                border: "0",
-                borderRadius: "999px",
-                background: "#f97316",
-                color: "#ffffff",
-                fontSize: "13px",
-                fontWeight: 800,
-                cursor: "pointer",
-              }}
-            >
-              {hireNudge.yes}
-            </button>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "7px" }}>
-              <button
-                type="button"
-                onClick={() => handleHireNo(false)}
-                style={{
-                  minHeight: "34px",
-                  border: "1px solid rgba(16,35,28,0.1)",
-                  borderRadius: "999px",
-                  background: "rgba(255,255,255,0.72)",
-                  color: "#7c675d",
-                  fontSize: "12px",
-                  fontWeight: 800,
-                  cursor: "pointer",
-                }}
-              >
-                {hireNudge.noA}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  if (hireNudge.noB === "Muéstrame pruebas") {
-                    scrollToWork();
-                    return;
-                  }
-                  handleHireNo(hireNudge.noB === "Ocultar esto");
-                }}
-                style={{
-                  minHeight: "34px",
-                  border: "1px solid rgba(16,35,28,0.1)",
-                  borderRadius: "999px",
-                  background: "rgba(255,255,255,0.72)",
-                  color: "#7c675d",
-                  fontSize: "12px",
-                  fontWeight: 800,
-                  cursor: "pointer",
-                }}
-              >
-                {hireNudge.noB}
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-      )}
-
       {/* ── FLOATING BUBBLE ── */}
       <button
         onClick={() => setIsOpen((v) => !v)}
