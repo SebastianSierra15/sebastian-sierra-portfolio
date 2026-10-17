@@ -1,15 +1,18 @@
-# Sebastián Sierra Portfolio
+# Sebastián Sierra · Portfolio
 
-Portafolio personal de Sebastián Sierra construido con Next.js, TypeScript y Tailwind CSS. La experiencia presenta proyectos full stack, foco frontend, stack técnico, laboratorio de interfaces y formas de contacto.
+Portafolio personal de Sebastián Sierra, construido con Next.js, TypeScript, Tailwind CSS, Framer Motion, GSAP, Lenis y Three.js. La experiencia toma como referencia técnica la arquitectura abierta de [Naeem Sabir](https://github.com/naeemsabir1/naeem-portfolio), publicada bajo MIT, pero el contenido, la identidad, los enlaces y los datos de este proyecto pertenecen a Sebastián.
 
-## Stack
+## Qué incluye
 
-- Next.js 16 con App Router
-- React 19 y TypeScript
-- Tailwind CSS 4
-- Lucide React
-- Canvas API para el laboratorio visual
-- Endpoint opcional de analítica preparado para Supabase
+- Hero interactivo con escenas WebGL y transiciones de scroll.
+- Navegación glassmorphism, audio opcional y cursor contextual.
+- Stack técnico en formato bento con filtros y playgrounds.
+- Proyectos de Fudia, Souls in Xtinction, Simulador, Invehin, Habitta y herramientas secundarias.
+- Modales y casos de estudio para proyectos.
+- Playground de interfaces y visualizaciones ligeras.
+- Página de contacto y descarga del CV.
+- Endpoint opcional de analítica en `POST /api/analytics/events`.
+- Chat preparado para Groq, pero desactivado de forma segura si no existe `GROQ_API_KEY`.
 
 ## Desarrollo local
 
@@ -18,36 +21,39 @@ npm install
 npm run dev
 ```
 
-La aplicación se abre en `http://localhost:3000`.
+La aplicación queda disponible en `http://localhost:3000`.
 
-## Comandos
+## Verificación
 
 ```bash
 npm run lint
 npm run build
-npm run start
 ```
 
-## Analítica opcional
+## Variables opcionales
 
-La landing envía eventos a `POST /api/analytics/events`. Sin variables de entorno, los eventos se validan pero no se persisten, por lo que la experiencia funciona normalmente.
-
-Para conectar Supabase, crea las variables locales:
+Copia `.env.example` a `.env.local` si necesitas activar integraciones futuras:
 
 ```env
-SUPABASE_URL=https://tu-proyecto.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=tu-clave-solo-servidor
+GROQ_API_KEY=
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
 ```
 
-Después ejecuta [`supabase/schema.sql`](./supabase/schema.sql) en el editor SQL de Supabase. La clave de servicio nunca debe exponerse como variable `NEXT_PUBLIC_` ni enviarse al navegador.
+La landing funciona sin estas variables. El esquema de analítica para Supabase está en [`supabase/schema.sql`](./supabase/schema.sql).
 
-## Assets
+## Arquitectura
 
-- Foto: `public/assets/sebastian-sierra.jpg`
-- CV: `public/CV-SebastianSierra.pdf`
+- `app/`: App Router, metadata, páginas y Route Handlers.
+- `components/`: navegación, hero, stack, proyectos, playgrounds y contacto.
+- `data/content.ts`: perfil, tecnologías y proyectos centralizados.
+- `lib/`: analítica, audio, conocimiento del asistente y utilidades.
+- `public/`: foto, CV, mockups provisionales y secuencia visual del hero.
 
-Los visuales de proyectos son componentes provisionales y pueden sustituirse por screenshots definitivas sin cambiar el modelo de datos.
+## Estado de publicación
 
-## Despliegue futuro
+El código se mantiene en un repositorio público de GitHub. No hay despliegue configurado en Cloudflare, Vercel, Netlify ni GitHub Pages; el siguiente paso de publicación web se decidirá después de validar la landing y reemplazar los mockups provisionales por capturas definitivas.
 
-La primera entrega no configura despliegue. Cloudflare Workers queda como destino futuro; antes de publicarlo se validará el adaptador recomendado para la versión de Next.js utilizada.
+## Licencia y atribución
+
+La implementación base reutiliza componentes y patrones del repositorio MIT de [naeemsabir1/naeem-portfolio](https://github.com/naeemsabir1/naeem-portfolio). La personalización de contenido, datos, assets propios y cambios de Sebastián se distribuyen como parte de este repositorio público.
