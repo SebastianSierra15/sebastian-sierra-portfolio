@@ -1,15 +1,15 @@
-# Sebastian Sierra Portfolio
+# Sebastián Sierra Portfolio
 
-Portafolio personal de Sebastian Sierra, construido con Astro, TypeScript y Tailwind CSS.
-
-La web esta pensada para reclutadores y equipos tecnicos: presenta experiencia full stack, foco frontend, proyectos destacados, stack, proceso de trabajo y enlaces de contacto.
+Portafolio personal de Sebastián Sierra construido con Next.js, TypeScript y Tailwind CSS. La experiencia presenta proyectos full stack, foco frontend, stack técnico, laboratorio de interfaces y formas de contacto.
 
 ## Stack
 
-- Astro 7
-- TypeScript
+- Next.js 16 con App Router
+- React 19 y TypeScript
 - Tailwind CSS 4
-- HTML/CSS con componentes Astro
+- Lucide React
+- Canvas API para el laboratorio visual
+- Endpoint opcional de analítica preparado para Supabase
 
 ## Desarrollo local
 
@@ -18,20 +18,36 @@ npm install
 npm run dev
 ```
 
+La aplicación se abre en `http://localhost:3000`.
+
 ## Comandos
 
 ```bash
+npm run lint
 npm run build
-npm run preview
+npm run start
 ```
+
+## Analítica opcional
+
+La landing envía eventos a `POST /api/analytics/events`. Sin variables de entorno, los eventos se validan pero no se persisten, por lo que la experiencia funciona normalmente.
+
+Para conectar Supabase, crea las variables locales:
+
+```env
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=tu-clave-solo-servidor
+```
+
+Después ejecuta [`supabase/schema.sql`](./supabase/schema.sql) en el editor SQL de Supabase. La clave de servicio nunca debe exponerse como variable `NEXT_PUBLIC_` ni enviarse al navegador.
 
 ## Assets
 
 - Foto: `public/assets/sebastian-sierra.jpg`
 - CV: `public/CV-SebastianSierra.pdf`
 
-Los mockups visuales de proyectos son provisionales. Las screenshots definitivas pueden reemplazarse mas adelante manteniendo la estructura de datos en `src/data/portfolio.ts`.
+Los visuales de proyectos son componentes provisionales y pueden sustituirse por screenshots definitivas sin cambiar el modelo de datos.
 
-## Despliegue
+## Despliegue futuro
 
-El repositorio es publico, pero este proyecto no tiene despliegue configurado todavia. Cloudflare Pages, Vercel o GitHub Pages quedan como opciones futuras.
+La primera entrega no configura despliegue. Cloudflare Workers queda como destino futuro; antes de publicarlo se validará el adaptador recomendado para la versión de Next.js utilizada.
