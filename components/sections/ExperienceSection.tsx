@@ -422,8 +422,8 @@ export default function ExperienceSection() {
 
         .experience-bar-tooltip {
           position: absolute;
-          right: 0;
-          bottom: -1px;
+          top: 0;
+          left: 0;
           padding: 2px 6px;
           border-radius: 4px;
           background: rgba(255, 250, 246, 0.92);
@@ -431,7 +431,7 @@ export default function ExperienceSection() {
           font-family: var(--font-mono), monospace;
           font-size: 9px;
           opacity: 0;
-          transform: translateY(4px);
+          transform: translateY(-4px);
           transition: opacity 180ms ease, transform 180ms ease;
         }
 
@@ -445,10 +445,10 @@ export default function ExperienceSection() {
           bottom: 0;
           z-index: 4;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           max-width: 185px;
           overflow: hidden;
-          padding-left: 16px;
+          padding: 3px 0 0 16px;
           background: transparent;
           color: #998b82;
           font-family: var(--font-mono), monospace;
