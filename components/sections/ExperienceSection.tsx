@@ -5,11 +5,28 @@ import Link from "next/link";
 import { experienceTimeline, type ExperienceEntry } from "@/data/content";
 
 const YEAR_START = 2023;
-const YEAR_END = 2026;
+const TIMELINE_END = 2026.85;
 const YEARS = [2023, 2024, 2025, 2026];
 
 function getTimelinePosition(value: number) {
-  return Math.max(0, Math.min(100, ((value - YEAR_START) / (YEAR_END - YEAR_START)) * 100));
+  return Math.max(0, Math.min(100, ((value - YEAR_START) / (TIMELINE_END - YEAR_START)) * 100));
+}
+
+function ExperienceLogo({ entry }: { entry: ExperienceEntry }) {
+  const [failed, setFailed] = useState(false);
+  const initial = entry.company.trim().charAt(0).toUpperCase();
+
+  return (
+    <span className="experience-brand-mark" style={{ "--brand-color": entry.accent } as React.CSSProperties}>
+      {entry.logoSrc && !failed ? (
+        // These favicons include ICO assets that Next Image cannot optimize consistently.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={entry.logoSrc} alt="" onError={() => setFailed(true)} />
+      ) : (
+        <strong aria-hidden="true">{initial}</strong>
+      )}
+    </span>
+  );
 }
 
 function TimelineEntry({
@@ -53,6 +70,8 @@ function TimelineEntry({
 }
 
 function ExperienceDetails({ entry }: { entry: ExperienceEntry }) {
+  const links = entry.links ?? (entry.url ? [{ label: entry.company, url: entry.url }] : []);
+
   return (
     <article className="experience-details" key={entry.id} aria-live="polite">
       <div className="experience-details-main">
@@ -64,10 +83,14 @@ function ExperienceDetails({ entry }: { entry: ExperienceEntry }) {
         <h3>{entry.company}</h3>
         <p className="experience-details-role">{entry.role}</p>
         <p className="experience-details-summary">{entry.summary}</p>
-        {entry.url && (
-          <Link href={entry.url} target="_blank" rel="noreferrer" className="experience-details-link">
-            Ver PrometeonDev <span aria-hidden="true">↗</span>
-          </Link>
+        {links.length > 0 && (
+          <div className="experience-details-links">
+            {links.map((link) => (
+              <Link key={link.url} href={link.url} target="_blank" rel="noreferrer" className="experience-details-link">
+                Ver {link.label} <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
         )}
       </div>
 
@@ -79,6 +102,13 @@ function ExperienceDetails({ entry }: { entry: ExperienceEntry }) {
         <div className="experience-stack">
           {entry.stack.map((technology) => <span key={technology}>{technology}</span>)}
         </div>
+      </div>
+      <div className="experience-details-footer">
+        <div className="experience-brand">
+          <ExperienceLogo entry={entry} />
+          <strong>{entry.company}</strong>
+        </div>
+        <span>{entry.context}</span>
       </div>
     </article>
   );
@@ -121,7 +151,7 @@ export default function ExperienceSection() {
             </div>
             <div className="experience-axis-line" aria-hidden="true">
               {YEARS.map((year) => <i key={year} style={{ left: `${getTimelinePosition(year)}%` }} />)}
-              <b style={{ left: `${getTimelinePosition(2026)}%` }} />
+              <b style={{ left: `${getTimelinePosition(2026.8)}%` }} />
             </div>
             <div className="experience-rows">
               {experienceTimeline.map((entry) => (
@@ -463,6 +493,7 @@ export default function ExperienceSection() {
         .experience-details-role { margin: 12px 0 0; color: #c2410c; font-size: 14px; font-weight: 800; }
         .experience-details-summary { max-width: 590px; margin: 18px 0 0; color: #735f53; font-size: 15px; line-height: 1.7; }
 
+        .experience-details-links { display: flex; flex-wrap: wrap; gap: 8px; }
         .experience-details-link { display: inline-flex; gap: 8px; align-items: center; margin-top: 24px; padding: 10px 14px; border: 1px solid rgba(194, 65, 12, 0.24); border-radius: 999px; color: #a83d0f; font-size: 12px; font-weight: 800; text-decoration: none; transition: background 180ms ease, transform 180ms ease; }
         .experience-details-link:hover { background: rgba(249, 115, 22, 0.09); transform: translateY(-2px); }
 
@@ -472,6 +503,11 @@ export default function ExperienceSection() {
         .experience-details-proof li:before { content: "↗"; display: inline-block; width: 22px; color: #f97316; }
         .experience-stack { display: flex; flex-wrap: wrap; gap: 7px; }
         .experience-stack span { padding: 7px 10px; border: 1px solid rgba(36, 21, 15, 0.11); border-radius: 999px; background: rgba(255, 255, 255, 0.72); color: #78665b; font-family: var(--font-mono), monospace; font-size: 10px; font-weight: 700; }
+        .experience-details-footer { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; gap: 18px; padding-top: 22px; border-top: 1px solid rgba(36, 21, 15, 0.1); color: #998b82; font-family: var(--font-mono), monospace; font-size: 10px; }
+        .experience-brand { display: inline-flex; align-items: center; gap: 10px; color: #57463c; font-family: var(--font-display), sans-serif; font-size: 13px; }
+        .experience-brand-mark { display: grid; width: 34px; height: 34px; place-items: center; overflow: hidden; border: 1px solid color-mix(in srgb, var(--brand-color) 28%, rgba(36, 21, 15, 0.12)); border-radius: 10px; background: color-mix(in srgb, var(--brand-color) 11%, #ffffff); color: var(--brand-color); }
+        .experience-brand-mark img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+        .experience-brand-mark strong { font-size: 15px; }
 
         @media (max-width: 900px) {
           .experience-heading { grid-template-columns: 1fr; gap: 20px; }
@@ -480,6 +516,7 @@ export default function ExperienceSection() {
           .experience-row-context { display: none; }
           .experience-details { grid-template-columns: 1fr; gap: 28px; }
           .experience-details-proof { padding: 26px 0 0; border-top: 1px solid rgba(36, 21, 15, 0.1); border-left: 0; }
+          .experience-details-footer { grid-column: auto; }
         }
 
         @media (max-width: 640px) {
