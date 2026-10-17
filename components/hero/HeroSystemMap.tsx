@@ -25,12 +25,10 @@ export default function HeroSystemMap({ lane, reducedMotion }: HeroSystemMapProp
       <div
         className="hero-system-orbit hero-system-orbit-one"
         aria-hidden="true"
-        data-static={reducedMotion ? "true" : undefined}
       />
       <div
         className="hero-system-orbit hero-system-orbit-two"
         aria-hidden="true"
-        data-static={reducedMotion ? "true" : undefined}
       />
 
       <div className="hero-system-connection hero-system-connection-one" aria-hidden="true" />
@@ -40,7 +38,6 @@ export default function HeroSystemMap({ lane, reducedMotion }: HeroSystemMapProp
 
       <div
         className="hero-system-core"
-        data-static={reducedMotion ? "true" : undefined}
       >
         <div className="hero-system-core-inner">
           <span className="hero-system-core-kicker">Construcción activa</span>
@@ -54,7 +51,6 @@ export default function HeroSystemMap({ lane, reducedMotion }: HeroSystemMapProp
         <motion.div
           className={`hero-system-node ${node.className}`}
           key={node.title}
-          data-static={reducedMotion ? "true" : undefined}
           animate={reducedMotion ? undefined : { y: [0, index % 2 ? 5 : -5, 0] }}
           transition={{ duration: 4 + index * 0.45, repeat: Infinity, ease: "easeInOut", delay: index * 0.12 }}
         >
@@ -110,12 +106,6 @@ export default function HeroSystemMap({ lane, reducedMotion }: HeroSystemMapProp
           transform-origin: center;
           pointer-events: none;
           animation: heroSystemOrbitOne 28s linear infinite;
-        }
-
-        .hero-system-orbit[data-static="true"],
-        .hero-system-core[data-static="true"],
-        .hero-system-node[data-static="true"] {
-          animation: none;
         }
 
         @keyframes heroSystemOrbitOne {
@@ -370,6 +360,14 @@ export default function HeroSystemMap({ lane, reducedMotion }: HeroSystemMapProp
           .hero-system-node-copy small { margin-top: 2px; font-size: 8px; }
           .hero-system-footer { bottom: 10px; gap: 3px; padding: 4px; }
           .hero-system-footer span { padding: 3px 5px; font-size: 8px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-system-orbit,
+          .hero-system-core,
+          .hero-system-node {
+            animation: none;
+          }
         }
       `}</style>
     </div>
