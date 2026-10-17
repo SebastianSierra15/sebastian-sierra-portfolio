@@ -7,8 +7,8 @@ interface IconProps {
 const icons: Record<string, React.FC<IconProps>> = {
   "Next.js": ({ color }) => (
     <svg viewBox="0 0 24 24" style={{ width: "100%", height: "100%" }}>
-      <circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.12)" />
-      <path d="M10.6 15.65L5.43 8.12V16.87H4.25V7.12H5.43L10.65 14.71L14.06 9.15V14.71H15.25V8.12H14.06L10.6 15.65Z" fill={color} />
+      <circle cx="12" cy="12" r="11.2" fill={color} />
+      <path d="M7.2 7.1V17M7.2 7.1L17 17M12.35 7.1v5.15" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
   "React": () => (
@@ -38,6 +38,12 @@ const icons: Record<string, React.FC<IconProps>> = {
     <svg viewBox="0 0 24 24" style={{ width: "100%", height: "100%" }}>
       <path d="M12 1.85c-.27 0-.55.07-.78.2L2.78 7.03c-.48.28-.78.8-.78 1.36v9.22c0 .56.3 1.08.78 1.36l8.44 4.98c.23.13.5.2.78.2.27 0 .55-.07.78-.2l8.44-4.98c.48-.28.78-.8.78-1.36V8.4c0-.57-.3-1.08-.78-1.37l-8.44-4.98c-.23-.13-.51-.2-.78-.2z" fill="#339933" />
       <path d="M12 4.5L7 7.5V13L12 16L17 13V7.5L12 4.5ZM12 14L9 12.5V9L12 7.5L15 9V12.5L12 14Z" fill="white" fillOpacity="0.9" />
+    </svg>
+  ),
+  "Appwrite": () => (
+    <svg viewBox="0 0 24 24" style={{ width: "100%", height: "100%" }}>
+      <rect width="24" height="24" rx="6" fill="#FD366E" />
+      <path d="M6.4 15.7a5.2 5.2 0 1 1 4.84-7.1h4.08a5.2 5.2 0 1 1-4.84 7.1H6.4Zm4.84-5.2a2.6 2.6 0 1 0 0 5.2h4.08a2.6 2.6 0 1 0 0-5.2h-4.08Z" fill="white" />
     </svg>
   ),
   "Generative AI": ({ color }) => (
@@ -106,6 +112,16 @@ const icons: Record<string, React.FC<IconProps>> = {
     <svg viewBox="0 0 24 24" style={{ width: "100%", height: "100%" }}>
       <path d="M12.9 2L2 12.9V17.5L8.2 23.7C8.6 24.1 9.2 24.1 9.6 23.7L22 11.3V5.5L18.5 2H12.9Z" fill="#0175C2" opacity="0.85" />
       <path d="M18.5 2H12.9L9.6 5.3L18.5 14V2Z" fill="#0175C2" />
+    </svg>
+  ),
+  "HTML / CSS": () => (
+    <svg viewBox="0 0 48 24" style={{ width: "100%", height: "100%" }}>
+      <path d="m1 2 2.1 18.4L12 23l8.9-2.6L23 2H1Z" fill="#E44D26" />
+      <path d="M12 4.2v16.7l6.8-2 1.6-14.7H12Z" fill="#F16529" />
+      <path d="M5.8 8.1h12.4l-.3 2.2H6.1l-.3-2.2Zm.5 4.2h11.2l-.3 2.2H6.6l-.3-2.2Zm.5 4.1h9.6l-.3 2.1-4.1 1.2-4.6-1.2-.6-2.1Z" fill="white" />
+      <path d="m25 2 2.1 18.4 8.9 2.6L45 20.4 47 2H25Z" fill="#1572B6" />
+      <path d="M36 4.2v16.7l6.8-2L44.4 4.2H36Z" fill="#33A9DC" />
+      <path d="M29.8 8.1h12.4l-.3 2.2H30.1l-.3-2.2Zm.5 4.2h11.2l-.3 2.2H30.6l-.3-2.2Zm.5 4.1h9.6l-.3 2.1-4.1 1.2-4.6-1.2-.6-2.1Z" fill="white" />
     </svg>
   ),
   "RevenueCat": ({ color }) => (
