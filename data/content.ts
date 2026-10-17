@@ -94,7 +94,7 @@ export const experienceTimeline: ExperienceEntry[] = [
   },
   {
     id: "souls-in-xtinction",
-    code: "E-03",
+    code: "E-04",
     company: "Souls In Xtinction",
     period: "Diciembre 2025 - Actualidad",
     start: 2025.95,
@@ -115,7 +115,7 @@ export const experienceTimeline: ExperienceEntry[] = [
   },
   {
     id: "fudia",
-    code: "E-04",
+    code: "E-03",
     company: "Fudia",
     period: "Febrero 2026 - Septiembre 2026",
     start: 2026.1,
