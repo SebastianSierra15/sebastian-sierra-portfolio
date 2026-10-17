@@ -215,12 +215,12 @@ export const appProjects: Project[] = [
     stack: ["React", "Next.js", "TypeScript", "Node.js", "Appwrite", "UI Systems"], color: "#52B788", liveUrl: "https://fudia.app", githubUrl: "#", imageUrl: projectImage,
   },
   {
-    id: "souls-in-xtinction", name: "Souls in Xtinction", tagline: "Experiencia companion para un universo de juego", type: "App companion de juego", description: "Una experiencia complementaria para organizar progreso, contenido y decisiones alrededor de un universo de juego.",
+    id: "souls-in-xtinction", name: "Souls in Xtinction", tagline: "TCG colombiano de estrategia y diversión", type: "Juego de cartas coleccionables", description: "Juego de cartas coleccionables colombiano con plataforma digital, contenido, torneos y herramientas para su comunidad.",
     caseStudy: "Souls in Xtinction explora cómo una interfaz puede acompañar un universo narrativo sin perder claridad. La propuesta trabaja progreso, guías y contenido con componentes preparados para evolucionar junto al juego.",
     stack: ["React", "TypeScript", "Design Systems", "Responsive UI"], color: "#8B5CF6", liveUrl: "https://soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage,
   },
   {
-    id: "simulador", name: "Simulador", tagline: "Procesos y decisiones visibles", type: "App web interactiva", description: "Dashboard para modelar escenarios, comparar estados y entender resultados de forma visual.",
+    id: "simulador", name: "Simulador", tagline: "Simulador del TCG Souls In Xtinction", type: "Simulador web del juego", description: "Simulador web del juego de cartas coleccionables Souls In Xtinction.",
     caseStudy: "Simulador convierte procesos complejos en una vista de control que permite comparar escenarios y entender resultados. El proyecto pone el foco en jerarquía de datos, estados y una narrativa de decisión fácil de seguir.",
     stack: ["Next.js", "TypeScript", "Charts", "APIs", "UX de datos"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
   },
