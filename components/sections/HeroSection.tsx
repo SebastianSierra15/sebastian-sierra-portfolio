@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import HeroSystemMap from "@/components/hero/HeroSystemMap";
 import type {
   Group,
   Mesh,
@@ -217,9 +216,31 @@ function CraftCoreScene({
 
       const aiCoreMaterial = glass("#ea580c", 0.92, 0.22);
       aiMaterials.push(aiCoreMaterial);
-      const aiCore = new THREE.Mesh(new THREE.IcosahedronGeometry(1.08, 5), aiCoreMaterial);
+      // Replace the old abstract crystal with a compact workflow hub so the first
+      // scene feels closer to a real product system while keeping its motion language.
+      const aiCore = createRoundedPanel(1.92, 1.18, 0.14, aiCoreMaterial);
+      aiCore.position.z = 0.04;
       aiCore.userData.isCore = true;
       aiGroup.add(aiCore);
+
+      const aiHeaderMaterial = basic("#fff7ed", 0.78);
+      aiMaterials.push(aiHeaderMaterial);
+      const aiHeader = new THREE.Mesh(new THREE.BoxGeometry(1.38, 0.08, 0.05), aiHeaderMaterial);
+      aiHeader.position.set(-0.12, 0.37, 0.1);
+      aiGroup.add(aiHeader);
+
+      const aiNodeGeometry = new THREE.SphereGeometry(0.1, 14, 14);
+      [
+        [-0.54, -0.08, "#fef3c7"],
+        [-0.12, -0.08, "#dff7ea"],
+        [0.3, -0.08, "#fff7ed"],
+      ].forEach(([x, y, color]) => {
+        const nodeMaterial = basic(String(color), 0.9);
+        aiMaterials.push(nodeMaterial);
+        const node = new THREE.Mesh(aiNodeGeometry, nodeMaterial);
+        node.position.set(Number(x), Number(y), 0.12);
+        aiGroup.add(node);
+      });
 
       const aiWireMaterial = basic("#ffffff", 0.25, true);
       aiMaterials.push(aiWireMaterial);
@@ -636,7 +657,13 @@ export default function HeroSection() {
           transition={{ duration: 0.72, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           style={{ "--lane": activeLane.accent } as CSSProperties}
         >
-          <HeroSystemMap lane={activeLane} reducedMotion={reducedMotion} />
+          <CraftCoreScene activeLane={activeLane} reducedMotion={reducedMotion} />
+
+          <div className={`hero-scene-labels is-${activeLane.visualKind}`} aria-live="polite">
+            <span className="hero-scene-label hero-scene-label-metric">{activeLane.metric}</span>
+            <span className="hero-scene-label hero-scene-label-title">{activeLane.label}</span>
+            <span className="hero-scene-label hero-scene-label-proof">{activeLane.short}</span>
+          </div>
 
           <div className="hero-identity-card">
             <Image src="/assets/sebastian-sierra.jpg" alt="Sebastián Sierra" title="Sebastián Sierra" width={52} height={52} priority />
