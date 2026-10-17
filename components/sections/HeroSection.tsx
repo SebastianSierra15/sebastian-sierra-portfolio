@@ -18,16 +18,6 @@ import type {
 
 const BUILD_LANES = [
   {
-    id: "ai",
-    visualKind: "ai",
-    label: "Automatizaciones",
-    short: "Flujos + datos",
-    line: "Sistemas que reducen trabajo manual y convierten datos dispersos en acción útil.",
-    metric: "Herramientas internas",
-    accent: "#ea580c",
-    secondaryAccent: "#f97316",
-  },
-  {
     id: "web",
     visualKind: "web",
     label: "Productos web",
@@ -36,6 +26,16 @@ const BUILD_LANES = [
     metric: "Frontend + full stack",
     accent: "#f97316",
     secondaryAccent: "#ea580c",
+  },
+  {
+    id: "ai",
+    visualKind: "ai",
+    label: "Automatizaciones",
+    short: "Flujos + datos",
+    line: "Sistemas que reducen trabajo manual y convierten datos dispersos en acción útil.",
+    metric: "Herramientas internas",
+    accent: "#ea580c",
+    secondaryAccent: "#f97316",
   },
   {
     id: "mobile",

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 type EvidenceId = "interfaces" | "sistemas" | "flujos";
 
@@ -71,7 +70,6 @@ function EvidenceDiagram({ evidence }: { evidence: Evidence }) {
 
 export default function PlaygroundSection() {
     const [activeId, setActiveId] = useState<EvidenceId>("interfaces");
-    const prefersReducedMotion = useReducedMotion();
     const activeEvidence = EVIDENCE.find((item) => item.id === activeId) ?? EVIDENCE[0];
 
     return (
@@ -104,27 +102,17 @@ export default function PlaygroundSection() {
                         ))}
                     </div>
 
-                    <AnimatePresence mode="wait">
-                        <motion.article
-                            key={activeEvidence.id}
-                            className="evidence-panel"
-                            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-                            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                            exit={prefersReducedMotion ? undefined : { opacity: 0, y: -8 }}
-                            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                            role="tabpanel"
-                        >
-                            <EvidenceDiagram evidence={activeEvidence} />
-                            <div className="evidence-panel-copy">
-                                <span className="evidence-panel-kicker">{activeEvidence.kicker}</span>
-                                <h3>{activeEvidence.title}</h3>
-                                <p>{activeEvidence.description}</p>
-                                <div className="evidence-projects" aria-label="Proyectos relacionados">
-                                    {activeEvidence.projects.map((project) => <span key={project}>{project}</span>)}
-                                </div>
+                    <article key={activeEvidence.id} className="evidence-panel" role="tabpanel">
+                        <EvidenceDiagram evidence={activeEvidence} />
+                        <div className="evidence-panel-copy">
+                            <span className="evidence-panel-kicker">{activeEvidence.kicker}</span>
+                            <h3>{activeEvidence.title}</h3>
+                            <p>{activeEvidence.description}</p>
+                            <div className="evidence-projects" aria-label="Proyectos relacionados">
+                                {activeEvidence.projects.map((project) => <span key={project}>{project}</span>)}
                             </div>
-                        </motion.article>
-                    </AnimatePresence>
+                        </div>
+                    </article>
                 </div>
             </div>
 
@@ -252,6 +240,12 @@ export default function PlaygroundSection() {
                     border-radius: 18px;
                     background: #ffffff;
                     box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+                    animation: evidence-panel-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+                }
+
+                @keyframes evidence-panel-in {
+                    from { opacity: 0; transform: translateY(12px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
 
                 .evidence-diagram {
@@ -409,7 +403,8 @@ export default function PlaygroundSection() {
 
                 @media (prefers-reduced-motion: reduce) {
                     .evidence-tabs button,
-                    .evidence-route span { transition: none; animation: none; }
+                    .evidence-route span,
+                    .evidence-panel { transition: none; animation: none; }
                 }
             `}</style>
         </section>
