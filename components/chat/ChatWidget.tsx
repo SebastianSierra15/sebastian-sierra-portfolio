@@ -93,7 +93,13 @@ export default function ChatWidget() {
           signal: abortControllerRef.current.signal,
         });
 
-        if (!response.ok || !response.body) throw new Error("Bad response");
+        if (!response.ok || !response.body) {
+          throw new Error(
+            response.status === 503
+              ? "El asistente todavía no está configurado."
+              : "El asistente está temporalmente indisponible."
+          );
+        }
 
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
@@ -113,7 +119,7 @@ export default function ChatWidget() {
           setMessages((prev) =>
             prev.map((m) =>
               m.id === assistantId
-                ? { ...m, content: "No pude conectar en este momento. Inténtalo de nuevo." }
+                ? { ...m, content: `${err instanceof Error ? err.message : "No pude conectar en este momento."} Inténtalo de nuevo.` }
                 : m
             )
           );

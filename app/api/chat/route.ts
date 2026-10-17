@@ -22,6 +22,7 @@ export async function POST(request: Request) {
       });
     }
     const groq = new Groq({ apiKey });
+    const model = process.env.GROQ_MODEL || "openai/gpt-oss-20b";
 
     // Get the latest user message
     const lastMessage = messages[messages.length - 1];
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
     // Stream response from Groq
     const stream = await groq.chat.completions.create({
       messages: groqMessages,
-      model: "llama-3.3-70b-versatile",
+      model,
       stream: true,
       max_tokens: 512,
       temperature: 0.7,
