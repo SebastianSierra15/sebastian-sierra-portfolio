@@ -58,11 +58,11 @@ const tooltipConfigs: Record<string, {
     ),
   },
   years: {
-    title: "6 Years Experience",
+    title: "2+ años de experiencia",
     accent: "#f59e0b",
     content: (
       <div className="space-y-2">
-        <p className="text-white/80 text-sm">Since 2019 — from first freelance project to AI-powered systems</p>
+        <p className="text-white/80 text-sm">Desde 2024 — construyendo productos web, móviles y sistemas digitales</p>
         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
           <motion.div
             className="h-full rounded-full"
@@ -72,7 +72,7 @@ const tooltipConfigs: Record<string, {
             transition={{ duration: 0.5, delay: 0.1 }}
           />
         </div>
-        <p className="text-xs text-white/50">Path to 10 years</p>
+        <p className="text-xs text-white/50">Experiencia en crecimiento</p>
       </div>
     ),
   },
@@ -145,32 +145,32 @@ const tooltipConfigs: Record<string, {
     ),
   },
   projects: {
-    title: "9+ proyectos destacados",
+    title: "5 proyectos destacados",
     accent: "#a855f7",
     content: (
       <div className="space-y-2">
-        <p className="text-white/80 text-sm">From MVPs to enterprise systems</p>
+        <p className="text-white/80 text-sm">Productos web, móviles y experiencias digitales</p>
         <div className="grid grid-cols-2 gap-2 text-xs">
           <div className="bg-white/5 rounded p-2">
-            <div className="text-white/90 font-semibold">12</div>
-            <div className="text-white/50">SaaS Platforms</div>
+            <div className="text-white/90 font-semibold">4</div>
+            <div className="text-white/50">Productos y sistemas</div>
           </div>
           <div className="bg-white/5 rounded p-2">
-            <div className="text-white/90 font-semibold">8</div>
-            <div className="text-white/50">Mobile Apps</div>
+            <div className="text-white/90 font-semibold">2</div>
+            <div className="text-white/50">Experiencias activas</div>
           </div>
         </div>
       </div>
     ),
   },
   integrations: {
-    title: "12 AI Integrations",
+    title: "2 enfoques de IA",
     accent: "#06b6d4",
     content: (
       <div className="space-y-2">
-        <p className="text-white/80 text-sm">OpenAI, Anthropic, and custom model deployments</p>
+        <p className="text-white/80 text-sm">OpenAI y RAG aplicados a productos digitales</p>
         <div className="flex flex-wrap gap-1">
-          {["GPT-4", "Claude", "Whisper", "Embeddings", "Fine-tuning"].map((tech) => (
+          {["OpenAI", "RAG"].map((tech) => (
             <span key={tech} className="px-1.5 py-0.5 bg-cyan-500/20 rounded text-xs text-cyan-300">
               {tech}
             </span>
