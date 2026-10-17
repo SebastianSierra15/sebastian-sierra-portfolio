@@ -27,7 +27,7 @@ export default function CurrentlyShipping() {
         display: "inline-flex", alignItems: "center", gap: 8,
       }}>
         <span style={{ color: "#f97316" }}>▸</span>
-        Currently shipping
+        En construcción ahora
       </div>
 
       <div style={{

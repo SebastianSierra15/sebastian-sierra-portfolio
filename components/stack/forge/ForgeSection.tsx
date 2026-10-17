@@ -207,7 +207,7 @@ function ForgeInner() {
 
         <div style={{ marginBottom: 16 }}>
           <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(148,163,184,0.32)", fontFamily: "var(--font-mono), monospace" }}>
-            Also works with
+            También funciona con
           </span>
         </div>
       </div>

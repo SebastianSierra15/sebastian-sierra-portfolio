@@ -311,7 +311,7 @@ export default function StackSection() {
               <p>{activeLane.note}</p>
             </div>
 
-            <div className="featured-tools" aria-label={`${activeLane.kicker} featured tools`}>
+            <div className="featured-tools" aria-label={`${activeLane.kicker} herramientas destacadas`}>
               {laneSkills.map((skill) => (
                 <FeaturedToolButton
                   key={skill.name}

@@ -372,7 +372,7 @@ export default function CreativeProcessPanel() {
           >
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-white/40">System Online</span>
+              <span className="text-[10px] text-white/40">Sistema activo</span>
             </div>
             <HeartbeatLine />
           </motion.div>
