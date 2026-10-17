@@ -246,7 +246,7 @@ function ConceptPreview({ project }: { project: Project }) {
             title={`${project.name} - Sebastián Sierra`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            style={{ objectFit: "contain", objectPosition: "top center", background: "#160d20" }}
+            style={{ objectFit: "contain", objectPosition: "center center", background: "#160d20" }}
         />
     );
 }
