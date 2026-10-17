@@ -66,7 +66,12 @@ function TimelineEntry({
         </span>
         <span className="experience-bar-tooltip">{entry.period}</span>
       </span>
-      <span className="experience-row-context">{entry.context}</span>
+      <span
+        className="experience-row-context"
+        style={{ right: `${100 - getTimelinePosition(end)}%` } as React.CSSProperties}
+      >
+        {entry.context}
+      </span>
     </button>
   );
 }
@@ -446,13 +451,15 @@ export default function ExperienceSection() {
           z-index: 4;
           display: flex;
           align-items: flex-start;
+          justify-content: flex-end;
           max-width: 185px;
           overflow: hidden;
-          padding: 3px 0 0 16px;
+          padding: 3px 0 0 12px;
           background: transparent;
           color: #998b82;
           font-family: var(--font-mono), monospace;
           font-size: 10px;
+          text-align: right;
           text-overflow: ellipsis;
           white-space: nowrap;
           text-shadow: 0 0 5px #fffaf6, 0 0 9px #fffaf6;
