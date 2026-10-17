@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import HeroSection from "@/components/sections/HeroSection";
 import StackSection from "@/components/sections/StackSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
 
 const WorkSection = dynamic(
   () => import("@/components/sections/WorkSection")
@@ -21,6 +22,7 @@ export default function Home() {
       {/* === Content Sections === */}
       <StackSection />
       <WorkSection />
+      <ExperienceSection />
       <PlaygroundSection />
       <ContactSection />
     </main>

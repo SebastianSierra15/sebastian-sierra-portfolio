@@ -13,6 +13,23 @@ export interface Project {
   useIframe?: boolean;
 }
 
+export interface ExperienceEntry {
+  id: string;
+  code: string;
+  company: string;
+  period: string;
+  start: number;
+  end: number;
+  status: "current" | "completed";
+  context: string;
+  role: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  accent: string;
+  url?: string;
+}
+
 export const aboutData = {
   name: "Sebastian Sierra",
   title: "Full-Stack Developer con foco en Frontend",
@@ -38,6 +55,130 @@ export const aboutData = {
     { role: "Frontend Developer", period: "Proyectos académicos y personales", description: "Diseño y desarrollo de experiencias responsive, dashboards y componentes reutilizables." },
   ],
 };
+
+export const experienceTimeline: ExperienceEntry[] = [
+  {
+    id: "freelance",
+    code: "M-01",
+    company: "Freelance",
+    period: "2023 - 2024",
+    start: 2023,
+    end: 2024,
+    status: "completed",
+    context: "Proyectos independientes",
+    role: "Frontend y full stack developer",
+    summary: "Primeras experiencias construyendo productos digitales, interfaces responsive y soluciones para necesidades concretas.",
+    highlights: ["Interfaces responsive", "Prototipos funcionales", "Entrega directa con clientes"],
+    stack: ["React", "TypeScript", "Next.js"],
+    accent: "#f97316",
+  },
+  {
+    id: "uceva-emid",
+    code: "M-02",
+    company: "UCEVA / EMID Dengue",
+    period: "2024",
+    start: 2024,
+    end: 2024.6,
+    status: "completed",
+    context: "Investigación",
+    role: "Desarrollo de herramienta digital",
+    summary: "Colaboración en una iniciativa de investigación, conectando necesidades del proyecto con una experiencia digital clara.",
+    highlights: ["Análisis del problema", "Organización de información", "Trabajo colaborativo"],
+    stack: ["JavaScript", "UI", "Datos"],
+    accent: "#eab308",
+  },
+  {
+    id: "sumservicios-dnj",
+    code: "M-03",
+    company: "SumServicios DNJ",
+    period: "2024 - 2025",
+    start: 2024.45,
+    end: 2025.35,
+    status: "completed",
+    context: "Prestación de servicios",
+    role: "Desarrollo web",
+    summary: "Construcción y ajuste de experiencias web para resolver necesidades operativas con entregas concretas.",
+    highlights: ["Desarrollo frontend", "Integración de servicios", "Ajustes orientados al negocio"],
+    stack: ["React", "APIs", "Responsive UI"],
+    accent: "#14b8a6",
+  },
+  {
+    id: "websen",
+    code: "M-04",
+    company: "Websen",
+    period: "2025",
+    start: 2025.1,
+    end: 2025.55,
+    status: "completed",
+    context: "Colaboración web",
+    role: "Frontend developer",
+    summary: "Participación en productos web donde la presentación del contenido y la consistencia visual fueron parte central del trabajo.",
+    highlights: ["Maquetación web", "Componentes reutilizables", "Criterio visual"],
+    stack: ["React", "CSS", "JavaScript"],
+    accent: "#64748b",
+  },
+  {
+    id: "sancocho-labs",
+    code: "M-05",
+    company: "Sancocho Labs",
+    period: "2025",
+    start: 2025.15,
+    end: 2025.75,
+    status: "completed",
+    context: "Laboratorio de producto",
+    role: "Frontend y producto",
+    summary: "Colaboración en ideas y productos digitales con énfasis en convertir conceptos en experiencias navegables.",
+    highlights: ["Exploración de producto", "Prototipado", "Iteración rápida"],
+    stack: ["Next.js", "TypeScript", "Design Systems"],
+    accent: "#84cc16",
+  },
+  {
+    id: "arawana-studios",
+    code: "M-06",
+    company: "Arawana Studios",
+    period: "2025 - 2026",
+    start: 2025.3,
+    end: 2026,
+    status: "current",
+    context: "Prestación de servicios",
+    role: "Frontend y full stack developer",
+    summary: "Desarrollo de interfaces y productos web con una base técnica preparada para crecer y mantenerse.",
+    highlights: ["Interfaces de producto", "Arquitectura frontend", "Entrega de funcionalidades"],
+    stack: ["React", "Next.js", "TypeScript"],
+    accent: "#22c55e",
+  },
+  {
+    id: "prometeondev",
+    code: "M-07",
+    company: "PrometeonDev",
+    period: "2025 - Actualidad",
+    start: 2025,
+    end: 2026,
+    status: "current",
+    context: "Emprendimiento propio con amigos",
+    role: "Diseño y desarrollo frontend / full stack",
+    summary: "He participado en gran parte del diseño y desarrollo de PrometeonDev, construyendo una presencia digital y productos que conectan experiencia, tecnología y negocio.",
+    highlights: ["Diseño de interfaces", "Desarrollo de productos web", "Trabajo colaborativo"],
+    stack: ["Next.js", "React", "TypeScript", "UI Systems"],
+    accent: "#f97316",
+    url: "https://prometeondev.com",
+  },
+  {
+    id: "atlas",
+    code: "M-08",
+    company: "Atlas",
+    period: "2026 - Actualidad",
+    start: 2026,
+    end: 2026.3,
+    status: "current",
+    context: "Contratado por la empresa",
+    role: "Full stack developer",
+    summary: "Experiencia actual orientada a construir y mantener soluciones digitales dentro de un entorno de trabajo profesional.",
+    highlights: ["Desarrollo de producto", "Colaboración con equipos", "Mantenimiento evolutivo"],
+    stack: ["Frontend", "Backend", "Bases de datos"],
+    accent: "#fb923c",
+  },
+];
 
 export type SkillCategory = "Web" | "AI & GenAI" | "Mobile" | "Infra" | "DesignOps";
 export type SkillCell = "rag" | "phone" | "next" | "neural" | "ts" | "chip";
@@ -107,6 +248,11 @@ export const websiteProjects: Project[] = [
     id: "turismo-app", name: "Turismo App", tagline: "Descubrir rutas y experiencias", type: "App web frontend", description: "Frontend web para presentar rutas, experiencias y contenido turístico de forma visual y fácil de explorar.",
     caseStudy: "Turismo App trabaja la presentación del contenido como parte central del producto: navegación directa, diseño responsive y una estructura preparada para crecer hacia más rutas y experiencias.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Responsive UI"], color: "#2563EB", liveUrl: "https://turismo-app-five-black.vercel.app", githubUrl: "https://github.com/SebastianSierra15/turismo-app", imageUrl: projectImage, useIframe: false,
+  },
+  {
+    id: "prometeondev", name: "PrometeonDev", tagline: "Diseño y desarrollo de productos digitales", type: "Sitio web colaborativo", description: "Sitio web y ecosistema digital de la empresa donde colaboro, con una identidad visual y una experiencia que ayudé a diseñar y desarrollar.",
+    caseStudy: "PrometeonDev es un trabajo colaborativo con amigos y una parte importante de mi experiencia profesional. Mi participación incluye decisiones de diseño, construcción de interfaces y desarrollo frontend para comunicar mejor los servicios y productos del equipo.",
+    stack: ["Next.js", "React", "TypeScript", "UI Systems", "SEO"], color: "#f97316", liveUrl: "https://prometeondev.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
   },
 ];
 

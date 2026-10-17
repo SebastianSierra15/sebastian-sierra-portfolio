@@ -9,6 +9,7 @@ import PresenceChip from "@/components/hero/PresenceChip";
 const LINKS = [
   { id: "stack", label: "Tecnologías" },
   { id: "work", label: "Proyectos" },
+  { id: "experience", label: "Experiencia" },
 ];
 
 export default function Navbar() {
