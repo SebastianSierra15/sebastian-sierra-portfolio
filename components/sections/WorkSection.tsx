@@ -254,7 +254,11 @@ function ConceptPreview({ project }: { project: Project }) {
 function AppProjectBlock({ project, index }: { project: Project, index: number }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobileApp = project.id === "fudia" || project.id === "simulador";
-    const appPreviewSrc = project.id === "simulador" ? "/assets/projects/simulador-mobile.png" : project.imageUrl;
+    const appPreviewSrc = project.id === "simulador"
+        ? "/assets/projects/simulador-mobile.png"
+        : project.id === "fudia"
+            ? "/assets/projects/fudia-mobile.png"
+            : project.imageUrl;
 
     return (
         <div ref={containerRef} className="app-project-block" style={{ width: "100%", margin: "0 auto 80px", position: "relative" }}>
@@ -263,7 +267,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
             }}>
                 <div className={isMobileApp ? "app-mockup" : "product-mockup"} style={{ flex: "0 0 340px", width: "340px", display: "flex", justifyContent: "center" }}>
                     {isMobileApp ? (
-                        <PhoneFrame src={appPreviewSrc} accentColor={project.color} alt={project.name} fullScreen={project.id === "simulador"} />
+                        <PhoneFrame src={appPreviewSrc} accentColor={project.color} alt={project.name} fullScreen />
                     ) : (
                         <ProductVisual project={project} />
                     )}
@@ -291,13 +295,23 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
                             </div>
                         </div>
 
-                        <h3 style={{
-                            fontSize: "clamp(36px, 4vw, 58px)", fontWeight: 800, margin: "0 0 12px 0",
-                            fontFamily: "var(--font-display), sans-serif",
-                            letterSpacing: "-0.04em", color: "#0f172a", lineHeight: 1.06
-                        }}>
-                            {project.name}
-                        </h3>
+                        <div style={{ display: "flex", alignItems: "center", gap: "14px", margin: "0 0 12px 0" }}>
+                            {project.logoSrc && (
+                                <img
+                                    src={project.logoSrc}
+                                    alt={`Logo de ${project.name}`}
+                                    title={`Logo de ${project.name}`}
+                                    style={{ width: "48px", height: "48px", objectFit: "contain", borderRadius: "12px", flexShrink: 0 }}
+                                />
+                            )}
+                            <h3 style={{
+                                fontSize: "clamp(36px, 4vw, 58px)", fontWeight: 800, margin: 0,
+                                fontFamily: "var(--font-display), sans-serif",
+                                letterSpacing: "-0.04em", color: "#0f172a", lineHeight: 1.06
+                            }}>
+                                {project.name}
+                            </h3>
+                        </div>
                         
                         <p style={{
                             fontSize: "20px", color: project.color, margin: "0 0 40px 0",

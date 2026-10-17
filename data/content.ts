@@ -11,6 +11,7 @@ export interface Project {
   githubUrl: string;
   imageUrl: string;
   useIframe?: boolean;
+  logoSrc?: string;
 }
 
 export interface ExperienceEntry {
@@ -212,7 +213,7 @@ export const appProjects: Project[] = [
   {
     id: "fudia", name: "Fudia", tagline: "Seguimiento nutricional con IA", type: "App móvil", description: "Aplicación para registrar comidas por foto, texto o voz, analizar su información nutricional y seguir metas, historial y progreso diario.",
     caseStudy: "Fudia combina una app móvil con landing, portal web y superficies administrativas sobre un mismo sistema. El flujo permite capturar una comida por imagen, texto o audio, recibir un análisis nutricional asistido por IA, registrar el resultado y consultar metas, historial y métricas desde un dashboard. La arquitectura integra React Native, Expo, Next.js, Appwrite y funciones serverless.",
-    stack: ["React Native", "Expo", "Next.js", "Appwrite", "OpenAI API", "UI Systems"], color: "#52B788", liveUrl: "https://fudia.app", githubUrl: "#", imageUrl: projectImage,
+    stack: ["React Native", "Expo", "Next.js", "Appwrite", "OpenAI API", "UI Systems"], color: "#52B788", liveUrl: "https://fudia.app", githubUrl: "#", imageUrl: projectImage, logoSrc: "/assets/experience/fudia.png",
   },
   {
     id: "souls-in-xtinction", name: "Souls in Xtinction", tagline: "Plataforma digital para un TCG colombiano", type: "Juego de cartas coleccionables", description: "Plataforma para descubrir cartas y productos, construir mazos, consultar reglas, seguir torneos, noticias, perfiles y la comunidad del juego.",
@@ -222,7 +223,7 @@ export const appProjects: Project[] = [
   {
     id: "simulador", name: "Simulador", tagline: "Mesa web para partidas del TCG", type: "Simulador web del juego", description: "Mesa digital para jugar partidas de Souls In Xtinction en salas en tiempo real, mover cartas entre zonas, consultar mazos y conversar durante la partida.",
     caseStudy: "El simulador lleva la mesa de Souls In Xtinction al navegador. Permite crear o unirse a salas, seleccionar mazos, mover cartas entre mano, mazos, campo, cementerio, limbo y otras zonas, mantener el estado sincronizado entre jugadores y usar chat de sala. El servidor valida las acciones principales y protege la información privada de cada jugador mediante React, TypeScript, Colyseus y contratos compartidos.",
-    stack: ["React", "TypeScript", "Vite", "Colyseus", "MongoDB"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
+    stack: ["React", "TypeScript", "Vite", "Colyseus", "MongoDB"], color: "#2563EB", liveUrl: "https://simulador.soulsinxtinction.com", githubUrl: "#", imageUrl: projectImage, useIframe: false, logoSrc: "/assets/experience/soulsinxtinction.ico",
   },
 ];
 
