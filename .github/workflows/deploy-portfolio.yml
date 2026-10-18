@@ -1,0 +1,100 @@
+name: Deploy portfolio
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to personal VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+
+      - name: Create release archive
+        run: git archive --format=tar.gz --output="portfolio-${GITHUB_SHA}.tar.gz" HEAD
+
+      - name: Configure deploy SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.PORTFOLIO_DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.PORTFOLIO_VPS_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_KEY" > "$HOME/.ssh/portfolio_deploy"
+          printf '%s\n' "$KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/portfolio_deploy" "$HOME/.ssh/known_hosts"
+
+      - name: Upload release archive
+        env:
+          VPS_HOST: ${{ secrets.PORTFOLIO_VPS_HOST }}
+          VPS_USER: ${{ secrets.PORTFOLIO_VPS_USER }}
+        run: |
+          scp -i "$HOME/.ssh/portfolio_deploy" \
+            "portfolio-${GITHUB_SHA}.tar.gz" \
+            "${VPS_USER}@${VPS_HOST}:/opt/backups/portfolio/portfolio-${GITHUB_SHA}.tar.gz"
+
+      - name: Deploy and verify
+        env:
+          VPS_HOST: ${{ secrets.PORTFOLIO_VPS_HOST }}
+          VPS_USER: ${{ secrets.PORTFOLIO_VPS_USER }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          ssh -i "$HOME/.ssh/portfolio_deploy" "${VPS_USER}@${VPS_HOST}" \
+            "RELEASE_SHA=${RELEASE_SHA} bash -s" <<'REMOTE'
+          set -Eeuo pipefail
+
+          archive="/opt/backups/portfolio/portfolio-${RELEASE_SHA}.tar.gz"
+          app_dir="/opt/apps/portfolio"
+          compose_file="/opt/infra/portfolio/docker-compose.production.yml"
+          staging_dir="/opt/apps/portfolio-staging-${RELEASE_SHA}"
+          previous_backup="/opt/backups/portfolio/previous-${RELEASE_SHA}.tar.gz"
+
+          rollback() {
+            echo "Deployment failed; restoring previous portfolio source..."
+            rm -rf "$app_dir"
+            mkdir -p "$app_dir"
+            tar -xzf "$previous_backup" -C "$app_dir"
+            docker compose -f "$compose_file" up -d --build portfolio-web || true
+          }
+
+          trap rollback ERR
+
+          test -s "$archive"
+          mkdir -p /opt/backups/portfolio
+          tar -czf "$previous_backup" -C "$app_dir" .
+          rm -rf "$staging_dir"
+          mkdir -p "$staging_dir"
+          tar -xzf "$archive" -C "$staging_dir"
+
+          rm -rf "$app_dir"
+          mv "$staging_dir" "$app_dir"
+          docker compose -f "$compose_file" up -d --build --remove-orphans portfolio-web
+
+          for attempt in $(seq 1 30); do
+            health="$(docker inspect -f '{{.State.Health.Status}}' portfolio-portfolio-web-1 2>/dev/null || true)"
+            if [ "$health" = "healthy" ]; then
+              break
+            fi
+            if [ "$attempt" = "30" ]; then
+              echo "Portfolio health check did not become healthy" >&2
+              exit 1
+            fi
+            sleep 2
+          done
+
+          curl --fail --silent --show-error --max-time 20 \
+            https://sierra.prometeondev.com/robots.txt >/dev/null
+          trap - ERR
+          echo "Portfolio deployed: ${RELEASE_SHA}"
+          REMOTE

@@ -55,6 +55,7 @@ function TimelineEntry({
       <span className="experience-row-label">
         <span>{entry.code}</span>
         <strong>{entry.company}</strong>
+        <small className="experience-row-period">{entry.period}</small>
       </span>
       <span className="experience-bar-button" aria-hidden="true">
         <span
@@ -64,7 +65,6 @@ function TimelineEntry({
           <span className="experience-bar-glow" />
           <span className="experience-bar-dot" />
         </span>
-        <span className="experience-bar-tooltip">{entry.period}</span>
       </span>
       <span
         className="experience-row-context"
@@ -351,6 +351,8 @@ export default function ExperienceSection() {
           align-items: baseline;
           gap: 8px;
           min-width: 0;
+          max-width: calc(100% - 210px);
+          overflow: hidden;
           padding: 0 12px 0 10px;
           background: linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.86) 76%, rgba(255, 255, 255, 0) 100%);
         }
@@ -363,10 +365,20 @@ export default function ExperienceSection() {
         }
 
         .experience-row-label strong {
+          min-width: 0;
           overflow: hidden;
           color: #5e4d43;
           font-size: 12px;
           text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .experience-row-period {
+          flex: 0 0 auto;
+          color: #998b82;
+          font-family: var(--font-mono), monospace;
+          font-size: 9px;
+          line-height: 1.2;
           white-space: nowrap;
         }
 
@@ -424,24 +436,6 @@ export default function ExperienceSection() {
           box-shadow: 0 0 0 2px color-mix(in srgb, var(--bar-color) 32%, transparent);
           transform: translateY(-50%);
         }
-
-        .experience-bar-tooltip {
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding: 2px 6px;
-          border-radius: 4px;
-          background: rgba(255, 250, 246, 0.92);
-          color: #8d7668;
-          font-family: var(--font-mono), monospace;
-          font-size: 9px;
-          opacity: 0;
-          transform: translateY(-4px);
-          transition: opacity 180ms ease, transform 180ms ease;
-        }
-
-        .experience-row:hover .experience-bar-tooltip,
-        .experience-row.is-selected .experience-bar-tooltip { opacity: 1; transform: translateY(0); }
 
         .experience-row-context {
           position: absolute;
@@ -524,7 +518,7 @@ export default function ExperienceSection() {
           .experience-row-label span { font-size: 10px; }
           .experience-row-label strong { font-size: 11px; }
           .experience-bar { min-width: 24px; }
-          .experience-bar-tooltip { display: none; }
+          .experience-row-period { display: none; }
           .experience-details { padding: 28px 22px; }
           .experience-details-title { align-items: flex-start; gap: 12px; }
           .experience-details-title .experience-brand-mark { width: 48px; height: 48px; border-radius: 13px; }
@@ -535,7 +529,6 @@ export default function ExperienceSection() {
         @media (prefers-reduced-motion: reduce) {
           .experience-row,
           .experience-bar,
-          .experience-bar-tooltip,
           .experience-details-link { transition: none; }
           .experience-details { animation: none; }
         }
