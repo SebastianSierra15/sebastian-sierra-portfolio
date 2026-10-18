@@ -111,9 +111,9 @@ export const metadata: Metadata = {
     images: ["/assets/sebastian-sierra.jpg"],
   },
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
   keywords: [
     "Sebastián Sierra",

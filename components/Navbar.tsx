@@ -5,14 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import PresenceChip from "@/components/hero/PresenceChip";
+import { SHOW_WORK_SECTION } from "@/lib/portfolio-features";
 
 const LINKS = [
-  { id: "stack", label: "Tecnologías" },
   { id: "work", label: "Proyectos" },
   { id: "experience", label: "Experiencia" },
+  { id: "stack", label: "Tecnologías" },
 ];
 
 export default function Navbar() {
+  const visibleLinks = LINKS.filter((link) => link.id !== "work" || SHOW_WORK_SECTION);
   const pathname = usePathname();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
@@ -150,7 +152,7 @@ export default function Navbar() {
               pointerEvents: "none",
             }}
           />
-          {LINKS.map((l, i) => (
+          {visibleLinks.map((l, i) => (
             <a
               key={l.id}
               title={`Ir a ${l.label}`}

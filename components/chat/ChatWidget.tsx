@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { SHOW_WORK_SECTION } from "@/lib/portfolio-features";
 
 interface Message {
   id: string;
@@ -25,6 +26,10 @@ const QUICK_CHIPS = [
   { label: "Muéstrame tus proyectos", action: "work" },
   { label: "Quiero solicitar una cotización", action: "quote" },
 ] as const;
+
+const VISIBLE_QUICK_CHIPS = QUICK_CHIPS.filter(
+  (chip) => chip.action !== "work" || SHOW_WORK_SECTION
+);
 
 const FONT = "var(--font-inter), Inter, -apple-system, sans-serif";
 
@@ -474,7 +479,7 @@ export default function ChatWidget() {
           {/* Quick chips — only under welcome message */}
           {showChips && messages.length === 1 && (
             <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", marginTop: "4px" }}>
-              {QUICK_CHIPS.map((chip) => (
+              {VISIBLE_QUICK_CHIPS.map((chip) => (
                 <button
                   key={chip.label}
                   onClick={() => handleQuickChip(chip)}

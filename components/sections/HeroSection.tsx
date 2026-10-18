@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { SHOW_WORK_SECTION } from "@/lib/portfolio-features";
 import type {
   Group,
   Mesh,
@@ -623,10 +624,12 @@ export default function HeroSection() {
           </p>
 
           <div className="hero-actions" aria-label="Acciones principales">
-            <a className="hero-primary" href="#work" title="Ver proyectos destacados" onClick={scrollToWork}>
-              Ver proyectos
-              <span aria-hidden="true">+</span>
-            </a>
+            {SHOW_WORK_SECTION && (
+              <a className="hero-primary" href="#work" title="Ver proyectos destacados" onClick={scrollToWork}>
+                Ver proyectos
+                <span aria-hidden="true">+</span>
+              </a>
+            )}
             <Link className="hero-secondary" href="/quote" title="Cuéntame qué necesitas">
               Cuéntame qué necesitas
             </Link>
