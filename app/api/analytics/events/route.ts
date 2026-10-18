@@ -13,6 +13,24 @@ export async function POST(request: Request) {
 
   const supabaseUrl = process.env.SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const monitorUrl = process.env.MONITOR_INGEST_URL;
+  const monitorToken = process.env.MONITOR_INGEST_TOKEN;
+  let stored = false;
+
+  if (monitorUrl && monitorToken) {
+    try {
+      const response = await fetch(monitorUrl, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${monitorToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(2000),
+      });
+      stored = response.ok;
+    } catch {
+      // Telemetry must never delay or break the visitor experience.
+    }
+  }
+
   if (supabaseUrl && serviceRoleKey) {
     // The first production table only allowed the original six event names.
     // Keep new telemetry flowing before its check constraint is migrated by
@@ -27,8 +45,8 @@ export async function POST(request: Request) {
       headers: { apikey: serviceRoleKey, Authorization: `Bearer ${serviceRoleKey}`, "Content-Type": "application/json", Prefer: "return=minimal" },
       body: JSON.stringify({ event_name: storedEventName, path: payload.path, session_id: payload.sessionId ?? null, project_slug: payload.projectSlug ?? null, metadata: storedMetadata, occurred_at: payload.occurredAt }),
     });
-    if (!response.ok) return NextResponse.json({ ok: false, error: "storage_failed" }, { status: 502 });
+    if (response.ok) stored = true;
   }
 
-  return NextResponse.json({ ok: true, stored: Boolean(supabaseUrl && serviceRoleKey) });
+  return NextResponse.json({ ok: true, stored });
 }
