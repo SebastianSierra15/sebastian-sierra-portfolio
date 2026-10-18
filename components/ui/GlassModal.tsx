@@ -126,6 +126,7 @@ export default function GlassModal({ project, isOpen, onClose }: GlassModalProps
                 {project.liveUrl !== "#" && (
                   <a
                     href={project.liveUrl}
+                    title={`Visitar el sitio de ${project.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white text-sm font-semibold transition-all hover:shadow-lg hover:shadow-blue-200/50 active:scale-95"
@@ -138,6 +139,7 @@ export default function GlassModal({ project, isOpen, onClose }: GlassModalProps
                 {project.githubUrl !== "#" && (
                   <a
                     href={project.githubUrl}
+                    title={`Ver el código de ${project.name} en GitHub`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1d1d1f] text-white text-sm font-semibold transition-all hover:bg-[#424245] active:scale-95"

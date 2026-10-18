@@ -49,6 +49,7 @@ export default function ConnectChips() {
         <a
           key={c.label}
           href={c.href}
+          title={`Conectar en ${c.label}`}
           target={c.href.startsWith("http") ? "_blank" : undefined}
           rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
           data-cursor="click"

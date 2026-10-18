@@ -42,6 +42,7 @@ export default function CurrentlyShipping() {
 
       <Link
         href="/quote"
+        title="Hablar sobre un nuevo proyecto"
         data-cursor="click"
         className="cs-cta"
         style={{

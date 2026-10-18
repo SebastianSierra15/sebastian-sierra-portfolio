@@ -79,7 +79,11 @@ function MagneticButton({
 
   if (href) {
     return (
-      <a href={href} className="inline-block">
+      <a
+        href={href}
+        title={href === "#projects" ? "Ver proyectos destacados" : "Descargar el CV en PDF"}
+        className="inline-block"
+      >
         {ButtonContent}
       </a>
     );

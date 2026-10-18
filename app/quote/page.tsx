@@ -142,7 +142,7 @@ export default function QuotePage() {
         }}>
             {/* Top Bar */}
             <div className="quote-top-bar" style={{ width: "100%", maxWidth: "560px", marginBottom: "20px" }}>
-                <Link href="/" className="back-link" style={{
+                <Link href="/" title="Volver al portafolio" className="back-link" style={{
                     fontSize: "14px",
                     color: "#86868b",
                     textDecoration: "none",
@@ -568,7 +568,7 @@ export default function QuotePage() {
                                 Gracias, {formData.name}. Revisaré tu solicitud y te responderé en un máximo de 12 horas.
                             </p>
                             
-                            <Link href="/" style={{
+                            <Link href="/" title="Volver al portafolio" style={{
                                 padding: "14px 32px", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "12px",
                                 color: "#1d1d1f", fontSize: "16px", fontWeight: 600, textDecoration: "none", marginBottom: "32px",
                                 transition: "all 0.2s ease"

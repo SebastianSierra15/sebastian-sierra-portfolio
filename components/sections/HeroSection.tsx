@@ -623,11 +623,11 @@ export default function HeroSection() {
           </p>
 
           <div className="hero-actions" aria-label="Acciones principales">
-            <a className="hero-primary" href="#work" onClick={scrollToWork}>
+            <a className="hero-primary" href="#work" title="Ver proyectos destacados" onClick={scrollToWork}>
               Ver proyectos
               <span aria-hidden="true">+</span>
             </a>
-            <Link className="hero-secondary" href="/quote">
+            <Link className="hero-secondary" href="/quote" title="Cuéntame qué necesitas">
               Cuéntame qué necesitas
             </Link>
           </div>

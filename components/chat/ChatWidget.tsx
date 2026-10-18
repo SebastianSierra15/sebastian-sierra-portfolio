@@ -53,6 +53,7 @@ function renderInlineMarkdown(text: string): ReactNode[] {
         <a
           key={`link-${match.index}`}
           href={match[3]}
+          title={match[2]}
           target={match[3]?.startsWith("http") ? "_blank" : undefined}
           rel={match[3]?.startsWith("http") ? "noreferrer" : undefined}
           style={{ color: "#c2410c", textDecoration: "underline", textUnderlineOffset: "2px" }}
@@ -508,6 +509,7 @@ export default function ChatWidget() {
           {showQuoteLink && (
             <Link
               href="/quote"
+              title="Solicitar una cotización"
               style={{
                 alignSelf: "flex-start",
                 padding: "7px 14px",

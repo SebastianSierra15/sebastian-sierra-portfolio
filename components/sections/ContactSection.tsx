@@ -203,6 +203,7 @@ export default function ContactSection() {
                 <div className="primary-cta" style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "32px" }}>
                     <Link 
                         href="/quote"
+                        title="Solicitar una cotización"
                         className="cta-primary banner-cta"
                         style={{
                             display: "flex", justifyContent: "center", alignItems: "center", gap: "12px",
@@ -228,6 +229,7 @@ export default function ContactSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Iniciar una conversación por WhatsApp"
+                        title="Iniciar una conversación por WhatsApp"
                         style={{
                             display: "inline-flex",
                             alignItems: "center",
@@ -255,6 +257,7 @@ export default function ContactSection() {
                         href={aboutData.githubUrl || "https://github.com/SebastianSierra15"} 
                         target="_blank"
                         rel="noopener noreferrer"
+                        title="Visitar el perfil de GitHub"
                         style={{
                             padding: "14px 32px", border: "1px solid rgba(0,0,0,0.12)", backgroundColor: "transparent", color: "#1d1d1f",
                             borderRadius: "12px", textDecoration: "none", fontWeight: 600, fontSize: "16px",
@@ -274,6 +277,7 @@ export default function ContactSection() {
                 <div className="secondary-fade" style={{ marginBottom: "64px" }}>
                     <a 
                         href="mailto:sebsirra13@gmail.com"
+                        title="Enviar un correo electrónico"
                         className="email-link-light"
                         style={{
                             color: "#86868b",
@@ -309,12 +313,12 @@ export default function ContactSection() {
                 <div>© {new Date().getFullYear()} {aboutData.name}. Todos los derechos reservados.</div>
                 
                 <div style={{ display: "flex", gap: "24px" }}>
-                    <a href={aboutData.githubUrl || "https://github.com/SebastianSierra15"} target="_blank" rel="noreferrer" className="social-icon">
+                    <a href={aboutData.githubUrl || "https://github.com/SebastianSierra15"} target="_blank" rel="noreferrer" className="social-icon" aria-label="GitHub" title="Visitar GitHub">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                         </svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/sebasti%C3%A1n-sierra-417358263/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/sebasti%C3%A1n-sierra-417358263/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn" title="Visitar LinkedIn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                             <rect x="2" y="9" width="4" height="12"></rect>

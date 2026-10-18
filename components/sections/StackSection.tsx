@@ -251,6 +251,7 @@ export default function StackSection() {
               <a
                 className="cv-download"
                 href="/CV-SebastianSierra.pdf"
+                title="Descargar el CV en PDF"
                 download
                 data-cursor="click"
               >

@@ -311,7 +311,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
 
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginTop: "40px" }} className="project-actions">
                             {project.liveUrl && project.liveUrl !== "#" && (
-                                <Link href={project.liveUrl} target="_blank" style={{
+                                <Link href={project.liveUrl} target="_blank" title={`Visitar el sitio de ${project.name}`} style={{
                                     padding: "14px 32px", backgroundColor: "#1d1d1f", color: "#fff",
                                     borderRadius: "12px", textDecoration: "none", fontWeight: 600, fontSize: "16px",
                                     transition: "all 0.2s ease", display: "inline-block", textAlign: "center"
@@ -320,7 +320,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
                                 </Link>
                             )}
                             {project.githubUrl && project.githubUrl !== "#" && (
-                                <Link href={project.githubUrl} target="_blank" style={{
+                                <Link href={project.githubUrl} target="_blank" title={`Ver el código de ${project.name} en GitHub`} style={{
                                     padding: "14px 32px", backgroundColor: "transparent", color: "#1d1d1f",
                                     border: "1px solid rgba(0,0,0,0.12)", borderRadius: "12px", textDecoration: "none", 
                                     fontWeight: 600, fontSize: "16px", transition: "all 0.2s ease", display: "inline-block", textAlign: "center"
@@ -517,7 +517,7 @@ function WebsiteCard({ project }: { project: Project }) {
 
                 <div style={{ display: "flex", gap: "8px", marginTop: "20px" }}>
                     {hasLiveUrl && (
-                        <Link href={project.liveUrl} target="_blank" style={{
+                        <Link href={project.liveUrl} target="_blank" title={`Visitar el sitio de ${project.name}`} style={{
                             flex: 1, padding: "10px 0", backgroundColor: "#1d1d1f", color: "#fff",
                             borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "14px",
                             textAlign: "center", transition: "all 0.2s ease"
@@ -526,7 +526,7 @@ function WebsiteCard({ project }: { project: Project }) {
                         </Link>
                     )}
                     {project.githubUrl && project.githubUrl !== "#" && (
-                        <Link href={project.githubUrl} target="_blank" style={{
+                        <Link href={project.githubUrl} target="_blank" title={`Ver el código de ${project.name} en GitHub`} style={{
                             flex: 1, padding: "10px 0", backgroundColor: "transparent", color: "#1d1d1f",
                             border: "1px solid rgba(0,0,0,0.12)", borderRadius: "8px", textDecoration: "none", 
                             fontWeight: 600, fontSize: "14px", textAlign: "center", transition: "all 0.2s ease"

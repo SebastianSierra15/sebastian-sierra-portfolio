@@ -108,6 +108,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
+          title="Ir al inicio del portafolio"
           data-cursor="click"
           onClick={handleHomeClick}
           style={{
@@ -152,6 +153,7 @@ export default function Navbar() {
           {LINKS.map((l, i) => (
             <a
               key={l.id}
+              title={`Ir a ${l.label}`}
               ref={(el) => { linkRefs.current[i] = el; }}
               href={`/#${l.id}`}
               data-cursor="click"
@@ -187,6 +189,7 @@ export default function Navbar() {
         {/* Primary CTA */}
         <Link
           href="/quote"
+          title="Hablar sobre un proyecto"
           data-cursor="click"
           onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#ea580c"; }}
           onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "#f97316")}

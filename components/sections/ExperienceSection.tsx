@@ -96,7 +96,7 @@ function ExperienceDetails({ entry }: { entry: ExperienceEntry }) {
         {links.length > 0 && (
           <div className="experience-details-links">
             {links.map((link) => (
-              <Link key={link.url} href={link.url} target="_blank" rel="noreferrer" className="experience-details-link">
+              <Link key={link.url} href={link.url} target="_blank" rel="noreferrer" className="experience-details-link" title={`Ver ${link.label}`}>
                 Ver {link.label} <span aria-hidden="true">↗</span>
               </Link>
             ))}
