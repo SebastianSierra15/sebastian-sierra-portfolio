@@ -11,7 +11,7 @@ import "./globals.css";
 const siteUrl = getSiteUrl();
 const siteTitle = "Sebastián Sierra | Desarrollador Full-Stack";
 const siteDescription =
-  "Portafolio de Sebastián Sierra, desarrollador full-stack en Colombia. Diseño y construyo productos web, apps móviles, automatizaciones y sistemas digitales.";
+  "Sebastián Sierra ayuda a empresas a entender sus necesidades, definir soluciones digitales y construir productos web, apps móviles, automatizaciones y sistemas de principio a fin.";
 
 const structuredData = {
   "@context": "https://schema.org",

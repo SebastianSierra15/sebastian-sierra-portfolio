@@ -249,7 +249,8 @@ export default function ChatWidget() {
       {/* ── FLOATING BUBBLE ── */}
       <button
         onClick={() => setIsOpen((v) => !v)}
-          aria-label={isOpen ? "Cerrar chat" : "Abrir chat con Sebastián"}
+        className={isOpen ? "chat-toggle is-open" : "chat-toggle"}
+        aria-label={isOpen ? "Cerrar chat" : "Abrir chat con Sebastián"}
         style={{
           position: "fixed",
           bottom: "24px",
@@ -636,6 +637,10 @@ export default function ChatWidget() {
           scrollbar-color: rgba(0,0,0,0.12) transparent;
         }
         @media (max-width: 640px) {
+          .chat-toggle.is-open {
+            display: none !important;
+          }
+
           .hire-nudge {
             right: 16px !important;
             bottom: 88px !important;

@@ -17,16 +17,6 @@ import type {
 
 const BUILD_LANES = [
   {
-    id: "web",
-    visualKind: "web",
-    label: "Productos web",
-    short: "Dashboards + apps",
-    line: "Interfaces rápidas, claras y cuidadas que ayudan a las personas a avanzar con confianza.",
-    metric: "Frontend + full stack",
-    accent: "#f97316",
-    secondaryAccent: "#ea580c",
-  },
-  {
     id: "ai",
     visualKind: "ai",
     label: "Automatizaciones",
@@ -35,6 +25,16 @@ const BUILD_LANES = [
     metric: "Herramientas internas",
     accent: "#ea580c",
     secondaryAccent: "#f97316",
+  },
+  {
+    id: "web",
+    visualKind: "web",
+    label: "Productos web",
+    short: "Dashboards + apps",
+    line: "Interfaces rápidas, claras y cuidadas que ayudan a las personas a avanzar con confianza.",
+    metric: "Frontend + full stack",
+    accent: "#f97316",
+    secondaryAccent: "#ea580c",
   },
   {
     id: "mobile",
@@ -615,11 +615,11 @@ export default function HeroSection() {
             <span>Sebastián Sierra · frontend y full stack</span>
           </div>
 
-          <h1>Construyo productos digitales que se sienten claros.</h1>
+          <h1>Entiendo lo que tu negocio necesita y lo convierto en software útil.</h1>
 
           <p className="hero-lede">
-            Diseño y desarrollo interfaces modernas, aplicaciones web y herramientas internas
-            con una base técnica lista para evolucionar.
+            Te ayudo a entender el problema, definir la mejor solución y construirla de principio a fin:
+            desde la idea y el diseño hasta el desarrollo y la puesta en marcha.
           </p>
 
           <div className="hero-actions" aria-label="Acciones principales">
@@ -628,7 +628,7 @@ export default function HeroSection() {
               <span aria-hidden="true">+</span>
             </a>
             <Link className="hero-secondary" href="/quote">
-              Hablemos de tu proyecto
+              Cuéntame qué necesitas
             </Link>
           </div>
 

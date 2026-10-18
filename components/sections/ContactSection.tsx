@@ -133,7 +133,7 @@ export default function ContactSection() {
                     margin: "0 0 64px 0", maxWidth: "560px", fontWeight: 400,
                     fontFamily: "var(--font-inter), Inter, sans-serif"
                 }}>
-                    Diseño y construyo interfaces, aplicaciones y herramientas internas que resuelven problemas reales. Cuéntame qué quieres construir y vemos el siguiente paso.
+                    Desde entender el problema hasta poner la solución en producción, te acompaño en todo el proceso de creación de tu producto digital.
                 </p>
 
                 {/* Service Cards */}

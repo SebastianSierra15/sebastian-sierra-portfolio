@@ -141,7 +141,7 @@ export default function QuotePage() {
             alignItems: "center"
         }}>
             {/* Top Bar */}
-            <div style={{ width: "100%", maxWidth: "560px", marginBottom: "20px" }}>
+            <div className="quote-top-bar" style={{ width: "100%", maxWidth: "560px", marginBottom: "20px" }}>
                 <Link href="/" className="back-link" style={{
                     fontSize: "14px",
                     color: "#86868b",
@@ -228,7 +228,7 @@ export default function QuotePage() {
                     {currentStep === 1 && (
                         <div>
                             <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#1d1d1f", textAlign: "center", marginBottom: "32px" }}>
-                                ¿Qué te gustaría que construyamos?
+                                ¿Qué necesitas resolver?
                             </h2>
                             <div style={{
                                 display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px"
@@ -244,6 +244,7 @@ export default function QuotePage() {
                                         <div
                                             key={option.id}
                                             onClick={() => updateData("service", option.id)}
+                                            className="quote-service-option"
                                             style={{
                                                 padding: "24px",
                                                 borderRadius: "16px",
@@ -275,15 +276,16 @@ export default function QuotePage() {
                                                     </svg>
                                                 </div>
                                             )}
-                                            <div style={{ fontSize: "32px", marginBottom: "16px" }}>{option.icon}</div>
-                                            <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1d1d1f", margin: "0 0 4px 0" }}>{option.title}</h3>
-                                            <p style={{ fontSize: "13px", color: "#86868b", margin: 0 }}>{option.subtitle}</p>
+                                            <div className="quote-service-icon" style={{ fontSize: "32px", marginBottom: "16px" }}>{option.icon}</div>
+                                            <h3 className="quote-service-title" style={{ fontSize: "16px", fontWeight: 700, color: "#1d1d1f", margin: "0 0 4px 0" }}>{option.title}</h3>
+                                            <p className="quote-service-subtitle" style={{ fontSize: "13px", color: "#86868b", margin: 0 }}>{option.subtitle}</p>
                                         </div>
                                     )
                                 })}
                             </div>
                             <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "32px" }}>
                                 <button
+                                    className="quote-nav-button"
                                     onClick={nextStep}
                                     disabled={!formData.service}
                                     style={{
@@ -352,6 +354,7 @@ export default function QuotePage() {
                             </div>
                             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "32px" }}>
                                 <button
+                                    className="quote-nav-button"
                                     onClick={prevStep}
                                     style={{
                                         padding: "14px 24px", borderRadius: "12px", background: "transparent",
@@ -364,6 +367,7 @@ export default function QuotePage() {
                                     ← Atrás
                                 </button>
                                 <button
+                                    className="quote-nav-button"
                                     onClick={nextStep}
                                     disabled={!formData.timeline}
                                     style={{
@@ -425,6 +429,7 @@ export default function QuotePage() {
                             </div>
                             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "32px" }}>
                                 <button
+                                    className="quote-nav-button"
                                     onClick={prevStep}
                                     style={{
                                         padding: "14px 24px", borderRadius: "12px", background: "transparent",
@@ -437,6 +442,7 @@ export default function QuotePage() {
                                     ← Atrás
                                 </button>
                                 <button
+                                    className="quote-nav-button"
                                     onClick={nextStep}
                                     disabled={!formData.budget}
                                     style={{
@@ -517,6 +523,7 @@ export default function QuotePage() {
 
                             <div style={{ display: "flex", gap: "12px", marginTop: "32px", width: "100%" }}>
                                 <button
+                                    className="quote-nav-button"
                                     onClick={prevStep}
                                     style={{
                                         padding: "14px 24px", borderRadius: "12px", background: "transparent",
@@ -589,6 +596,9 @@ export default function QuotePage() {
                 .quote-card {
                     /* Initial state handled by JS, but fallback here */
                 }
+                .quote-top-bar {
+                    margin-top: 64px;
+                }
                 .form-input:focus {
                     border-color: #f97316 !important;
                     box-shadow: 0 0 0 3px rgba(45,106,79,0.1) !important;
@@ -616,12 +626,41 @@ export default function QuotePage() {
                 }
                 
                 @media (max-width: 600px) {
+                    .quote-top-bar {
+                        margin-top: 64px;
+                        margin-bottom: 10px !important;
+                    }
                     .quote-card {
                         padding: 32px 24px !important;
-                        margin: 16px;
+                        margin: 8px 16px 16px;
                     }
                     .step-1-grid {
                         grid-template-columns: 1fr !important;
+                        gap: 10px !important;
+                    }
+                    .quote-service-option {
+                        display: grid;
+                        grid-template-columns: 32px minmax(0, 1fr);
+                        column-gap: 12px;
+                        align-items: center;
+                        padding: 13px 16px !important;
+                        border-radius: 12px !important;
+                    }
+                    .quote-service-icon {
+                        grid-row: span 2;
+                        margin: 0 !important;
+                        font-size: 24px !important;
+                        line-height: 1;
+                    }
+                    .quote-service-title {
+                        font-size: 15px !important;
+                    }
+                    .quote-service-subtitle {
+                        font-size: 12px !important;
+                    }
+                    .quote-nav-button {
+                        padding-left: 12px !important;
+                        padding-right: 12px !important;
                     }
                 }
 

@@ -20,9 +20,9 @@ export default function Home() {
       <HeroSection />
 
       {/* === Content Sections === */}
-      <StackSection />
       <WorkSection />
       <ExperienceSection />
+      <StackSection />
       <PlaygroundSection />
       <ContactSection />
     </main>

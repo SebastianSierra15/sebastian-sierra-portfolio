@@ -1082,6 +1082,31 @@ export default function StackSection() {
         }
 
         @media (max-width: 820px) {
+          .stack-inner {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .stack-intro-grid {
+            display: contents;
+          }
+
+          .stack-copy {
+            order: 1;
+          }
+
+          .lane-console {
+            order: 2;
+          }
+
+          .stack-visual-wrap {
+            order: 3;
+          }
+
+          .toolkit-shell {
+            order: 4;
+          }
+
           .stack-section {
             padding: 96px 16px 104px;
           }

@@ -514,9 +514,10 @@ export default function ExperienceSection() {
           .experience-axis-line b { height: calc(100% + 250px); }
           .experience-rows { min-width: 0; }
           .experience-axis { min-width: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); font-size: 12px; }
-          .experience-row-label { width: 50%; gap: 6px; padding-right: 6px; padding-left: 8px; }
+          .experience-row-label { width: 68%; max-width: 68%; gap: 6px; padding-right: 6px; padding-left: 8px; }
+          .experience-row-label > span:first-child { flex: 0 0 auto; }
           .experience-row-label span { font-size: 10px; }
-          .experience-row-label strong { font-size: 11px; }
+          .experience-row-label strong { flex: 0 1 auto; font-size: 11px; overflow: visible; text-overflow: clip; }
           .experience-bar { min-width: 24px; }
           .experience-row-period { display: none; }
           .experience-details { padding: 28px 22px; }
