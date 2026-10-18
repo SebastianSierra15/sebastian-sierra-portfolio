@@ -5,14 +5,20 @@ personal mediante Docker Compose y Caddy.
 
 ## Despliegue automático
 
-El workflow `.github/workflows/deploy-portfolio.yml` se ejecuta únicamente
-cuando cambia la rama `main` de este repositorio. También puede iniciarse
-manualmente con `workflow_dispatch`.
+La VPS personal ejecuta `portfolio-deploy.timer` cada dos minutos. El servicio
+consulta el SHA de `main` en GitHub y despliega únicamente cuando detecta un
+commit nuevo de este repositorio. No observa ni modifica los otros proyectos.
+
+El workflow `.github/workflows/deploy-portfolio.yml` queda disponible para
+ejecución manual con `workflow_dispatch`. Los runners hospedados de GitHub no
+se usan actualmente porque la cuenta tiene un bloqueo de facturación; el
+temporizador de la VPS mantiene activo el despliegue automático sin depender de
+ese servicio.
 
 El workflow:
 
-1. empaqueta el commit exacto que disparó la ejecución;
-2. lo copia a `/opt/backups/portfolio/`;
+1. consulta el commit exacto de `main`;
+2. descarga ese commit desde GitHub;
 3. conserva un backup de la versión anterior;
 4. reconstruye solamente `portfolio-web`;
 5. espera el health check del contenedor;
@@ -35,6 +41,7 @@ Cada despliegue guarda la fuente anterior en:
 /opt/backups/portfolio/previous-<sha>.tar.gz
 ```
 
-Si una reconstrucción falla, el workflow intenta restaurar automáticamente la
-fuente anterior y volver a levantar `portfolio-web`. Los archivos de entorno y
-la configuración de Caddy permanecen fuera del repositorio de la aplicación.
+Si una reconstrucción falla, el script de despliegue intenta restaurar
+automáticamente la fuente anterior y volver a levantar `portfolio-web`. Los
+archivos de entorno y la configuración de Caddy permanecen fuera del
+repositorio de la aplicación.

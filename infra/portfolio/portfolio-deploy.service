@@ -1,0 +1,12 @@
+[Unit]
+Description=Deploy portfolio main branch when it changes
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=portfolio-deploy
+Group=portfolio-deploy
+SupplementaryGroups=docker
+WorkingDirectory=/opt/infra/portfolio
+ExecStart=/opt/infra/portfolio/deploy-portfolio.sh
