@@ -547,7 +547,7 @@ export default function WorkSection() {
     const appsList = ["fudia", "simulador"]
         .map((id) => allProjects.find((project) => project.id === id))
         .filter(Boolean) as Project[];
-    const websiteOrder = ["souls-in-xtinction", "simulador", "fudia", "habitta", "prometeondev", "amaturis", "udlaverso"];
+    const websiteOrder = ["souls-in-xtinction", "simulador", "fudia", "habitta", "amaturis", "udlaverso", "prometeondev"];
     const websitesList = websiteOrder
         .map((id) => allProjects.find((project) => project.id === id))
         .filter((project): project is Project => Boolean(project));
