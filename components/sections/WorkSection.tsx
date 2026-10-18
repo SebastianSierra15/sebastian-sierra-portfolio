@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { allProjects, Project } from "@/data/content";
 import Image from "next/image";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -236,7 +237,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
             : project.imageUrl;
 
     return (
-        <div ref={containerRef} className="app-project-block" style={{ width: "100%", margin: "0 auto 80px", position: "relative" }}>
+        <div ref={containerRef} className="app-project-block" data-analytics-project={project.id} style={{ width: "100%", margin: "0 auto 80px", position: "relative" }}>
             <div className="app-container" style={{
                 display: "flex", width: "100%", gap: "60px", alignItems: "center"
             }}>
@@ -315,7 +316,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
                                     padding: "14px 32px", backgroundColor: "#1d1d1f", color: "#fff",
                                     borderRadius: "12px", textDecoration: "none", fontWeight: 600, fontSize: "16px",
                                     transition: "all 0.2s ease", display: "inline-block", textAlign: "center"
-                                }} className="btn-primary">
+                                }} className="btn-primary" onClick={() => void trackEvent({ name: "project_cta", projectSlug: project.id, metadata: { target: "live" } })}>
                                     Ver proyecto →
                                 </Link>
                             )}
@@ -324,7 +325,7 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
                                     padding: "14px 32px", backgroundColor: "transparent", color: "#1d1d1f",
                                     border: "1px solid rgba(0,0,0,0.12)", borderRadius: "12px", textDecoration: "none", 
                                     fontWeight: 600, fontSize: "16px", transition: "all 0.2s ease", display: "inline-block", textAlign: "center"
-                                }} className="btn-outline">
+                                }} className="btn-outline" onClick={() => void trackEvent({ name: "project_cta", projectSlug: project.id, metadata: { target: "github" } })}>
                                     GitHub
                                 </Link>
                             )}
@@ -396,7 +397,7 @@ function WebsiteCard({ project }: { project: Project }) {
     const useIframe = hasLiveUrl && isVisible && iframeState !== "failed" && project.useIframe !== false;
 
     return (
-        <div ref={cardRef} className="website-card" style={{
+        <div ref={cardRef} className="website-card" data-analytics-project={project.id} style={{
             backgroundColor: "#ffffff",
             borderRadius: "20px",
             border: "1px solid rgba(0,0,0,0.06)",
@@ -521,7 +522,7 @@ function WebsiteCard({ project }: { project: Project }) {
                             flex: 1, padding: "10px 0", backgroundColor: "#1d1d1f", color: "#fff",
                             borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "14px",
                             textAlign: "center", transition: "all 0.2s ease"
-                        }} className="btn-primary with-shine">
+                        }} className="btn-primary with-shine" onClick={() => void trackEvent({ name: "project_cta", projectSlug: project.id, metadata: { target: "live" } })}>
                             Ver sitio →
                         </Link>
                     )}
@@ -530,7 +531,7 @@ function WebsiteCard({ project }: { project: Project }) {
                             flex: 1, padding: "10px 0", backgroundColor: "transparent", color: "#1d1d1f",
                             border: "1px solid rgba(0,0,0,0.12)", borderRadius: "8px", textDecoration: "none", 
                             fontWeight: 600, fontSize: "14px", textAlign: "center", transition: "all 0.2s ease"
-                        }} className="btn-outline">
+                        }} className="btn-outline" onClick={() => void trackEvent({ name: "project_cta", projectSlug: project.id, metadata: { target: "github" } })}>
                             GitHub
                         </Link>
                     )}

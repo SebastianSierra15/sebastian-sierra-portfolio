@@ -1,10 +1,15 @@
 export const analyticsEventNames = [
   "page_view",
+  "session_start",
+  "section_view",
+  "scroll_depth",
   "project_view",
   "project_cta",
   "cv_download",
   "contact_click",
   "external_link_click",
+  "time_on_page",
+  "web_vital",
 ] as const;
 
 export type AnalyticsEventName = (typeof analyticsEventNames)[number];
@@ -21,7 +26,11 @@ export type AnalyticsEvent = {
 export function isAnalyticsEvent(value: unknown): value is AnalyticsEvent {
   if (!value || typeof value !== "object") return false;
   const event = value as Record<string, unknown>;
-  return typeof event.name === "string" && analyticsEventNames.includes(event.name as AnalyticsEventName) && typeof event.path === "string" && event.path.length <= 240 && typeof event.occurredAt === "string";
+  if (typeof event.name !== "string" || !analyticsEventNames.includes(event.name as AnalyticsEventName)) return false;
+  if (typeof event.path !== "string" || event.path.length > 240 || typeof event.occurredAt !== "string") return false;
+  if (event.sessionId !== undefined && (typeof event.sessionId !== "string" || event.sessionId.length > 80)) return false;
+  if (event.projectSlug !== undefined && (typeof event.projectSlug !== "string" || event.projectSlug.length > 120)) return false;
+  return event.metadata === undefined || (typeof event.metadata === "object" && event.metadata !== null);
 }
 
 export function getSessionId() {

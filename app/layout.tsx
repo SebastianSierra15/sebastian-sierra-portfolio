@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import ChatWidget from "@/components/chat/ChatWidget";
 import CustomCursor from "@/components/hero/CustomCursor";
 import PageLoader from "@/components/PageLoader";
+import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -149,6 +150,7 @@ export default function RootLayout({
         <LenisProvider>{children}</LenisProvider>
         <CustomCursor />
         <ChatWidget />
+        <AnalyticsTracker />
       </body>
     </html>
   );
