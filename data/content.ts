@@ -185,7 +185,7 @@ export const websiteProjects: Project[] = [
   {
     id: "habitta", name: "Habitta", tagline: "Plataforma digital para vivienda", type: "Product Website", description: "Plataforma inmobiliaria para explorar y administrar propiedades y proyectos, con filtros, mapas, galerías e información de contacto.",
     caseStudy: "Habitta conecta la experiencia pública de exploración inmobiliaria con herramientas privadas de gestión. El proyecto contempla autenticación, administración de propiedades y proyectos, filtros de búsqueda, ubicación en mapas, carga de imágenes a AWS S3 y formularios para convertir el interés en solicitudes de contacto.",
-    stack: ["Next.js", "React", "TypeScript", "MySQL", "AWS S3"], color: "#E76F8C", liveUrl: "#", githubUrl: "#", imageUrl: projectImage,
+    stack: ["Next.js", "React", "TypeScript", "MySQL", "AWS S3"], color: "#E76F8C", liveUrl: "https://habitta.prometeondev.com", githubUrl: "#", imageUrl: projectImage,
   },
   {
     id: "prometeondev", name: "PrometeonDev", tagline: "Diseño y desarrollo de productos digitales", type: "Sitio web colaborativo", description: "Sitio web y ecosistema digital de la empresa donde colaboro, con una identidad visual y una experiencia que ayudé a diseñar y desarrollar.",
@@ -195,12 +195,12 @@ export const websiteProjects: Project[] = [
   {
     id: "amaturis", name: "AmaTuris", tagline: "Turismo sostenible en Caquetá", type: "Proyecto universitario educativo", description: "Plataforma universitaria para explorar destinos, planes y experiencias de turismo sostenible en Caquetá.",
     caseStudy: "AmaTuris es un proyecto universitario de carácter educativo enfocado en conectar viajeros con destinos, planes y servicios turísticos de Caquetá. La plataforma permite explorar sitios y experiencias, consultar actividades e itinerarios, registrarse, guardar favoritos y crear o gestionar reservas. También contempla perfiles para turistas, agencias, prestadores, operadores y administración, con mapas, paneles operativos y un chatbot. Su arquitectura combina Next.js, TypeScript, FastAPI, PostgreSQL y Fuseki para unir la operación de reservas con un modelo semántico de destinos y experiencias.",
-    stack: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Fuseki", "Zod"], color: "#2563EB", liveUrl: "https://turismo-app-five-black.vercel.app", githubUrl: "https://github.com/SebastianSierra15/turismo-app", imageUrl: projectImage, useIframe: false,
+    stack: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Fuseki", "Zod"], color: "#2563EB", liveUrl: "https://amaturis.prometeondev.com", githubUrl: "https://github.com/SebastianSierra15/turismo-app", imageUrl: projectImage,
   },
   {
     id: "udlaverso", name: "UdlaVerso", tagline: "Innovación educativa con realidad aumentada", type: "Proyecto universitario educativo", description: "Portal académico de la Universidad de la Amazonia para publicar y explorar proyectos de realidad aumentada e innovación educativa.",
     caseStudy: "UdlaVerso es un portal universitario pensado para acercar la realidad aumentada y las experiencias inmersivas a la comunidad académica. Reúne un catálogo de proyectos, noticias, categorías, preguntas frecuentes y reseñas, junto con autenticación y un panel administrativo para gestionar contenidos. El trabajo conecta una SPA en React y TypeScript con una API en Spring Boot, seguridad con JWT y persistencia en MySQL, dejando una base para publicar y consultar proyectos educativos de la Universidad de la Amazonia.",
-    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Spring Boot", "MySQL"], color: "#2D6A4F", liveUrl: "#", githubUrl: "https://github.com/SebastianSierra15/udlaverso-frontend", imageUrl: projectImage, useIframe: false,
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Spring Boot", "MySQL"], color: "#2D6A4F", liveUrl: "https://udlaverso.prometeondev.com", githubUrl: "https://github.com/SebastianSierra15/udlaverso-frontend", imageUrl: projectImage,
   },
 ];
 
