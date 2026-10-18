@@ -75,6 +75,7 @@ export const experienceTimeline: ExperienceEntry[] = [
     highlights: ["Autenticación y gestión administrativa", "Filtros, mapas y carga de imágenes", "Integración con AWS S3"],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "MySQL", "AWS S3"],
     accent: "#ec4899",
+    url: "https://habitta.prometeondev.com",
   },
   {
     id: "prometeondev",
@@ -167,8 +168,25 @@ export const SKILLS: Skill[] = [
   { name: "SEO", level: 78, years: "2+ años", tag: "AmaTuris", projects: ["AmaTuris", "Habitta"], color: "#52B788", category: "DesignOps", role: "Contenido técnico y descubribilidad" },
   { name: "Flutter", level: 68, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#027DFD", category: "Mobile", role: "Interfaces móviles multiplataforma" },
   { name: "Dart", level: 64, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#0175C2", category: "Mobile", role: "Lógica de aplicaciones móviles" },
+  { name: "React Native", level: 80, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#61DAFB", category: "Mobile", role: "Aplicaciones móviles multiplataforma" },
+  { name: "Expo", level: 76, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#111827", category: "Mobile", role: "Tooling y distribución móvil" },
   { name: "OpenAI", level: 68, years: "1+ año", tag: "IA aplicada", projects: ["Fudia", "Simulador"], color: "#10A37F", category: "AI & GenAI", role: "Integraciones y experiencias con IA" },
   { name: "RAG", level: 62, years: "En práctica", tag: "IA aplicada", projects: ["Fudia"], color: "#7C3AED", category: "AI & GenAI", role: "Búsqueda contextual y conocimiento" },
+  { name: "Gemini", level: 62, years: "En práctica", tag: "IA aplicada", projects: [], color: "#4285F4", category: "AI & GenAI", role: "Modelos multimodales y asistentes" },
+  { name: "Groq", level: 62, years: "En práctica", tag: "Portfolio", projects: ["Portfolio"], color: "#F97316", category: "AI & GenAI", role: "Inferencia rápida para experiencias conversacionales" },
+  { name: "Vite", level: 78, years: "2+ años", tag: "UdlaVerso", projects: ["UdlaVerso", "Simulador"], color: "#646CFF", category: "Web", role: "Tooling para aplicaciones frontend" },
+  { name: "FastAPI", level: 70, years: "En práctica", tag: "AmaTuris", projects: ["AmaTuris"], color: "#009688", category: "Infra", role: "APIs backend en Python" },
+  { name: "PostgreSQL", level: 68, years: "En práctica", tag: "AmaTuris", projects: ["AmaTuris"], color: "#4169E1", category: "Infra", role: "Persistencia relacional" },
+  { name: "Fuseki", level: 58, years: "En práctica", tag: "AmaTuris", projects: ["AmaTuris"], color: "#7C3AED", category: "Infra", role: "Datos semánticos y consultas RDF" },
+  { name: "Zod", level: 62, years: "En práctica", tag: "AmaTuris", projects: ["AmaTuris"], color: "#3068B7", category: "Web", role: "Validación de datos y contratos" },
+  { name: "Spring Boot", level: 70, years: "2+ años", tag: "UdlaVerso", projects: ["UdlaVerso"], color: "#6DB33F", category: "Infra", role: "APIs backend empresariales" },
+  { name: "AWS S3", level: 70, years: "En práctica", tag: "Habitta", projects: ["Habitta"], color: "#FF9900", category: "Infra", role: "Almacenamiento de imágenes" },
+  { name: "Prisma", level: 72, years: "1+ año", tag: "Souls In Xtinction", projects: ["Souls In Xtinction"], color: "#2D3748", category: "Infra", role: "Acceso tipado a datos" },
+  { name: "NextAuth", level: 68, years: "1+ año", tag: "Souls In Xtinction", projects: ["Souls In Xtinction"], color: "#111827", category: "Infra", role: "Autenticación para productos web" },
+  { name: "Colyseus", level: 64, years: "En práctica", tag: "Simulador", projects: ["Simulador"], color: "#2563EB", category: "Infra", role: "Estado sincronizado en tiempo real" },
+  { name: "MongoDB", level: 64, years: "En práctica", tag: "Simulador", projects: ["Simulador"], color: "#47A248", category: "Infra", role: "Persistencia documental" },
+  { name: "Sentry", level: 58, years: "En práctica", tag: "Fudia", projects: ["Fudia"], color: "#362D59", category: "DesignOps", role: "Monitoreo y diagnóstico de errores" },
+  { name: "Docker", level: 68, years: "En práctica", tag: "Portfolio", projects: ["Portfolio"], color: "#2496ED", category: "Infra", role: "Despliegues reproducibles" },
 ];
 
 export const MARQUEE_TECH = ["React", "Next.js", "TypeScript", "Java", "Node.js", "MySQL", "Appwrite", "Tailwind CSS", "Git", "Python", "JSP", "Servlets", "REST APIs", "Responsive UI", "SEO", "Design Systems", "Docker", "Figma", "Supabase", "Cloudflare"];
