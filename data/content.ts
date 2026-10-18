@@ -158,13 +158,13 @@ export const SKILLS: Skill[] = [
   { name: "TypeScript", level: 88, years: "3+ años", tag: "Simulador", projects: ["Simulador", "Habitta"], color: "#3178C6", category: "Web", role: "Código de producto mantenible", hero: true, cell: "ts", badge: "core", trend: [48, 61, 72, 80, 85, 88] },
   { name: "Java", level: 82, years: "2+ años", tag: "Invehin", projects: ["Invehin"], color: "#E76F00", category: "Web", role: "JSP, Servlets y backend empresarial", hero: true, cell: "chip", badge: "shipping", trend: [42, 53, 64, 70, 77, 82] },
   { name: "Node.js", level: 84, years: "3+ años", tag: "Sistema Estanco", projects: ["Sistema Estanco", "Fudia"], color: "#339933", category: "Infra", role: "APIs e integraciones", hero: true, cell: "rag", badge: "shipping", trend: [50, 60, 68, 75, 80, 84] },
-  { name: "HTML / CSS", level: 94, years: "5+ años", tag: "Habitta", projects: ["Habitta", "Turismo App"], color: "#E44D26", category: "Web", role: "Interfaces responsive y accesibles", trend: [68, 75, 82, 87, 91, 94] },
+  { name: "HTML / CSS", level: 94, years: "5+ años", tag: "Habitta", projects: ["Habitta", "AmaTuris"], color: "#E44D26", category: "Web", role: "Interfaces responsive y accesibles", trend: [68, 75, 82, 87, 91, 94] },
   { name: "MySQL", level: 80, years: "2+ años", tag: "Invehin", projects: ["Invehin"], color: "#00758F", category: "Infra", role: "Modelado y persistencia relacional" },
   { name: "Appwrite", level: 78, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#FD366E", category: "Infra", role: "Backend como servicio" },
-  { name: "Tailwind CSS", level: 86, years: "3+ años", tag: "Turismo App", projects: ["Turismo App", "Habitta"], color: "#06B6D4", category: "Web", role: "Sistemas visuales rápidos" },
+  { name: "Tailwind CSS", level: 86, years: "3+ años", tag: "AmaTuris", projects: ["AmaTuris", "Habitta"], color: "#06B6D4", category: "Web", role: "Sistemas visuales rápidos" },
   { name: "Git", level: 90, years: "4+ años", tag: "Todos", projects: ["Fudia", "Invehin", "Habitta"], color: "#F05032", category: "DesignOps", role: "Colaboración y control de cambios" },
   { name: "Python", level: 72, years: "1+ año", tag: "Automatización", projects: [], color: "#3776AB", category: "Infra", role: "Automatización y herramientas internas" },
-  { name: "SEO", level: 78, years: "2+ años", tag: "Turismo App", projects: ["Turismo App", "Habitta"], color: "#52B788", category: "DesignOps", role: "Contenido técnico y descubribilidad" },
+  { name: "SEO", level: 78, years: "2+ años", tag: "AmaTuris", projects: ["AmaTuris", "Habitta"], color: "#52B788", category: "DesignOps", role: "Contenido técnico y descubribilidad" },
   { name: "Flutter", level: 68, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#027DFD", category: "Mobile", role: "Interfaces móviles multiplataforma" },
   { name: "Dart", level: 64, years: "1+ año", tag: "Fudia", projects: ["Fudia"], color: "#0175C2", category: "Mobile", role: "Lógica de aplicaciones móviles" },
   { name: "OpenAI", level: 68, years: "1+ año", tag: "IA aplicada", projects: ["Fudia", "Simulador"], color: "#10A37F", category: "AI & GenAI", role: "Integraciones y experiencias con IA" },
@@ -183,29 +183,24 @@ const projectImage = "/assets/project-placeholder.svg";
 
 export const websiteProjects: Project[] = [
   {
-    id: "invehin", name: "Invehin", tagline: "Gestión de inventario y ventas", type: "App web empresarial", description: "Sistema administrativo para organizar productos, ventas y reportes con una base Java tradicional.",
-    caseStudy: "Invehin reúne inventario, ventas y persistencia en un flujo pensado para operación interna. El proyecto permitió trabajar con Java, JSP, Servlets, JDBC y MySQL, conectando una interfaz clara con una arquitectura robusta y fácil de explicar.",
-    stack: ["Java", "JSP", "Servlets", "MySQL", "Tomcat", "JDBC"], color: "#E76F00", liveUrl: "#", githubUrl: "https://github.com/SebastianSierra15/Invehin", imageUrl: projectImage,
-  },
-  {
     id: "habitta", name: "Habitta", tagline: "Plataforma digital para vivienda", type: "Product Website", description: "Plataforma inmobiliaria para explorar y administrar propiedades y proyectos, con filtros, mapas, galerías e información de contacto.",
     caseStudy: "Habitta conecta la experiencia pública de exploración inmobiliaria con herramientas privadas de gestión. El proyecto contempla autenticación, administración de propiedades y proyectos, filtros de búsqueda, ubicación en mapas, carga de imágenes a AWS S3 y formularios para convertir el interés en solicitudes de contacto.",
     stack: ["Next.js", "React", "TypeScript", "MySQL", "AWS S3"], color: "#E76F8C", liveUrl: "#", githubUrl: "#", imageUrl: projectImage,
   },
   {
-    id: "sistema-estanco", name: "Sistema Estanco", tagline: "Operación y control administrativo", type: "App web full stack", description: "Aplicación para centralizar operación, datos y control de un negocio con una arquitectura full stack.",
-    caseStudy: "El sistema separa la experiencia de usuario, la lógica de negocio y la persistencia para mantener una base evolutiva. El foco está en dar visibilidad a la operación sin sacrificar trazabilidad.",
-    stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "MongoDB", "Docker"], color: "#52B788", liveUrl: "#", githubUrl: "https://github.com/SebastianSierra15/sistema-estanco", imageUrl: projectImage,
-  },
-  {
-    id: "turismo-app", name: "Turismo App", tagline: "Descubrir rutas y experiencias", type: "App web frontend", description: "Frontend web para presentar rutas, experiencias y contenido turístico de forma visual y fácil de explorar.",
-    caseStudy: "Turismo App trabaja la presentación del contenido como parte central del producto: navegación directa, diseño responsive y una estructura preparada para crecer hacia más rutas y experiencias.",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Responsive UI"], color: "#2563EB", liveUrl: "https://turismo-app-five-black.vercel.app", githubUrl: "https://github.com/SebastianSierra15/turismo-app", imageUrl: projectImage, useIframe: false,
-  },
-  {
     id: "prometeondev", name: "PrometeonDev", tagline: "Diseño y desarrollo de productos digitales", type: "Sitio web colaborativo", description: "Sitio web y ecosistema digital de la empresa donde colaboro, con una identidad visual y una experiencia que ayudé a diseñar y desarrollar.",
     caseStudy: "PrometeonDev es un trabajo colaborativo con amigos y una parte importante de mi experiencia profesional. Mi participación incluye decisiones de diseño, construcción de interfaces y desarrollo frontend para comunicar mejor los servicios y productos del equipo.",
     stack: ["Next.js", "React", "TypeScript", "UI Systems", "SEO"], color: "#f97316", liveUrl: "https://prometeondev.com", githubUrl: "#", imageUrl: projectImage, useIframe: false,
+  },
+  {
+    id: "amaturis", name: "AmaTuris", tagline: "Turismo sostenible en Caquetá", type: "Proyecto universitario educativo", description: "Plataforma universitaria para explorar destinos, planes y experiencias de turismo sostenible en Caquetá.",
+    caseStudy: "AmaTuris es un proyecto universitario de carácter educativo enfocado en conectar viajeros con destinos, planes y servicios turísticos de Caquetá. La plataforma permite explorar sitios y experiencias, consultar actividades e itinerarios, registrarse, guardar favoritos y crear o gestionar reservas. También contempla perfiles para turistas, agencias, prestadores, operadores y administración, con mapas, paneles operativos y un chatbot. Su arquitectura combina Next.js, TypeScript, FastAPI, PostgreSQL y Fuseki para unir la operación de reservas con un modelo semántico de destinos y experiencias.",
+    stack: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Fuseki", "Zod"], color: "#2563EB", liveUrl: "https://turismo-app-five-black.vercel.app", githubUrl: "https://github.com/SebastianSierra15/turismo-app", imageUrl: projectImage, useIframe: false,
+  },
+  {
+    id: "udlaverso", name: "UdlaVerso", tagline: "Innovación educativa con realidad aumentada", type: "Proyecto universitario educativo", description: "Portal académico de la Universidad de la Amazonia para publicar y explorar proyectos de realidad aumentada e innovación educativa.",
+    caseStudy: "UdlaVerso es un portal universitario pensado para acercar la realidad aumentada y las experiencias inmersivas a la comunidad académica. Reúne un catálogo de proyectos, noticias, categorías, preguntas frecuentes y reseñas, junto con autenticación y un panel administrativo para gestionar contenidos. El trabajo conecta una SPA en React y TypeScript con una API en Spring Boot, seguridad con JWT y persistencia en MySQL, dejando una base para publicar y consultar proyectos educativos de la Universidad de la Amazonia.",
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Spring Boot", "MySQL"], color: "#2D6A4F", liveUrl: "#", githubUrl: "https://github.com/SebastianSierra15/udlaverso-frontend", imageUrl: projectImage, useIframe: false,
   },
 ];
 

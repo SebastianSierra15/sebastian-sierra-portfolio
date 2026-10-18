@@ -20,7 +20,7 @@ const EVIDENCE: Evidence[] = [
         kicker: "Frontend",
         title: "Interfaces que se entienden.",
         description: "Jerarquía visual, responsive y componentes reutilizables para que cada pantalla ayude a avanzar.",
-        projects: ["Fudia", "Habitta", "Turismo App"],
+        projects: ["Fudia", "Habitta", "AmaTuris"],
         steps: ["Estructura", "Componentes", "Responsive"],
         accent: "#f97316",
     },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { allProjects, Project } from "@/data/content";
@@ -13,11 +13,13 @@ function CategoryIcon({ type, color }: { type: string, color: string }) {
     const t = type.toLowerCase();
     const iconStyle = { color };
     
-    // AI App
-    if (t.includes("ai") || t.includes("voice")) {
+    // AI / mobile app
+    if (t.includes("ai") || t.includes("voice") || t.includes("mobile") || t.includes("móvil")) {
         return (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={iconStyle}>
-                <path d="M12 2v20M17 5v14M22 10v4M7 5v14M2 10v4"/>
+                <path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5L12 3Z"/>
+                <path d="m19 14-.8 2.2L16 17l2.2.8L19 20l.8-2.2L22 17l-2.2-.8L19 14Z"/>
+                <path d="m5 14-.6 1.7-1.7.6 1.7.6.6 1.7.6-1.7 1.7-.6-1.7-.6L5 14Z"/>
             </svg>
         );
     }
@@ -135,28 +137,6 @@ function Accordion({ title, content }: { title: string, content: string }) {
 }
 
 function PhoneFrame({ src, accentColor, alt, fullScreen = false }: { src: string, accentColor: string, alt: string, fullScreen?: boolean }) {
-    const frameRef = useRef<HTMLDivElement>(null);
-
-    const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-        if (!frameRef.current || window.innerWidth <= 768) return;
-        const frame = frameRef.current;
-        const rect = frame.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = ((y - centerY) / centerY) * -6;
-        const rotateY = ((x - centerX) / centerX) * 6;
-        
-        gsap.to(frame, { rotateX, rotateY, duration: 0.5, ease: "power2.out", transformPerspective: 1200 });
-    };
-
-    const handleMouseLeave = () => {
-        if (!frameRef.current) return;
-        gsap.to(frameRef.current, { rotateX: 0, rotateY: 0, duration: 0.7, ease: "power2.out" });
-    };
-
     return (
         <div style={{ position: "relative", width: "100%", maxWidth: "320px", margin: "0 auto", perspective: "1200px" }}>
             <div className="accent-glow" style={{
@@ -165,15 +145,10 @@ function PhoneFrame({ src, accentColor, alt, fullScreen = false }: { src: string
                 background: accentColor, opacity: 0.1, filter: "blur(60px)", pointerEvents: "none", zIndex: 0
             }} />
 
-            <div 
-                ref={frameRef}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
+            <div style={{
                     position: "relative", zIndex: 1, width: "100%", aspectRatio: "428/926",
                     backgroundColor: "#1d1d1f", borderRadius: "40px", padding: "12px",
-                    boxShadow: "0 20px 60px rgba(0,0,0,0.15)", border: "1px solid rgba(255,255,255,0.1)",
-                    transformStyle: "preserve-3d"
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.15)", border: "1px solid rgba(255,255,255,0.1)"
                 }}
             >
                 <div style={{
@@ -572,7 +547,10 @@ export default function WorkSection() {
     const appsList = ["fudia", "simulador"]
         .map((id) => allProjects.find((project) => project.id === id))
         .filter(Boolean) as Project[];
-    const websitesList = allProjects.filter((project) => project.id !== "sistema-estanco");
+    const websiteOrder = ["souls-in-xtinction", "simulador", "fudia", "habitta", "prometeondev", "amaturis", "udlaverso"];
+    const websitesList = websiteOrder
+        .map((id) => allProjects.find((project) => project.id === id))
+        .filter((project): project is Project => Boolean(project));
 
     useEffect(() => {
         const ctx = gsap.context(() => {

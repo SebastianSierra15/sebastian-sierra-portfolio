@@ -28,7 +28,7 @@ const FRAMES: Frame[] = [
     answer: "Whisper streams 200ms audio chunks over WebSocket, transcribed live, then echoed to the UI.",
   },
   {
-    query: "What vector store powers Turismo App's image search?",
+    query: "What vector store powers AmaTuris's image search?",
     docs: [
       { name: "vector/store.ts",  score: 0.91, preview: "import { Pinecone } from '@pinecone-database/..." },
       { name: "embeddings.ts",    score: 0.88, preview: "openai.embeddings.create({ model: 'text-embedding-3-large' })" },
