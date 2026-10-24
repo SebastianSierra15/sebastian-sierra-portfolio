@@ -137,7 +137,10 @@ function Accordion({ title, content }: { title: string, content: string }) {
     );
 }
 
-function PhoneFrame({ src, accentColor, alt, fullScreen = false }: { src: string, accentColor: string, alt: string, fullScreen?: boolean }) {
+function PhoneFrame({ src, accentColor, alt, fullScreen = false, videoSrc }: { src: string, accentColor: string, alt: string, fullScreen?: boolean, videoSrc?: string }) {
+    const [videoReady, setVideoReady] = useState(false);
+    const [videoFailed, setVideoFailed] = useState(false);
+
     return (
         <div style={{ position: "relative", width: "100%", maxWidth: "320px", margin: "0 auto", perspective: "1200px" }}>
             <div className="accent-glow" style={{
@@ -163,7 +166,41 @@ function PhoneFrame({ src, accentColor, alt, fullScreen = false }: { src: string
                         borderRadius: "16px", zIndex: 10
                     }} />
                     
-                    {fullScreen ? (
+                    {fullScreen && videoSrc ? (
+                        <>
+                            <Image src={src} alt={alt} title={alt} fill priority sizes="320px" style={{ objectFit: "cover", objectPosition: "top center" }} />
+                            {!videoFailed && (
+                                <video
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    preload="auto"
+                                    poster={src}
+                                    aria-label={`${alt} - vista previa en video`}
+                                    onLoadedData={() => setVideoReady(true)}
+                                    onCanPlay={() => setVideoReady(true)}
+                                    onPlaying={() => setVideoReady(true)}
+                                    onError={() => {
+                                        setVideoFailed(true);
+                                        setVideoReady(false);
+                                    }}
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        objectPosition: "top center",
+                                        opacity: videoReady ? 1 : 0,
+                                        transition: "opacity 0.25s ease"
+                                    }}
+                                >
+                                    <source src={videoSrc} type="video/webm" />
+                                </video>
+                            )}
+                        </>
+                    ) : fullScreen ? (
                         <Image src={src} alt={alt} title={alt} fill sizes="320px" style={{ objectFit: "cover", objectPosition: "top center" }} />
                     ) : (
                         <>
@@ -214,16 +251,53 @@ function ProductVisual({ project }: { project: Project }) {
     );
 }
 
-function ConceptPreview({ project }: { project: Project }) {
+function ConceptPreview({ project, active }: { project: Project, active: boolean }) {
+    const [videoReady, setVideoReady] = useState(false);
+    const [videoFailed, setVideoFailed] = useState(false);
+
     return (
-        <Image
-            src="/assets/projects/simulador-desktop.png"
-            alt={project.name}
-            title={`${project.name} - Sebastián Sierra`}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            style={{ objectFit: "contain", objectPosition: "center center", background: "#160d20" }}
-        />
+        <div style={{ position: "absolute", inset: 0, background: "#160d20" }}>
+            <Image
+                src="/assets/projects/simulador-desktop.png"
+                alt={project.name}
+                title={`${project.name} - Sebastián Sierra`}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ objectFit: "contain", objectPosition: "center center" }}
+            />
+
+            {active && !videoFailed && (
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    poster="/assets/projects/simulador-desktop.png"
+                    aria-label={`${project.name} - vista previa en video`}
+                    onLoadedData={() => setVideoReady(true)}
+                    onCanPlay={() => setVideoReady(true)}
+                    onPlaying={() => setVideoReady(true)}
+                    onError={() => {
+                        setVideoFailed(true);
+                        setVideoReady(false);
+                    }}
+                    style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                        opacity: videoReady ? 1 : 0,
+                        transition: "opacity 0.25s ease"
+                    }}
+                >
+                    <source src="/assets/projects/simulador-preview.webm" type="video/webm" />
+                </video>
+            )}
+        </div>
     );
 }
 
@@ -243,7 +317,13 @@ function AppProjectBlock({ project, index }: { project: Project, index: number }
             }}>
                 <div className={isMobileApp ? "app-mockup" : "product-mockup"} style={{ flex: "0 0 340px", width: "340px", display: "flex", justifyContent: "center" }}>
                     {isMobileApp ? (
-                        <PhoneFrame src={appPreviewSrc} accentColor={project.color} alt={project.name} fullScreen />
+                        <PhoneFrame
+                            src={appPreviewSrc}
+                            accentColor={project.color}
+                            alt={project.name}
+                            fullScreen
+                            videoSrc={project.id === "simulador" ? "/assets/projects/simulador-mobile-preview.webm" : undefined}
+                        />
                     ) : (
                         <ProductVisual project={project} />
                     )}
@@ -474,7 +554,7 @@ function WebsiteCard({ project }: { project: Project }) {
                     )}
                     
                     {!useIframe && project.id === "simulador" ? (
-                        <ConceptPreview project={project} />
+                        <ConceptPreview project={project} active={isVisible} />
                     ) : !useIframe ? (
                         <Image src={project.imageUrl} alt={project.name} title={`${project.name} - Sebastián Sierra`} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover", objectPosition: "top left" }} />
                     ) : null}
@@ -545,7 +625,7 @@ export default function WorkSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLHeadingElement>(null);
 
-    const appsList = ["fudia", "simulador"]
+    const appsList = ["simulador", "fudia"]
         .map((id) => allProjects.find((project) => project.id === id))
         .filter(Boolean) as Project[];
     const websiteOrder = ["souls-in-xtinction", "simulador", "fudia", "habitta", "amaturis", "udlaverso", "prometeondev"];
